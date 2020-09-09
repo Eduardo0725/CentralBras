@@ -15,21 +15,18 @@
 - [ ] RF10: Cadastro de compras;
 - [ ] RF11: Listar compras;
 - [ ] RF12: Detalhes da compra;
-- [ ] RF13: Cadastro de faturas;
-- [ ] RF14: Listar faturas;
-- [ ] RF15: Detalhes da fatura;
-- [ ] RF16: Cadastro de cartões;
-- [ ] RF17: Listar cartões;
-- [ ] RF18: Carrinho de compras;
-- [ ] RF19: Cadastro de favoritos;
-- [ ] RF20: Listar favoritos;
-- [ ] RF21: Alteração de email e/ou senha;
-- [ ] RF22: Alteração de dados pessoais;
-- [ ] RF23: Alteração do endereço;
-- [ ] RF24: Exclusão de produtos, cartões e favoritos;
-- [ ] RF25: Cadastro de comentários;
-- [ ] RF26: Listar comentários;
-- [ ] RF27: Página do produto;
+- [ ] RF13: Cadastro de cartões;
+- [ ] RF14: Listar cartões;
+- [ ] RF15: Carrinho de compras;
+- [ ] RF16: Cadastro de favoritos;
+- [ ] RF17: Listar favoritos;
+- [ ] RF18: Alteração de email e/ou senha;
+- [ ] RF19: Alteração de dados pessoais;
+- [ ] RF20: Alteração do endereço;
+- [ ] RF21: Exclusão de produtos, cartões e favoritos;
+- [ ] RF22: Cadastro de comentários;
+- [ ] RF23: Listar comentários;
+- [ ] RF24: Página do produto;
 
 ## Requisitos não funcionais:
 
