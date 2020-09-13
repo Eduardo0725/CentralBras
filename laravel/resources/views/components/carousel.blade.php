@@ -42,6 +42,6 @@
 </div>
 
 <input type="hidden" value="{{ 'id' . $valueVariable }}">
-<script id="{{ 'id' . $valueVariable }}">
+<script async id="{{ 'id' . $valueVariable }}">
     startCarousel(document.querySelector('input[type="hidden"]').value)
 </script>
