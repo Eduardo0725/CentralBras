@@ -79,6 +79,10 @@ header a#menu:hover img {
     filter: var(--svg-color-white);
 }
 
+header a#menu:hover ~ menu {
+    display: flex;
+}
+
 header a#logo {
     display: flex;
     flex: 1;
@@ -162,6 +166,10 @@ menu {
     z-index: 10;
 }
 
+menu:hover {
+    display: flex;
+}
+
 menu a {
     font-size: 1.4rem;
     color: #333333;
@@ -184,7 +192,7 @@ nav {
 nav a {
     color: #fff;
     font-size: 1.4rem;
-    padding: 10px 0px;
+    padding: 9.5px 0px;
     text-align: center;
     flex: 1;
 }

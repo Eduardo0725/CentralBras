@@ -6,7 +6,10 @@
 
         <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="{{ asset('css/layout.css') }}">
+
         @yield('styles')
+
+        @yield('scriptsHead')
 
         <title>{{ config('app.name') }} @yield('titulo')</title>
     </head>
@@ -37,19 +40,18 @@
                     {{-- <p>Entre ou cadastre-se</p> --}}
                 </button>
             </div>
+            <menu>
+                <a href="#">Celulares e Telefones</a>
+                <a href="#">Informática</a>
+                <a href="#">TV e Eletrônicos</a>
+                <a href="#">Eletrodomésticos</a>
+                <a href="#">Eletroportáteis</a>
+                <a href="#">Moda e Decoração</a>
+                <a href="#">Esporte e Lazer</a>
+                <a href="#">Games</a>
+                <a href="#">Outros</a>
+            </menu>
         </header>
-
-        <menu>
-            <a href="#">Celulares e Telefones</a>
-            <a href="#">Informática</a>
-            <a href="#">TV e Eletrônicos</a>
-            <a href="#">Eletrodomésticos</a>
-            <a href="#">Eletroportáteis</a>
-            <a href="#">Moda e Decoração</a>
-            <a href="#">Esporte e Lazer</a>
-            <a href="#">Games</a>
-            <a href="#">Outros</a>
-        </menu>
 
         <nav>
             <a href="#">Celulares</a>
@@ -66,10 +68,6 @@
 
         <footer><p>Copyright © 2020 - CentralBrás - Todos os direitos reservados</p></footer>
 
-        <script>
-            document.querySelector('a#menu').addEventListener('mouseover', () => document.querySelector('menu').style = 'display: flex;')
-            document.querySelector('menu').addEventListener('mouseleave', () => document.querySelector('menu').style = '')
-        </script>
         @yield('scripts')
     </body>
 </html>
