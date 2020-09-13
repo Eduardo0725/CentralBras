@@ -32,26 +32,21 @@ div.controls {
 
 div.controls label {
     display: none;
-    width: 20px;
-    height: 20px;
-    padding: 30px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
-    background-color: #fff;
+    background: #fff center center/20px no-repeat;
     cursor: pointer;
     box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
+    margin: 110px 0;
 }
 
-div.controls span {
-    width: 20px;
-    height: 20px;
-}
-
-.radio1:checked ~ div.controls label:nth-child(2),
+/* .radio1:checked ~ div.controls label:nth-child(2),
 .radio2:checked ~ div.controls label:nth-child(3),
 .radio3:checked ~ div.controls label:nth-child(4) {
     display: block;
     float: right;
-    margin: 110px 0;
+    background-image: url('https://image.flaticon.com/icons/svg/130/130884.svg');
 }
 
 .radio2:checked ~ div.controls label:nth-child(1),
@@ -59,40 +54,26 @@ div.controls span {
 .radio4:checked ~ div.controls label:nth-child(3) {
     display: block;
     float: left;
-    margin: 110px 0;
-}
-
-.radio1:checked ~ div.controls label:nth-child(2) span,
-.radio2:checked ~ div.controls label:nth-child(3) span,
-.radio3:checked ~ div.controls label:nth-child(4) span {
-    display: block;
-    background: url('https://image.flaticon.com/icons/svg/130/130884.svg') no-repeat;
-}
-
-.radio2:checked ~ div.controls label:nth-child(1) span,
-.radio3:checked ~ div.controls label:nth-child(2) span,
-.radio4:checked ~ div.controls label:nth-child(3) span {
-    display: block;
-    background: url('https://image.flaticon.com/icons/svg/130/130882.svg') no-repeat;
+    background-image: url('https://image.flaticon.com/icons/svg/130/130882.svg');
 }
 
 .radio1:checked ~ .cards .contents {
     left: 0;
-    transition: 1s;
 }
 
 .radio2:checked ~ .cards .contents {
     left: -1040px;
-    transition: 1s;
 }
 
 .radio3:checked ~ .cards .contents {
     left: -2080px;
-    transition: 1s;
 }
 
 .radio4:checked ~ .cards .contents {
     left: -3120px;
+} */
+
+.cards .contents {
     transition: 1s;
 }
 

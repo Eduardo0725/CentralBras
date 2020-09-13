@@ -1,19 +1,19 @@
-<div class="carousel">
+<div class="carousel" id="{{ 'id' . $valueVariable }}">
 
     <h2>{{$title}}</h2>
 
-    <input type="radio" name="radio" id="radio{{$valueVariable + 1}}" class="carosel_radio radio1" checked>
+    <input type="radio" name="radio{{ 'id' . $valueVariable }}" id="radio{{$valueVariable + 1}}" class="carosel_radio radio1" checked>
     @for ($i = 2; $i <= 4; $i++)
-        <input type="radio" name="radio" id="radio{{$valueVariable + $i}}" class="carosel_radio radio{{$i}}">
+        <input type="radio" name="radio{{ 'id' . $valueVariable }}" id="radio{{$valueVariable + $i}}" class="carosel_radio radio{{$i}}">
     @endfor
 
-    <div class="controls">
+    <div class="controls {{ 'id' . $valueVariable }}">
     @for ($i = 1; $i <= 4; $i++)
-        <label for="radio{{$valueVariable + $i}}"><span></span></label>
+        <label for="radio{{$valueVariable + $i}}"></label>
     @endfor
     </div>
 
-    <div class="cards">
+    <div class="cards {{ 'id' . $valueVariable }}">
         <span class="contents">
 
         @foreach ($contents as $content)
@@ -40,3 +40,8 @@
         </span>
     </div>
 </div>
+
+<input type="hidden" value="{{ 'id' . $valueVariable }}">
+<script id="{{ 'id' . $valueVariable }}">
+    startCarousel(document.querySelector('input[type="hidden"]').value)
+</script>
