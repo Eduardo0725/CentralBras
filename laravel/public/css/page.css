@@ -8,10 +8,12 @@ div.features {
     flex: 1;
     justify-content: space-between;
     align-items: center;
-    margin: 20px 10px 0;
+    margin: 20px auto 0;
     padding: 15px;
     background-color: #fff;
     border-radius: 5px;
+    width: 100%;
+    max-width: 920px;
 }
 
 div.features p:first-child {
@@ -191,7 +193,6 @@ div.filter span.ready label {
     font-size: 1.4rem;
 }
 
-
 div.cardsContents {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -201,6 +202,16 @@ div.cardsContents {
 
 div.cardsContents div.card {
     margin: 0 10px 20px;
+}
+
+div.cardsContents div.card:nth-child(4n + 1) {
+    margin-right: auto;
+    margin-left: 0;
+}
+
+div.cardsContents div.card:nth-child(4n) {
+    margin-right: 0;
+    margin-left: auto;
 }
 
 
