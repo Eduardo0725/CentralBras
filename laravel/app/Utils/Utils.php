@@ -2,9 +2,9 @@
 
 namespace App\Utils;
 
-class CalcStars
+class Utils
 {
-    public static function calc($numStar, $numStarHalf) {
+    public static function calcStars($numStar, $numStarHalf) {
         return ($numStar > $numStarHalf)?'images/icons/star.svg':(($numStar < $numStarHalf)?'images/icons/star-outline.svg':'images/icons/star-half.svg');
     }
 }

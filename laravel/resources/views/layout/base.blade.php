@@ -9,8 +9,6 @@
 
         @yield('styles')
 
-        @yield('scriptsHead')
-
         <title>{{ config('app.name') }} @yield('titulo')</title>
     </head>
     <body>
@@ -54,12 +52,12 @@
         </header>
 
         <nav>
-            <a href="#">Celulares</a>
-            <a href="#">Notebook</a>
-            <a href="#">TV e home theater</a>
-            <a href="#">Móveis e decoração</a>
-            <a href="#">Eletrodomésticos</a>
-            <a href="#">Beleza e perfumaria</a>
+            <a href="{{ route('page', ['search' => 'Celulares']) }}">Celulares</a>
+            <a href="{{ route('page', ['search' => 'Notebook']) }}">Notebook</a>
+            <a href="{{ route('page', ['search' => 'TV e home theater']) }}">TV e home theater</a>
+            <a href="{{ route('page', ['search' => 'Móveis e decoração']) }}">Móveis e decoração</a>
+            <a href="{{ route('page', ['search' => 'Eletrodomésticos']) }}">Eletrodomésticos</a>
+            <a href="{{ route('page', ['search' => 'Beleza e perfumaria']) }}">Beleza e perfumaria</a>
         </nav>
 
         <div id="content">
