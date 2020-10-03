@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="pt-br">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -66,6 +66,15 @@
 
         <footer><p>Copyright © 2020 - CentralBrás - Todos os direitos reservados</p></footer>
 
+        <script>
+            document.querySelector("#search button").addEventListener('click', () => {
+                let doc = document.querySelector('#search input').value;
+                if (!doc) {
+                    doc = '';
+                }
+                window.location.replace(window.location.origin + '/page/search/' + doc);
+            })
+        </script>
         @yield('scripts')
     </body>
 </html>

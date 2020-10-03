@@ -37,7 +37,11 @@ Route::get('/', function () {
     return view('main', ['contents' => $contents]);
 })->name('main');
 
-Route::get('/page/search/{search}/{page?}', function (string $search, int $page = 1) {
+Route::get('/page/search/{search?}/{page?}', function (string $search, int $page = 1) {
+    if(!$search || $search == 1) {
+        return redirect('/');;
+    }
+
     $pagesMax = 40;
 
     $card = [
