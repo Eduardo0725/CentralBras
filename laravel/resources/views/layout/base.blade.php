@@ -69,9 +69,6 @@
         <script>
             document.querySelector("#search button").addEventListener('click', () => {
                 let doc = document.querySelector('#search input').value;
-                if (!doc) {
-                    doc = '';
-                }
                 window.location.replace(window.location.origin + '/page/search/' + doc);
             })
         </script>

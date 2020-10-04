@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     $card = [
+        'id' => '1234567890',
         'imgMainSrc' => 'https://images-americanas.b2w.io/produtos/01/00/img/462139/7/462139728_1SZ.jpg',
         'description' => 'Smartphone Motorola Moto G8 Plus 64GB Dual Chip Android 6.3" Qualcomm Snapdragon 665 (SM6125) 4G Câmera 48MP + 5MP + 16MP',
         'interest' => '12x R$ 124,99 sem juros',
@@ -45,6 +46,7 @@ Route::get('/page/search/{search?}/{page?}', function (string $search, int $page
     $pagesMax = 40;
 
     $card = [
+        'id' => '1234567890',
         'imgMainSrc' => 'https://images-americanas.b2w.io/produtos/01/00/img/462139/7/462139728_1SZ.jpg',
         'description' => 'Smartphone Motorola Moto G8 Plus 64GB Dual Chip Android 6.3" Qualcomm Snapdragon 665 (SM6125) 4G Câmera 48MP + 5MP + 16MP',
         'interest' => '12x R$ 124,99 sem juros',
@@ -63,3 +65,30 @@ Route::get('/page/search/{search?}/{page?}', function (string $search, int $page
 
     return view('pages.page', ['search' => $search, 'contents' => $contents, 'page' => $page, 'pagesMax' => $pagesMax]);
 })->name('page');
+
+Route::get('/product/{id}', function (string $id) {
+    $card = [
+        'id' => '1234567890',
+        'imgMainSrc' => 'https://images-americanas.b2w.io/produtos/01/00/img/462139/7/462139728_1SZ.jpg',
+        'imgs' => [
+            'https://images-americanas.b2w.io/produtos/01/00/img/462139/7/462139728_1SZ.jpg',
+            'https://images-americanas.b2w.io/produtos/01/00/img/462139/7/462139728_2SZ.jpg',
+            'https://images-americanas.b2w.io/produtos/01/00/img/462139/7/462139728_4SZ.jpg',
+            'https://images-americanas.b2w.io/produtos/01/00/img/462139/7/462139728_5SZ.jpg',
+            'https://images-americanas.b2w.io/produtos/01/00/img/462139/7/462139728_6SZ.jpg'
+        ],
+        'description' => 'Smartphone Motorola Moto G8 Plus 64GB Dual Chip Android 6.3" Qualcomm Snapdragon 665 (SM6125) 4G Câmera 48MP + 5MP + 16MP',
+        'interest' => '12x R$ 124,99 sem juros',
+        'discount' => '20% OFF',
+        'cost' => 'R$ 1.499,90',
+        'stars' => 3.5
+    ];
+
+    $contents = [];
+
+    for($i = 1; $i <= 16; $i++){
+        array_push($contents, $card);
+    }
+
+    return view('pages.product', ['contents' => $contents, 'product' => $card]);
+})->name('product');

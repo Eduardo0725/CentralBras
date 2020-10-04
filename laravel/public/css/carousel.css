@@ -57,11 +57,11 @@ div.carousel-div .cards .contents {
     transition: 1s;
 }
 
-div.carousel-div div.card:first-child {
+div.carousel-div .card:first-child {
     margin-left: 10px;
 }
 
-div.carousel-div div.card:not(:last-child) {
+div.carousel-div .card:not(:last-child) {
     margin-right: 20px;
 }
 

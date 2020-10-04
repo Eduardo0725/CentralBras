@@ -1,4 +1,4 @@
-<div class="card">
+<a class="card" href="{{ route('product', ['id' => $content['id']]) }}">
     <img src="{{ $content['imgMainSrc'] }}" alt="{{ $content['description'] }}" width="200px">
     <p>{{ $content['description'] }}</p>
     <div>
@@ -13,4 +13,4 @@
             @endfor
         </span>
     </div>
-</div>
+</a>
