@@ -1,0 +1,31 @@
+.boxOfNumbers>div {
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid var(--color-blue);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.boxOfNumbers>div a {
+    top: 1px;
+}
+
+.boxOfNumbers>div input {
+    width: 15px;
+    margin: 0 5px;
+    text-align: center;
+}
+
+/* Chrome, Safari, Edge, Opera */
+.boxOfNumbers>div input::-webkit-outer-spin-button,
+.boxOfNumbers>div input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.boxOfNumbers>div input[type=number] {
+  -moz-appearance: textfield;
+}

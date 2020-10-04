@@ -178,40 +178,10 @@ div#box {
     font-size: 2.8rem;
 }
 
-#main>div:last-child>.costAndCategories .amount>div,
 #main>div:last-child>.costAndCategories .category select {
     height: 30px;
     border-radius: 5px;
     border: 1px solid var(--color-blue);
-}
-
-#main>div:last-child>.costAndCategories .amount>div {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-}
-
-#main>div:last-child>.costAndCategories .amount>div a {
-    top: 1px;
-}
-
-#main>div:last-child>.costAndCategories .amount>div input {
-    width: 15px;
-    margin: 0 5px;
-    text-align: center;
-}
-
-/* Chrome, Safari, Edge, Opera */
-#main>div:last-child>.costAndCategories .amount>div input::-webkit-outer-spin-button,
-#main>div:last-child>.costAndCategories .amount>div input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-/* Firefox */
-#main>div:last-child>.costAndCategories .amount>div input[type=number] {
-  -moz-appearance: textfield;
 }
 
 #main>div:last-child>.costAndCategories .category select,

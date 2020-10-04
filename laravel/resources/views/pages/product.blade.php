@@ -2,6 +2,7 @@
 
 @section('styles')
 <link rel="stylesheet" href="{{ asset('css/product.css') }}">
+<link rel="stylesheet" href="{{ asset('css/boxOfNumbers.css') }}">
 <link rel="stylesheet" href="{{ asset('css/carousel.css') }}">
 <link rel="stylesheet" href="{{ asset('css/card.css') }}">
 @endsection
@@ -60,14 +61,7 @@
                     <p>ou até 12x de R$ 124,99 sem juros</p>
                 </div>
 
-                <div class="amount">
-                    <p>Quantidade:</p>
-                    <div>
-                        <a href=""><img src="{{ asset('images/icons/subtract.svg') }}" alt=""></a>
-                        <input type="number" value="1">
-                        <a href=""><img src="{{ asset('images/icons/sum.svg') }}" alt=""></a>
-                    </div>
-                </div>
+                @include('components.boxOfNumbers', ['pName' => 'Quantidade:', 'inputName' => 'qtd'])
 
                 <div class="category"> {{-- quantidade de divs dinâmica --}}
                     <p>Cor:</p>
@@ -177,5 +171,6 @@
 
 @section('scripts')
 <script src="{{ asset('js/product.js') }}"></script>
+<script src="{{ asset('js/boxOfNumbers.js') }}"></script>
 <script src="{{ asset('js/carousel.js') }}"></script>
 @endsection
