@@ -196,20 +196,21 @@ div.filter span.ready label {
 div.cardsContents {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-areas: 20px;
     margin: 20px auto 0;
     max-width: 950px;
 }
 
-div.cardsContents div.card {
+div.cardsContents>div {
     margin: 0 10px 20px;
 }
 
-div.cardsContents div.card:nth-child(4n + 1) {
+div.cardsContents>div:nth-child(4n + 1) {
     margin-right: auto;
     margin-left: 0;
 }
 
-div.cardsContents div.card:nth-child(4n) {
+div.cardsContents>div:nth-child(4n) {
     margin-right: 0;
     margin-left: auto;
 }
