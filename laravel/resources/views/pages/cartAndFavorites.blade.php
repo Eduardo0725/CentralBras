@@ -15,8 +15,8 @@
 
 @section('content')
     <div id="box" class="boxDefault">
-        <input class="none" type="radio" name="cartAndFavorites" id="radioCart">
-        <input class="none" type="radio" name="cartAndFavorites" id="radioFavorites" checked>
+        <input class="none" type="radio" name="cartAndFavorites" id="radioCart" {{ (!$cartOrFavorite) ? 'checked' : ''}}>
+        <input class="none" type="radio" name="cartAndFavorites" id="radioFavorites" {{ ($cartOrFavorite) ? 'checked' : ''}}>
 
         <div id="options" class="flexRow">
             <label for="radioCart" class="labelSelected">Carrinho ({{ count($contentsCart) }})</label>

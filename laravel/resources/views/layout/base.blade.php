@@ -13,41 +13,41 @@
     </head>
     <body>
         <header>
-            <a id="menu">
+            <a class="headerMenu">
                 <img src="{{ asset('images/icons/menu.svg') }}" alt="Menu">
                 Menu
             </a>
-            <a href="{{ route('main') }}" id="logo">
+            <a href="{{ route('main') }}" class="headerLogo">
                 <img src="{{ asset('images/logo.svg') }}" alt="CentralBrás">
             </a>
-            <div id="search">
+            <form action="{{ route('page') }}" class="headerSearch">
                 <input type="text" name="search">
-                <button href="#">
+                <button type="submit" class="headerBtn" href="#">
                     <img src="{{ asset('images/icons/search.svg') }}" alt="Search">
                 </button>
-            </div>
-            <div id="buttons">
-                <button href="#" id="heart">
+            </form>
+            <div class="headerButtons">
+                <a class="headerBtn heart" href="{{ route('cartAndFavorites', ['cartOrFavorite' => true]) }}">
                     <img src="{{ asset('images/icons/heart-outline.svg') }}" alt="Heart Outline">
-                </button>
-                <button href="#" id="cart">
+                </a>
+                <a class="headerBtn cart" href="{{ route('cartAndFavorites', ['cartOrFavorite' => false]) }}">
                     <img src="{{ asset('images/icons/cart.svg') }}" alt="Cart">
-                </button>
-                <button href="#" id="user">
+                </a>
+                <a class="headerBtn user" href="#">
                     <img src="{{ asset('images/icons/user.svg') }}" alt="User">
                     {{-- <p>Entre ou cadastre-se</p> --}}
-                </button>
+                </a>
             </div>
             <menu>
-                <a href="#">Celulares e Telefones</a>
-                <a href="#">Informática</a>
-                <a href="#">TV e Eletrônicos</a>
-                <a href="#">Eletrodomésticos</a>
-                <a href="#">Eletroportáteis</a>
-                <a href="#">Moda e Decoração</a>
-                <a href="#">Esporte e Lazer</a>
-                <a href="#">Games</a>
-                <a href="#">Outros</a>
+                <a href="{{ route('page', ['search' => 'Celulares e Telefones']) }}">Celulares e Telefones</a>
+                <a href="{{ route('page', ['search' => 'Informática']) }}">Informática</a>
+                <a href="{{ route('page', ['search' => 'TV e Eletrônicos']) }}">TV e Eletrônicos</a>
+                <a href="{{ route('page', ['search' => 'Eletrodomésticos']) }}">Eletrodomésticos</a>
+                <a href="{{ route('page', ['search' => 'Eletroportáteis']) }}">Eletroportáteis</a>
+                <a href="{{ route('page', ['search' => 'Moda e Decoração']) }}">Moda e Decoração</a>
+                <a href="{{ route('page', ['search' => 'Esporte e Lazer']) }}">Esporte e Lazer</a>
+                <a href="{{ route('page', ['search' => 'Games']) }}">Games</a>
+                <a href="{{ route('page', ['search' => 'Outros']) }}">Outros</a>
             </menu>
         </header>
 
@@ -66,12 +66,6 @@
 
         <footer><p>Copyright © 2020 - CentralBrás - Todos os direitos reservados</p></footer>
 
-        <script>
-            document.querySelector("#search button").addEventListener('click', () => {
-                let doc = document.querySelector('#search input').value;
-                window.location.replace(window.location.origin + '/page/search/' + doc);
-            })
-        </script>
         @yield('scripts')
     </body>
 </html>

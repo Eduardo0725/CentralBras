@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,7 +39,10 @@ Route::get('/', function () {
     return view('main', ['contents' => $contents]);
 })->name('main');
 
-Route::get('/page/search/{search?}/{page?}', function (string $search, int $page = 1) {
+Route::get('/page/{page?}', function (int $page = 1, Request $request) {
+
+    $search = $request->input('search');
+
     if(!$search || $search == 1) {
         return redirect('/');;
     }
@@ -93,7 +97,7 @@ Route::get('/product/{id}', function (string $id) {
     return view('pages.product', ['contents' => $contents, 'product' => $card]);
 })->name('product');
 
-Route::get('/cartAndFavorites', function () {
+Route::get('/cartAndFavorites/{cartOrFavorite?}', function (bool $cartOrFavorite = false) {
     $card = [
         'id' => '1234567890',
         'imgMainSrc' => 'https://images-americanas.b2w.io/produtos/01/00/img/462139/7/462139728_1SZ.jpg',
@@ -112,6 +116,8 @@ Route::get('/cartAndFavorites', function () {
         'amountSelected' => '1',
         'interest' => '12x R$ 124,99 sem juros',
         'discount' => '20% OFF',
+        'cart' => true,
+        'favorite' => true,
         'cost' => 1499.9,
         'stars' => 3.5
     ];
@@ -122,5 +128,5 @@ Route::get('/cartAndFavorites', function () {
         array_push($contents, $card);
     }
 
-    return view('pages.cartAndFavorites', ['contentsCart' => $contents, 'contentsFavorites' => [$card]]);
+    return view('pages.cartAndFavorites', ['contentsCart' => $contents, 'contentsFavorites' => [$card], 'cartOrFavorite' => $cartOrFavorite]);
 })->name('cartAndFavorites');
