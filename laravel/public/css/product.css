@@ -299,11 +299,11 @@ div#box {
     color: #888;
 }
 
-#box>.evaluation>div:first-of-type>button {
+#box>.evaluation>div:first-of-type>a {
     width: 100%;
     max-width: 90px;
-    height: 30px;
-    padding: 0;
+    padding: 6px 0;
+    font-size: 1.3rem;
 }
 
 #box>.evaluation .customerRating {

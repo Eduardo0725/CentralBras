@@ -137,7 +137,7 @@
                 <p class="countOfRantings">(550)</p>
             </div>
             <p>70% dos clientes recomendam este produto</p>
-            <button class="buttonDefault buttonRed" id="toEvaluate">Avaliar</button>
+            <a class="buttonDefault buttonRed" href="{{ route('comment', ['id' => $product['id']]) }}">Avaliar</a>
         </div>
 
         @for ($i = 0; $i < 3; $i++) {{-- foreach --}}
