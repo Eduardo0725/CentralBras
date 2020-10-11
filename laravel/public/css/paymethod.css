@@ -1,0 +1,102 @@
+#content {
+    max-width: 900px;
+}
+
+form .labels {
+    align-items: center;
+}
+
+form .labels label {
+    font-size: 1.2rem;
+    padding: 7px 15px;
+    border: 1px solid #888;
+    margin: 0;
+    cursor: pointer;
+    background-color: #fff;
+    color: #333;
+}
+
+form .labels label:first-of-type {
+    border-radius: 5px 0 0 5px;
+}
+
+form .labels label:last-of-type {
+    border-radius: 0 5px 5px 0;
+}
+
+form .labels label:hover {
+    background-color: var(--color-blue);
+    color: #fff;
+    border: 0;
+    padding: 8px 16px;
+    transition: background-color 200ms;
+}
+
+form>input:nth-of-type(1):checked ~ .labels label:nth-of-type(1),
+form>input:nth-of-type(2):checked ~ .labels label:nth-of-type(2),
+form>input:nth-of-type(3):checked ~ .labels label:nth-of-type(3) {
+    background-color: var(--color-blue);
+    color: #fff;
+    border: 0;
+    padding: 8px 16px;
+    cursor: default;
+}
+
+div.paymethod1,
+div.paymethod2,
+div.paymethod3 {
+    display: none;
+    margin: 20px 0;
+}
+
+form>input#paymethod1:checked ~ div.paymethod1,
+form>input#paymethod2:checked ~ div.paymethod2,
+form>input#paymethod3:checked ~ div.paymethod3 {
+    display: flex;
+}
+
+.paymethod1>div:first-of-type {
+    margin-bottom: 20px;
+}
+
+.paymethod1 div input[name=monthOfValidity],
+.paymethod1 div input[name=yearOfValidity] {
+    max-width: 128px;
+}
+
+.paymethod1 div input[name=cvv] {
+    max-width: 50px;
+}
+
+.paymethod1 div input[name=dateOfBirth]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+}
+
+.paymethod1 div input[name=dateOfBirth] {
+    cursor: text;
+}
+
+.paymethod1 div input[name=dateOfBirth][empty=true]::before {
+    content: 'Data de nascimento';
+    position: relative;
+    background: #fff;
+    color: #888;
+    width: 100%;
+}
+
+.paymethod1 div input[name=dateOfBirth]:focus::before {
+    content: none;
+}
+
+.paymethod2 p {
+    font-size: 1.2rem;
+    color: #888;
+}
+
+form>div:last-of-type {
+    width: 100%;
+    justify-content: flex-end;
+}
+form>div:last-of-type>button {
+    max-width: 150px;
+}
