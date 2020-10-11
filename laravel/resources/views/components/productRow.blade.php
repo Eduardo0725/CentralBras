@@ -9,16 +9,22 @@
                 @foreach ($product['categories'] as $key => $category)
                     <p>{{ $key }}: {{ $category }}</p>
                 @endforeach
+
+                @if ($amount ?? false)
+                    <p>{{ $product['amountSelected'] }} quantidade</p>
+                @endif
             </div>
 
-            <div class="flexRow">
-                <a href="">Mais produtos do vendedor</a>
-                <a href="">Comprar agora</a>
-                @if ($addCart ?? false)
-                    <a href="">Adicionar ao carrinho</a>
-                @endif
-                <a href="">Excluir</a>
-            </div>
+            @if ($links ?? true)
+                <div class="flexRow">
+                    <a href="">Mais produtos do vendedor</a>
+                    <a href="">Comprar agora</a>
+                    @if ($addCart ?? false)
+                        <a href="">Adicionar ao carrinho</a>
+                    @endif
+                    <a href="">Excluir</a>
+                </div>
+            @endif
         </div>
     </div>
 
