@@ -6,7 +6,7 @@
 @endsection
 
 @section('content')
-    <form class="flexColumn boxDefault" action="">
+    <form class="flexColumn boxDefault" action="{{ route('paymentConfirmed') }}">
         <h1>Revise e Confirme</h1>
 
         <div class="flexColumn cart">

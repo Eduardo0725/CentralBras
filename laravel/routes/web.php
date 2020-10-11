@@ -175,4 +175,7 @@ Route::prefix('/buy')->group(function(){
         return view('pages.paymentReview', ['contents' => $contents]);
     })->name('paymentReview');
 
+    Route::get('/paymentConfirmed', function() {
+        return view('pages.paymentConfirmed');
+    })->name('paymentConfirmed');
 });
