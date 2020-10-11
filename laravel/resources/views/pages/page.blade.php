@@ -18,8 +18,8 @@
     <div class="features">
         <p>Pesquisa: {{$search}}</p>
         <div class="filterAndOrderBy">
-            <label for="filter">Filtrar</label>
-            <input type="checkbox" id="filter">
+            <label class="buttonDefault buttonRed" for="filter">Filtrar</label>
+            <input class="none" type="checkbox" id="filter">
             <div class="background"></div>
             <div class="filter">
                 <label for="filter"><img src="{{ asset("images/icons/close.svg") }}" alt=""></label>
@@ -92,7 +92,7 @@
                 </div>
 
                 <span class="ready">
-                    <label for="filter">Concluído</label>
+                    <label class="buttonDefault buttonBlue" for="filter">Concluído</label>
                 </span>
             </div>
             <p>Ordenar por:</p>

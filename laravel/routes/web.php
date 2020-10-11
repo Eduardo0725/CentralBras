@@ -130,3 +130,15 @@ Route::get('/cartAndFavorites/{cartOrFavorite?}', function (bool $cartOrFavorite
 
     return view('pages.cartAndFavorites', ['contentsCart' => $contents, 'contentsFavorites' => [$card], 'cartOrFavorite' => $cartOrFavorite]);
 })->name('cartAndFavorites');
+
+Route::prefix('/buy')->group(function(){
+
+    Route::get('/frete', function(){
+        return view('pages.frete');
+    })->name('frete');
+
+    Route::get('/paymethod', function(){
+        return view('pages.paymethod');
+    })->name('paymethod');
+
+});

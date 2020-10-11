@@ -37,7 +37,7 @@
                 <p>R$ {{ number_format($total, 2, ',', '.') }}</p>
             </div>
 
-            <button class="buttonGreen">Continuar compra</button>
+            <a href="{{ route('frete') }}" class="cartButton buttonDefault buttonGreen">Continuar compra</a>
         </div>
 
         <div id="favorites">

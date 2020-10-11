@@ -75,8 +75,8 @@
             </div>
 
             <div class="buttons">
-                <button class="buttonRed">Comprar</button>
-                <button>Adicionar ao carrinho</button>
+                <button class="buttonDefault buttonRed">Comprar</button>
+                <button class="buttonDefault">Adicionar ao carrinho</button>
             </div>
         </div>
     </div>
@@ -137,7 +137,7 @@
                 <p class="countOfRantings">(550)</p>
             </div>
             <p>70% dos clientes recomendam este produto</p>
-            <button class="buttonRed" id="toEvaluate">Avaliar</button>
+            <button class="buttonDefault buttonRed" id="toEvaluate">Avaliar</button>
         </div>
 
         @for ($i = 0; $i < 3; $i++) {{-- foreach --}}
