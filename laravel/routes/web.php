@@ -206,3 +206,22 @@ Route::prefix('/buy')->group(function(){
         return view('pages.paymentConfirmed');
     })->name('paymentConfirmed');
 });
+
+Route::prefix('/account')->group(function(){
+    Route::get('login', function(){
+        return view('pages.login');
+    })->name('login');
+
+    Route::get('register', function(){
+        return view('pages.register');
+    })->name('register');
+
+    Route::post('create', function(){
+        return redirect(route('login'));
+    })->name('createAccount');
+
+    Route::get('createWithGoogle', function(){
+        return view('pages.emailVerification');
+    })->name('createAccountWithGoogle');
+});
+

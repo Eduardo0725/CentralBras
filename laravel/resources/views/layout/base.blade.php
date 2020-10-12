@@ -1,3 +1,7 @@
+@php
+    $user = false;
+@endphp
+
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
@@ -27,15 +31,19 @@
                 </button>
             </form>
             <div class="headerButtons">
-                <a class="headerBtn heart" href="{{ route('cartAndFavorites', ['cartOrFavorite' => true]) }}">
-                    <img src="{{ asset('images/icons/heart-outline.svg') }}" alt="Heart Outline">
-                </a>
+                @if ($user)
+                    <a class="headerBtn heart" href="{{ route('cartAndFavorites', ['cartOrFavorite' => true]) }}">
+                        <img src="{{ asset('images/icons/heart-outline.svg') }}" alt="Heart Outline">
+                    </a>
+                @endif
                 <a class="headerBtn cart" href="{{ route('cartAndFavorites', ['cartOrFavorite' => false]) }}">
                     <img src="{{ asset('images/icons/cart.svg') }}" alt="Cart">
                 </a>
-                <a class="headerBtn user" href="#">
+                <a class="headerBtn user" href="{{ ($user) ? '' : route('login') }}">
                     <img src="{{ asset('images/icons/user.svg') }}" alt="User">
-                    {{-- <p>Entre ou cadastre-se</p> --}}
+                    @if (!$user)
+                        <p>Entre ou cadastre-se</p>
+                    @endif
                 </a>
             </div>
             <menu>
