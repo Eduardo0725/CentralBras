@@ -225,3 +225,20 @@ Route::prefix('/account')->group(function(){
     })->name('createAccountWithGoogle');
 });
 
+Route::prefix('/myAccount')->group(function(){
+    Route::post('/', function(){
+        return redirect(route('myAccountConfig'));
+    })->name('myAccount');
+
+    Route::get('/config', function(){
+        return view('pages.user.config');
+    })->name('myAccountConfig');
+
+    Route::get('/shopping', function(){
+        return view('');
+    })->name('myAccountShopping');
+
+    Route::get('/sales', function(){
+        return view('');
+    })->name('myAccountSales');
+});

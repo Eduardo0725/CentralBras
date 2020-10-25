@@ -5,13 +5,13 @@
 @endsection
 
 @section('content')
-    <form class="box boxDefault flexColumn" action="">
+    <form class="box boxDefault flexColumn" action="{{ route('myAccount') }}" method="POST">
         @csrf
 
         <h2>Entrar na conta</h2>
 
-        <input class="inputText" type="text" placeholder="Email">
-        <input class="inputText" type="password" placeholder="Senha">
+        <input class="inputText" type="text" name="email" placeholder="Email">
+        <input class="inputText" type="password" name="password" placeholder="Senha">
 
         <button class="buttonDefault buttonGreen" type="submit">Entrar</button>
 
