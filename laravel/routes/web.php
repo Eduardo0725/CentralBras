@@ -234,9 +234,15 @@ Route::prefix('/myAccount')->group(function(){
         return view('pages.user.config');
     })->name('myAccountConfig');
 
-    Route::get('/shopping', function(){
-        return view('');
-    })->name('myAccountShopping');
+    Route::prefix('/shopping')->group(function(){
+        Route::get('/', function(){
+            return view('pages.user.shopping');
+        })->name('myAccountShopping');
+
+        Route::get('/details/{id?}', function(){
+            return view('pages.user.shoppingDetails');
+        })->name('myAccountShoppingDetails');
+    });
 
     Route::get('/sales', function(){
         return view('');
