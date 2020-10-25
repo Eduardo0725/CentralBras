@@ -285,36 +285,6 @@
             content.innerHTML += html;
         }
 
-        // function addDivAlterEmailAndPassword(title = '') {
-        //     let html = `
-        //     <div class="alterEmailAndPassword">
-        //         <form class="boxDefault flexColumn">
-        //             <div class="flexRow headerTitleAndClose">
-        //                 <h2>Editar email e senha</h2>
-        //                 <a onclick="removeDiv('.alterEmailAndPassword')">
-        //                     <img class="imgClose" src="{{ asset('images/icons/close.svg') }}" alt="close">
-        //                 </a>
-        //             </div>
-
-        //             <div class="flexRow">
-        //                 <div class="divInputs">
-        //                     <input class="inputText" type="text" name="email" placeholder="Novo email (Deixe vazio para não alterar)">
-        //                     <input class="inputText" type="text" name="password" placeholder="Senha (Deixe vazio para não alterar)">
-        //                     <input class="inputText" type="text" placeholder="Repetir senha">
-        //                 </div>
-        //                 <div>
-        //                     <button class="buttonDefault buttonGreen" id="buttonSubmitEmailAndPassword" onclick="submitEmailAndPassword()" type="button">
-        //                         Concluído
-        //                     </button>
-        //                 </div>
-        //             </div>
-        //         </form>
-        //     </div>
-        //     `;
-
-        //     content.innerHTML += html;
-        // }
-
         function removeDiv (query) {
             document.querySelector(query).remove();
         }
