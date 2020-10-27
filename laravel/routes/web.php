@@ -244,7 +244,14 @@ Route::prefix('/myAccount')->group(function(){
         })->name('myAccountShoppingDetails');
     });
 
-    Route::get('/sales', function(){
-        return view('');
-    })->name('myAccountSales');
+    Route::prefix('/sales')->group(function(){
+        Route::get('/', function(){
+            return view('pages.user.sales');
+        })->name('myAccountSales');
+
+        Route::get('/details/{id?}', function(){
+            return view('pages.user.salesDetails');
+        })->name('myAccountSalesDetails');
+    });
+
 });

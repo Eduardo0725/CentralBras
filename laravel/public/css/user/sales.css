@@ -1,0 +1,180 @@
+#content {
+    flex-direction: row;
+}
+
+#box {
+    max-width: 900px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+h1 {
+    margin: 20px 0;
+}
+
+.shadow {
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
+}
+
+.titleAndButton,
+.barOfStateWithFilterAndOrder,
+.barOfStateWithFilterAndOrder * {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.titleAndButton .announcement {
+    font-size: 1.3rem;
+    padding: 5px 15px;
+}
+
+.barOfStateWithFilterAndOrder {
+    margin-bottom: 20px;
+}
+
+.barOfStateWithFilterAndOrder .optionsOfState {
+    flex: 1;
+    max-width: 500px;
+    min-width: 400px;
+    margin-right: 10px;
+}
+
+.barOfStateWithFilterAndOrder .optionsOfState p {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--color-blue);
+}
+
+.barOfStateWithFilterAndOrder .filterAndOrder button {
+    padding: 5px 15px;
+    margin-right: 10px;
+}
+
+.barOfStateWithFilterAndOrder .filterAndOrder .barOfOrder p {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.barOfStateWithFilterAndOrder .filterAndOrder .barOfOrder select {
+    padding: 5px;
+}
+
+.salesLot {
+    font-size: 1.2rem;
+}
+
+.salesLot .saleProduct {
+    margin-bottom: 20px;
+}
+
+.salesLot .saleProduct .status,
+.salesLot .saleProduct .saleInfo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+hr {
+    margin: 10px 0;
+}
+
+.salesLot .saleProduct .status > p {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: var(--color-blue);
+}
+
+.salesLot .saleProduct .status img {
+    width: 20px;
+    height: 20px;
+
+    cursor: pointer;
+}
+
+.salesLot .saleProduct .status .optionsBox {
+    width: 0;
+    height: 0;
+}
+
+.salesLot .saleProduct .status .optionsBox div {
+    position: relative;
+    bottom: 30px;
+    right: 90px;
+
+    width: 0;
+    height: 0;
+
+    box-shadow: none;
+    background-color: #fff;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+
+    transition: 0.2s;
+    transition-delay: 0.5s;
+}
+
+.salesLot .saleProduct .status .addOptionsBox:focus {
+    outline: none;
+}
+
+.salesLot .saleProduct .status .addOptionsBox:focus ~ .optionsBox div {
+    width: 77px;
+    height: 75px;
+
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+
+    transition-delay: 0.1s;
+}
+
+.salesLot .saleProduct .status .optionsBox div a {
+    padding: 5px 15px;
+}
+
+.salesLot .saleProduct .status .optionsBox div a:hover {
+    background-color: #f0f0f0;
+}
+
+.salesLot .saleProduct .saleInfo p {
+    color: #888;
+}
+
+.salesLot .saleProduct .saleInfo .product,
+.salesLot .saleProduct .saleInfo .buyerInfo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.salesLot .saleProduct .saleInfo .product img {
+    width: 45px;
+    height: 45px;
+    margin-right: 10px;
+}
+
+.salesLot .saleProduct .saleInfo .product p {
+    font-size: 1.4rem;
+    color: var(--color-blue);
+}
+
+.salesLot .saleProduct .saleInfo .buyerInfo img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.salesLot .saleProduct .saleInfo .buyerInfo .info p:first-of-type {
+    color: #333;
+    font-weight: bold;
+}
+
+.salesLot .saleProduct .saleInfo .buyerInfo .info p {
+    line-height: 18px;
+}
