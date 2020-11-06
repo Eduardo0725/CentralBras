@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <form class="boxDefault" action="{{ route('paymentReview') }}">
+    <form class="boxDefault" action="{{ route('purchases.review') }}">
 
         <input class="none" type="radio" name="paymethod" id="paymethod1" value="0" checked>
         <input class="none" type="radio" name="paymethod" id="paymethod2" value="1">

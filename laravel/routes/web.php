@@ -32,19 +32,19 @@ Route::get('/', function () {
 
     $contents = [];
 
-    for($i = 1; $i <= 16; $i++){
+    for ($i = 1; $i <= 16; $i++) {
         array_push($contents, $card);
     }
 
     return view('main', ['contents' => $contents]);
 })->name('main');
 
-Route::get('/page/{page?}', function (int $page = 1, Request $request) {
+Route::get('page/{page?}', function (int $page = 1, Request $request) {
 
     $search = $request->input('search');
 
-    if(!$search || $search == 1) {
-        return redirect('/');;
+    if (!$search || $search == 1) {
+        return redirect()->route('main');
     }
 
     $pagesMax = 40;
@@ -61,70 +61,72 @@ Route::get('/page/{page?}', function (int $page = 1, Request $request) {
 
     $contents = [];
 
-    for($i = 1; $i <= 16; $i++){
+    for ($i = 1; $i <= 16; $i++) {
         array_push($contents, $card);
     }
 
-    if($page > $pagesMax || $pagesMax === 0) return view('pages.error404');
+    if ($page > $pagesMax || $pagesMax === 0) return view('pages.error404');
 
     return view('pages.page', ['search' => $search, 'contents' => $contents, 'page' => $page, 'pagesMax' => $pagesMax]);
 })->name('page');
 
-Route::get('/product/{id}', function (string $id) {
-    $card = [
-        'id' => '1234567890',
-        'imgMainSrc' => 'https://images-americanas.b2w.io/produtos/01/00/img/462139/7/462139728_1SZ.jpg',
-        'imgs' => [
-            'https://images-americanas.b2w.io/produtos/01/00/img/462139/7/462139728_1SZ.jpg',
-            'https://images-americanas.b2w.io/produtos/01/00/img/462139/7/462139728_2SZ.jpg',
-            'https://images-americanas.b2w.io/produtos/01/00/img/462139/7/462139728_4SZ.jpg',
-            'https://images-americanas.b2w.io/produtos/01/00/img/462139/7/462139728_5SZ.jpg',
-            'https://images-americanas.b2w.io/produtos/01/00/img/462139/7/462139728_6SZ.jpg'
-        ],
-        'description' => 'Smartphone Motorola Moto G8 Plus 64GB Dual Chip Android 6.3" Qualcomm Snapdragon 665 (SM6125) 4G Câmera 48MP + 5MP + 16MP',
-        'interest' => '12x R$ 124,99 sem juros',
-        'discount' => '20% OFF',
-        'cost' => 'R$ 1.499,90',
-        'stars' => 3.5
-    ];
+Route::prefix('product/{id}')->group(function () {
+    Route::get('/', function (string $id) {
+        $card = [
+            'id' => '1234567890',
+            'imgMainSrc' => 'https://images-americanas.b2w.io/produtos/01/00/img/462139/7/462139728_1SZ.jpg',
+            'imgs' => [
+                'https://images-americanas.b2w.io/produtos/01/00/img/462139/7/462139728_1SZ.jpg',
+                'https://images-americanas.b2w.io/produtos/01/00/img/462139/7/462139728_2SZ.jpg',
+                'https://images-americanas.b2w.io/produtos/01/00/img/462139/7/462139728_4SZ.jpg',
+                'https://images-americanas.b2w.io/produtos/01/00/img/462139/7/462139728_5SZ.jpg',
+                'https://images-americanas.b2w.io/produtos/01/00/img/462139/7/462139728_6SZ.jpg'
+            ],
+            'description' => 'Smartphone Motorola Moto G8 Plus 64GB Dual Chip Android 6.3" Qualcomm Snapdragon 665 (SM6125) 4G Câmera 48MP + 5MP + 16MP',
+            'interest' => '12x R$ 124,99 sem juros',
+            'discount' => '20% OFF',
+            'cost' => 'R$ 1.499,90',
+            'stars' => 3.5
+        ];
 
-    $contents = [];
+        $contents = [];
 
-    for($i = 1; $i <= 16; $i++){
-        array_push($contents, $card);
-    }
+        for ($i = 1; $i <= 16; $i++) {
+            array_push($contents, $card);
+        }
 
-    return view('pages.product', ['contents' => $contents, 'product' => $card]);
-})->name('product');
+        return view('pages.product', ['contents' => $contents, 'product' => $card]);
+    })->name('product');
 
-Route::get('/product/{id}/comment', function(string $id) {
-    $card = [
-        'id' => '1234567890',
-        'imgMainSrc' => 'https://images-americanas.b2w.io/produtos/01/00/img/462139/7/462139728_1SZ.jpg',
-        'imgs' => [
-            'https://images-americanas.b2w.io/produtos/01/00/img/462139/7/462139728_1SZ.jpg',
-            'https://images-americanas.b2w.io/produtos/01/00/img/462139/7/462139728_2SZ.jpg',
-            'https://images-americanas.b2w.io/produtos/01/00/img/462139/7/462139728_4SZ.jpg',
-            'https://images-americanas.b2w.io/produtos/01/00/img/462139/7/462139728_5SZ.jpg',
-            'https://images-americanas.b2w.io/produtos/01/00/img/462139/7/462139728_6SZ.jpg'
-        ],
-        'description' => 'Smartphone Motorola Moto G8 Plus 64GB Dual Chip Android 6.3" Qualcomm Snapdragon 665 (SM6125) 4G Câmera 48MP + 5MP + 16MP',
-        'interest' => '12x R$ 124,99 sem juros',
-        'discount' => '20% OFF',
-        'cost' => 'R$ 1.499,90',
-        'stars' => 3.5
-    ];
+    Route::get('comment', function (string $id) {
+        $card = [
+            'id' => '1234567890',
+            'imgMainSrc' => 'https://images-americanas.b2w.io/produtos/01/00/img/462139/7/462139728_1SZ.jpg',
+            'imgs' => [
+                'https://images-americanas.b2w.io/produtos/01/00/img/462139/7/462139728_1SZ.jpg',
+                'https://images-americanas.b2w.io/produtos/01/00/img/462139/7/462139728_2SZ.jpg',
+                'https://images-americanas.b2w.io/produtos/01/00/img/462139/7/462139728_4SZ.jpg',
+                'https://images-americanas.b2w.io/produtos/01/00/img/462139/7/462139728_5SZ.jpg',
+                'https://images-americanas.b2w.io/produtos/01/00/img/462139/7/462139728_6SZ.jpg'
+            ],
+            'description' => 'Smartphone Motorola Moto G8 Plus 64GB Dual Chip Android 6.3" Qualcomm Snapdragon 665 (SM6125) 4G Câmera 48MP + 5MP + 16MP',
+            'interest' => '12x R$ 124,99 sem juros',
+            'discount' => '20% OFF',
+            'cost' => 'R$ 1.499,90',
+            'stars' => 3.5
+        ];
 
-    return view('pages.comment', ['product' => $card]);
-})->name('comment');
+        return view('pages.comment', ['product' => $card]);
+    })->name('product.comment');
 
-Route::post('/commentProcess', function (Request $request) {
-    $id = $request->input('id');
+    Route::post('comment', function (Request $request) {
+        $id = $request->input('id');
 
-    return redirect(route('product', ['id' => $id]));
-})->name('commentProcess');
+        return redirect()->route('product', ['id' => $id]);
+    })->name('product.comment');
+});
 
-Route::get('/cartAndFavorites/{cartOrFavorite?}', function (bool $cartOrFavorite = false) {
+Route::get('cartAndFavorites/{cartOrFavorite?}', function (bool $cartOrFavorite = false) {
     $card = [
         'id' => '1234567890',
         'imgMainSrc' => 'https://images-americanas.b2w.io/produtos/01/00/img/462139/7/462139728_1SZ.jpg',
@@ -151,24 +153,27 @@ Route::get('/cartAndFavorites/{cartOrFavorite?}', function (bool $cartOrFavorite
 
     $contents = [];
 
-    for($i = 1; $i <= 4; $i++){
+    for ($i = 1; $i <= 4; $i++) {
         array_push($contents, $card);
     }
 
     return view('pages.cartAndFavorites', ['contentsCart' => $contents, 'contentsFavorites' => [$card], 'cartOrFavorite' => $cartOrFavorite]);
 })->name('cartAndFavorites');
 
-Route::prefix('/buy')->group(function(){
+Route::prefix('purchases')->group(function () {
+    Route::get('/', function () {
+        return redirect()->route('purchases.frete');
+    })->name('purchases');
 
-    Route::get('/frete', function(){
+    Route::match(['GET', 'POST'], 'frete', function () {
         return view('pages.frete');
-    })->name('frete');
+    })->name('purchases.frete');
 
-    Route::get('/paymethod', function(){
+    Route::match(['GET', 'POST'], 'paymethod', function () {
         return view('pages.paymethod');
-    })->name('paymethod');
+    })->name('purchases.paymethod');
 
-    Route::get('/paymentReview', function(){
+    Route::match(['GET', 'POST'], 'paymentReview', function () {
         $card = [
             'id' => '1234567890',
             'imgMainSrc' => 'https://images-americanas.b2w.io/produtos/01/00/img/462139/7/462139728_1SZ.jpg',
@@ -195,92 +200,90 @@ Route::prefix('/buy')->group(function(){
 
         $contents = [];
 
-        for($i = 1; $i <= 4; $i++){
+        for ($i = 1; $i <= 4; $i++) {
             array_push($contents, $card);
         }
 
         return view('pages.paymentReview', ['contents' => $contents]);
-    })->name('paymentReview');
+    })->name('purchases.review');
 
-    Route::get('/paymentConfirmed', function() {
+    Route::match(['GET', 'POST'], 'paymentConfirmed', function () {
         return view('pages.paymentConfirmed');
-    })->name('paymentConfirmed');
+    })->name('purchases.confirmed');
 });
 
-Route::prefix('/account')->group(function(){
-    Route::get('login', function(){
+Route::prefix('account')->name('account')->group(function () {
+    Route::get('/', function () {
         return view('pages.login');
-    })->name('login');
-
-    Route::get('register', function(){
-        return view('pages.register');
-    })->name('register');
-
-    Route::post('create', function(){
-        return redirect(route('login'));
-    })->name('createAccount');
-
-    Route::get('createWithGoogle', function(){
-        return view('pages.emailVerification');
-    })->name('createAccountWithGoogle');
-});
-
-Route::prefix('/myAccount')->group(function(){
-    Route::post('/', function(){
-        return redirect(route('myAccountConfig'));
-    })->name('myAccount');
-
-    Route::get('/config', function(){
-        return view('pages.user.config');
-    })->name('myAccountConfig');
-
-    Route::prefix('/shopping')->group(function(){
-        Route::get('/', function(){
-            return view('pages.user.shopping');
-        })->name('myAccountShopping');
-
-        Route::get('/details/{id?}', function(){
-            return view('pages.user.shoppingDetails');
-        })->name('myAccountShoppingDetails');
     });
 
-    Route::prefix('/sales')->group(function(){
-        Route::get('/', function(){
+    Route::post('/', function () {
+        return redirect()->route('account');
+    });
+});
+
+Route::get('google', function () {
+    return view('pages.emailVerification');
+})->name('account.google');
+
+Route::get('register', function () {
+    return view('pages.register');
+})->name('register');
+
+Route::prefix('myaccount')->group(function () {
+    Route::match(['GET', 'POST'], '/', function () {
+        return redirect()->route('myaccount.config');
+    })->name('myaccount');
+
+    Route::get('config', function () {
+        return view('pages.user.config');
+    })->name('myaccount.config');
+
+    Route::prefix('purchases')->group(function () {
+        Route::get('/', function () {
+            return view('pages.user.purchases');
+        })->name('myaccount.purchases');
+
+        Route::get('id/{id?}', function () {
+            return view('pages.user.purchases');
+        })->name('myaccount.purchases.purchase');
+    });
+
+    Route::prefix('sales')->group(function () {
+        Route::get('/', function () {
             return view('pages.user.sales');
-        })->name('myAccountSales');
+        })->name('myaccount.sales');
 
-        Route::get('/details/{id?}', function(){
+        Route::get('id/{id?}', function () {
             return view('pages.user.salesDetails');
-        })->name('myAccountSalesDetails');
+        })->name('myaccount.sales.sale');
+    });
 
-        Route::prefix('/ads')->group(function(){
-            Route::get('/', function(){
-                return view('pages.user.ads');
-            })->name('myAccountAds');
+    Route::prefix('ads')->group(function () {
+        Route::get('/', function () {
+            return view('pages.user.ads');
+        })->name('myaccount.ads');
 
-            Route::get('/create', function(){
+        Route::prefix('create', function () {
+            Route::get('/', function () {
                 return view('pages.user.createProductOfAd');
-            })->name('myAccountCreateAd');
+            })->name('myaccount.ads.create');
 
-            Route::post('/create/{creationState?}', function(string $creationState = '', Request $request){
-                switch ($creationState) {
-                    case 'address':
-                        return view('pages.user.createAddressOfAd');
-                        break;
-                    case 'waysToGetPaid':
-                        return view('pages.user.selectWayToGetPaidOfAd');
-                        break;
-                    case 'warranty':
-                        return view('pages.user.warrantyOfAd');
-                        break;
+            Route::post('address', function () {
+                return view('pages.user.createAddressOfAd');
+            })->name('myaccount.ads.create.address');
 
-                    case 'finished':
-                        return view('pages.user.creationOfFinishedAd');
-                        break;
-                }
-                return view('pages.user.createProductOfAd');
-            })->name('myAccountCreateAd');
+            Route::post('waysToGetPaid', function () {
+                return view('pages.user.createAddressOfAd');
+            })->name('myaccount.ads.create.waysToGetPaid');
+
+            Route::post('warranty', function () {
+                return view('pages.user.createAddressOfAd');
+            })->name('myaccount.ads.create.warranty');
+
+            Route::post('finished', function () {
+                return view('pages.user.createAddressOfAd');
+            })->name('myaccount.ads.create.finished');
         });
     });
-
 });

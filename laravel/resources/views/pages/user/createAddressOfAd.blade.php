@@ -10,7 +10,7 @@
     @include('components.sidebar', ['sales' => true])
 
     <div id="box">
-        <form class="boxDefault shadow" action="{{ route('myAccountCreateAd', ['waysToGetPaid']) }}" method="POST">
+        <form class="boxDefault shadow" action="{{ route('myaccount.ads.create.waysToGetPaid') }}" method="POST">
             @csrf
 
             <h1>Selecione o endereço da venda</h1>

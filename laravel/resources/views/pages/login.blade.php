@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <form class="box boxDefault flexColumn" action="{{ route('myAccount') }}" method="POST">
+    <form class="box boxDefault flexColumn" action="{{ route('myaccount') }}" method="POST">
         @csrf
 
         <h2>Entrar na conta</h2>

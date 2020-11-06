@@ -39,7 +39,7 @@
                 <a class="headerBtn cart" href="{{ route('cartAndFavorites', ['cartOrFavorite' => false]) }}">
                     <img src="{{ asset('images/icons/cart.svg') }}" alt="Cart">
                 </a>
-                <a class="headerBtn user" href="{{ ($user) ? '' : route('login') }}">
+                <a class="headerBtn user" href="{{ ($user) ? '' : route('account') }}">
                     <img src="{{ asset('images/icons/user.svg') }}" alt="User">
                     @if (!$user)
                         <p>Entre ou cadastre-se</p>

@@ -12,7 +12,7 @@
         <form
             id="form"
             class="boxDefault shadow"
-            action="{{ route('myAccountCreateAd', ['address']) }}"
+            action="{{ route('myaccount.ads.create.address') }}"
             method="POST"
             enctype="multipart/form-data"
         >

@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <form class="box boxDefault flexColumn" action="{{ route('createAccount') }}" method="post">
+    <form class="box boxDefault flexColumn" action="{{ route('account') }}" method="post">
         @csrf
 
         <h1>Cadastro</h1>
@@ -25,6 +25,6 @@
         <input class="inputText" type="password" placeholder="Repetir senha">
 
         <button class="buttonDefault buttonGreen" type="submit">Criar conta</button>
-        <a class="buttonDefault google" href="{{ route('createAccountWithGoogle') }}">Cadastre-se com o Google</a>
+        <a class="buttonDefault google" href="{{ route('account.google') }}">Cadastre-se com o Google</a>
     </form>
 @endsection

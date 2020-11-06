@@ -13,7 +13,7 @@
             <h1>Anúncios</h1>
 
             <div class="optionsAdsAndFilter">
-                <a class="buttonAds buttonDefault buttonBlue" href="{{ route('myAccountCreateAd') }}">Anúnciar</a>
+                <a class="buttonAds buttonDefault buttonBlue" href="{{ route('myaccount.ads.create') }}">Anúnciar</a>
 
                 <button class="buttonDefault buttonRed">Filtrar</button>
 

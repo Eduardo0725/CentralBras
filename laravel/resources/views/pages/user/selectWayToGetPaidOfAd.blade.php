@@ -9,7 +9,7 @@
     @include('components.sidebar', ['sales' => true])
 
     <div id="box">
-        <form class="boxDefault shadow" action="{{ route('myAccountCreateAd', ['warranty']) }}" method="post">
+        <form class="boxDefault shadow" action="{{ route('myaccount.ads.create.warranty') }}" method="post">
             @csrf
 
             <h1>Formas de receber pagamento</h1>

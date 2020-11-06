@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <form class="box boxDefault flexColumn" action="{{ route('commentProcess') }}" method="POST">
+    <form class="box boxDefault flexColumn" action="{{ route('product.comment', ['id' => $product['id']]) }}" method="POST">
         @csrf
         <input type="hidden" name="id" value="{{ $product['id'] }}">
         <h1>{{ $product['description'] }}</h1>

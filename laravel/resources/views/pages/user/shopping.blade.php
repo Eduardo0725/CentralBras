@@ -40,7 +40,7 @@
                             </div>
                         </div>
 
-                        <a href="{{ route('myAccountShoppingDetails') }}">Ver detalhes</a>
+                        <a href="{{ route('myaccount.purchases.purchase') }}">Ver detalhes</a>
                     </div>
                 </div>
             @endfor

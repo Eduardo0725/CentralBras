@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <form class="boxDefault" action="{{ route('paymethod') }}">
+    <form class="boxDefault" action="{{ route('purchases.paymethod') }}">
         <h1>Envio</h1>
 
         <div class="flexRow frete">
