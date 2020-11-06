@@ -264,7 +264,7 @@ Route::prefix('myaccount')->group(function () {
             return view('pages.user.ads');
         })->name('myaccount.ads');
 
-        Route::prefix('create', function () {
+        Route::prefix('create')->group(function () {
             Route::get('/', function () {
                 return view('pages.user.createProductOfAd');
             })->name('myaccount.ads.create');

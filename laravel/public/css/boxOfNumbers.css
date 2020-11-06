@@ -13,9 +13,10 @@
 }
 
 .boxOfNumbers>div input {
-    width: 15px;
+    width: 30px;
     margin: 0 5px;
     text-align: center;
+    border: 0;
 }
 
 /* Chrome, Safari, Edge, Opera */

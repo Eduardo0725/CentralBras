@@ -1,8 +1,8 @@
 <div class="boxOfNumbers">
     <p>{{ $pName ?? '' }}</p>
     <div>
-        <a href=""><img src="{{ asset('images/icons/subtract.svg') }}" alt=""></a>
-        <input type="number" name="{{ $inputName ?? '' }}" value="{{ $inputValue ?? 1 }}">
-        <a href=""><img src="{{ asset('images/icons/sum.svg') }}" alt=""></a>
+        <a><img src="{{ asset('images/icons/subtract.svg') }}"></a>
+        <input type="number" min="1" max="9999" name="{{ $inputName ?? '' }}" value="{{ $inputValue ?? 1 }}">
+        <a><img src="{{ asset('images/icons/sum.svg') }}"></a>
     </div>
 </div>

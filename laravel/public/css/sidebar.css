@@ -1,34 +1,35 @@
 #sidebar {
-    position: sticky;
-    top: 0;
+    width: 0;
+}
 
+#sidebar>div {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-items: center;
 
-    /* height: 100vh; */
-    max-width: 30px;
+    width: 30px;
+    height: 100%;
     padding: 0 20px;
 
     background-color: #fff;
 
-    /* overflow: hidden; */
     z-index: 5;
 
     transition: 0.3s;
 }
 
-#sidebar:hover {
-    max-width: 140px;
+#sidebar>div:hover {
+    width: 140px;
     box-shadow: 2px 0 2px rgba(0, 0, 0, 0.3);
 }
 
-#sidebar>div {
+#sidebar>div>div {
     position: sticky;
     top: 0;
 }
 
-#sidebar>div>div {
+#sidebar>div>div>div {
     overflow: hidden;
 }
 

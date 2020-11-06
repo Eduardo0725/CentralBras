@@ -192,7 +192,7 @@ header .headerMenu {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 80px;
+    /* width: 80px; */
     margin: 0 0 0 20px;
     font-size: 1.6rem;
     padding: 5px 10px 10px 5px;
@@ -209,6 +209,10 @@ header .headerMenu:hover {
 	box-shadow: var(--shadow);
 }
 
+header .headerMenu img {
+    margin-right: 10px;
+}
+
 header .headerMenu:hover img {
     filter: var(--svg-color-white);
 }
@@ -220,7 +224,7 @@ header .headerMenu:hover ~ menu {
 header .headerLogo {
     display: flex;
     flex: 1;
-    margin: 0 10px;
+    margin: 0 30px;
 }
 
 header .headerLogo img {
@@ -235,7 +239,8 @@ header img {
 }
 
 header .headerSearch {
-    width: 50vw;
+    max-width: 600px;
+    width: 100%;
     display: flex;
     align-items: center;
 }
@@ -270,6 +275,10 @@ header .headerButtons {
     position: relative;
 }
 
+header .headerButtons img {
+    margin: 0 20px;
+}
+
 header .headerButtons .user {
     margin-right: 10%;
     display: flex;
@@ -277,7 +286,8 @@ header .headerButtons .user {
 }
 
 header .headerButtons .user p {
-    margin-left: 10px;
+    width: 110px;
+    margin-right: 10px;
     font-size: 1.2rem;
 }
 
