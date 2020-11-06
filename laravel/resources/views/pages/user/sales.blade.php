@@ -11,7 +11,7 @@
     <div id="box">
         <div class="titleAndButton">
             <h1>Vendas</h1>
-            <a class="announcement buttonDefault buttonBlue">Anúncios</a>
+            <a class="ads buttonDefault buttonBlue" href="{{ route('myAccountAds') }}">Anúncios</a>
         </div>
 
         <div class="barOfStateWithFilterAndOrder shadow boxDefault">

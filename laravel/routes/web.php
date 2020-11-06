@@ -252,6 +252,35 @@ Route::prefix('/myAccount')->group(function(){
         Route::get('/details/{id?}', function(){
             return view('pages.user.salesDetails');
         })->name('myAccountSalesDetails');
+
+        Route::prefix('/ads')->group(function(){
+            Route::get('/', function(){
+                return view('pages.user.ads');
+            })->name('myAccountAds');
+
+            Route::get('/create', function(){
+                return view('pages.user.createProductOfAd');
+            })->name('myAccountCreateAd');
+
+            Route::post('/create/{creationState?}', function(string $creationState = '', Request $request){
+                switch ($creationState) {
+                    case 'address':
+                        return view('pages.user.createAddressOfAd');
+                        break;
+                    case 'waysToGetPaid':
+                        return view('pages.user.selectWayToGetPaidOfAd');
+                        break;
+                    case 'warranty':
+                        return view('pages.user.warrantyOfAd');
+                        break;
+
+                    case 'finished':
+                        return view('pages.user.creationOfFinishedAd');
+                        break;
+                }
+                return view('pages.user.createProductOfAd');
+            })->name('myAccountCreateAd');
+        });
     });
 
 });

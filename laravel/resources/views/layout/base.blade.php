@@ -74,6 +74,7 @@
 
         <footer><p>Copyright © 2020 - CentralBrás - Todos os direitos reservados</p></footer>
 
+        <script src="{{ asset('js/global.js') }}"></script>
         @yield('scripts')
     </body>
 </html>
