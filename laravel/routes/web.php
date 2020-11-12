@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -212,13 +213,23 @@ Route::prefix('purchases')->group(function () {
     })->name('purchases.confirmed');
 });
 
-Route::prefix('account')->name('account')->group(function () {
-    Route::get('/', function () {
-        return view('pages.login');
-    });
+Route::middleware('auth')->group(function() {
+    Route::prefix('account')->group(function () {
+        Route::get('/', 'AccountController@index')->name('account.index');
 
-    Route::post('/', function () {
-        return redirect()->route('account');
+        Route::get('logout', 'AccountController@logout')->name('account.logout');
+    });
+});
+
+Route::middleware('guest')->group(function() {
+    Route::prefix('account')->group(function () {
+        Route::get('/', 'AccountController@index')->name('account.index');
+
+        Route::post('login', 'AccountController@login')->name('account.login');
+
+        Route::get('register', 'AccountController@formRegister')->name('account.register');
+
+        Route::post('register', 'AccountController@register')->name('account.register');
     });
 });
 
@@ -230,7 +241,7 @@ Route::get('register', function () {
     return view('pages.register');
 })->name('register');
 
-Route::prefix('myaccount')->group(function () {
+Route::prefix('myaccount')->middleware('auth')->group(function () {
     Route::match(['GET', 'POST'], '/', function () {
         return redirect()->route('myaccount.config');
     })->name('myaccount');

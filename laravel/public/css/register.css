@@ -17,14 +17,11 @@
     margin-right: 15px;
 }
 
-.box>input:last-of-type {
-    margin: 0 0 20px;
-}
-
 .box button {
     font-size: 1.4rem;
     width: 100%;
     padding: 10px 0;
+    margin-top: 20px;
     margin-bottom: 15px;
 }
 

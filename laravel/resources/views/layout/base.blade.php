@@ -1,7 +1,3 @@
-@php
-    $user = false;
-@endphp
-
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
@@ -31,7 +27,7 @@
                 </button>
             </form>
             <div class="headerButtons">
-                @if ($user)
+                @if (Auth::check())
                     <a class="headerBtn heart" href="{{ route('cartAndFavorites', ['cartOrFavorite' => true]) }}">
                         <img src="{{ asset('images/icons/heart-outline.svg') }}" alt="Heart Outline">
                     </a>
@@ -39,9 +35,9 @@
                 <a class="headerBtn cart" href="{{ route('cartAndFavorites', ['cartOrFavorite' => false]) }}">
                     <img src="{{ asset('images/icons/cart.svg') }}" alt="Cart">
                 </a>
-                <a class="headerBtn user" href="{{ ($user) ? '' : route('account') }}">
+                <a class="headerBtn user" href="{{ (Auth::check()) ? route('account.logout') : route('account.index') }}">
                     <img src="{{ asset('images/icons/user.svg') }}" alt="User">
-                    @if (!$user)
+                    @if (!Auth::check())
                         <p>Entre ou cadastre-se</p>
                     @endif
                 </a>
