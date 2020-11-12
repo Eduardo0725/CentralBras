@@ -46,7 +46,5 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ asset('js/node_modules/vanilla-masker.min.js') }}"></script>
-    <script src="{{ asset('js/mask.js') }}"></script>
     <script src="{{ asset('js/register.js') }}"></script>
 @endsection

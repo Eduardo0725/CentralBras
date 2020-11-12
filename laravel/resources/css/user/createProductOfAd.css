@@ -1,0 +1,404 @@
+#content {
+    flex-direction: row;
+}
+
+#box {
+    max-width: 800px;
+    width: 100%;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+.shadow {
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
+}
+
+#box h1 {
+    margin: 10px 0 20px;
+}
+
+.addImgs > div,
+.addImgs .imgs,
+.variations .variationsInfo .variationInfo .values {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.addImgs label {
+    margin-right: 20px;
+}
+
+.addImgs > div img {
+    height: 100px;
+    cursor: pointer;
+}
+
+.addImgs .imgs,
+.variations .variationsInfo .variationInfo .values {
+    overflow-x: scroll;
+    width: min-content;
+}
+
+.addImgs .imgs::-webkit-scrollbar,
+.variations .variationsInfo .variationInfo .values::-webkit-scrollbar {
+    height: 8px;
+}
+
+.addImgs .imgs::-webkit-scrollbar:disabled,
+.variations .variationsInfo .variationInfo .values::-webkit-scrollbar:disabled {
+    display: none;
+}
+
+.addImgs .imgs::-webkit-scrollbar-track,
+.variations .variationsInfo .variationInfo .values::-webkit-scrollbar-track {
+    background-color: rgb(230, 230, 230);
+    border-radius: 10px;
+}
+
+.addImgs .imgs::-webkit-scrollbar-thumb,
+.variations .variationsInfo .variationInfo .values::-webkit-scrollbar-thumb {
+    background: rgb(150, 150, 150);
+    border-radius: 10px;
+}
+
+.addImgs .imgs::-webkit-scrollbar-thumb:hover,
+.variations .variationsInfo .variationInfo .values::-webkit-scrollbar-thumb:hover {
+    background: rgb(100, 100, 100);
+}
+
+.addImgs .imgs .img:first-of-type::after {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+    top: -23px;
+
+    content: 'Principal';
+
+    width: 100%;
+    height: 20px;
+
+    opacity: 0.8;
+
+    background-color: #C4C4C4;
+    color: #333;
+}
+
+.addImgs .imgs .img:hover::before {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+    top: 50px;
+
+    content: url(../../images/icons/close.svg);
+
+    width: 100%;
+    height: 0;
+
+    opacity: 0.9;
+
+    background-color: #ffffff;
+    cursor: pointer;
+
+    transition: 0.2s;
+    z-index: 1;
+}
+
+.addImgs .imgs .img:hover img {
+    opacity: 0.6;
+    transition: 0.2s;
+}
+
+.info > .divInfo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.info .priceAndAmount p {
+    font-size: 1.6rem;
+}
+
+.info .priceAndAmount input {
+    max-width: 100px;
+}
+
+.productSituation div {
+    display: flex;
+    flex-direction: row;
+}
+
+.productSituation div label {
+    border: 1px solid #ccc;
+    background-color: #fff;
+    font-size: 1.2rem;
+
+    transition: 0.2s;
+}
+
+.productSituation div label:hover,
+.productSituation div input:checked + label {
+    border-color: var(--color-blue);
+    background-color: var(--color-blue);
+    color: #fff;
+}
+
+.productSituation div label:first-of-type {
+    border-radius: 5px 0 0 5px;
+}
+.productSituation div label:last-of-type {
+    border-radius: 0 5px 5px 0;
+}
+
+.variations div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.variations .titleWithButton h2 {
+    margin-right: 10px;
+}
+
+.variations .buttonOfAddWithImgSvg,
+.variations .buttonOfChangeWithImgSvg {
+    width: 15px;
+    height: 15px;
+}
+
+.variations .buttonOfAddWithImgSvg {
+    background: transparent url(/images/icons/add.svg) center/15px 15px no-repeat;
+}
+
+.variations .buttonOfChangeWithImgSvg {
+    background: transparent url(/images/icons/pencil-alt-solid.svg) center/15px 15px no-repeat;
+}
+
+.variations .buttonOfAddWithImgSvg img {
+    background-color: transparent;
+    width: 15px;
+    height: 15px;
+}
+
+.variations .variationsInfo {
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 1.3rem;
+}
+
+.variations .variationsInfo .variationInfo {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.variations .variationsInfo .variationInfo p {
+    margin-right: 10px;
+}
+
+.variations .variationsInfo .variationInfo > p::after {
+    content: ':';
+}
+
+.variations .variationsInfo .variationValue {
+    display: flex;
+    flex-direction: row;
+
+    width: min-content;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    white-space: nowrap;
+    cursor: pointer;
+    max-height: 20px;
+}
+
+/* .variations .variationsInfo .variationValue::after {
+    content: '';
+} */
+
+/* .variations .variationsInfo .variationValue:hover::after {
+    display: block;
+    width: 20px;
+    background-image: url(../../images/icons/close.svg);
+    background-size: 15px;
+    background-position: center;
+    background-repeat: no-repeat;
+} */
+
+.variations .variationsInfo .variationValue:hover {
+    color: transparent;
+    background-image: url(../../images/icons/close.svg);
+    background-size: 15px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.datasheet {
+    display: flex;
+    flex-direction: column;
+}
+
+.datasheet table {
+    border-spacing: 0;
+    border-collapse: collapse;
+    font-size: 1.2rem;
+}
+
+.datasheet table tbody tr {
+    display: grid;
+    grid-template-columns: 1fr 1fr 20px;
+    max-width: 760px;
+}
+
+.datasheet table tbody tr td {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    vertical-align: unset;
+    max-width: 370px;
+    /* padding: 2px 5px; */
+}
+
+.datasheet table tbody tr td .inputOfTable {
+    display:block;
+
+    height: min-content;
+    width: 100%;
+    padding: 2px 5px;
+
+    border-width: 0;
+    border-radius: 0;
+
+    resize: none;
+    overflow:hidden;
+    background-color: transparent;
+}
+
+/* .datasheet table tbody tr td .inputOfTable::placeholder {
+    color: #333;
+} */
+
+.datasheet table tbody tr td:not(:last-of-type) {
+    border: 1px solid #aaa;
+    flex: 1;
+    max-width: none;
+    background-color: #fff;
+}
+
+.datasheet table tbody tr td:last-of-type {
+    width: 20px;
+}
+
+.datasheet table tbody tr td:last-of-type button {
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    background: transparent url(/images/icons/trash.svg) center/20px no-repeat;
+}
+
+.datasheet table tbody tr:nth-of-type(2n - 2) td:not(:last-of-type) {
+    background-color: #ccc;
+}
+
+.datasheet div {
+    margin-top: 15px;
+}
+
+.datasheet div .buttonNewLine {
+    padding: 8px 15px;
+    font-size: 1.3rem;
+}
+
+.description textarea {
+    width: 100%;
+}
+
+.midia input {
+    max-width: none;
+}
+
+.buttonDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+input#createVariationInDiv:checked ~ .divOfCreateNewVariation {
+    display: flex;
+}
+
+.divOfCreateNewVariation {
+    position: fixed;
+    top: 0;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    width: 100vw;
+    height: 100vh;
+
+    background-color: rgba(0, 0, 0, 0.2);
+
+    z-index: 10;
+}
+
+.divOfCreateNewVariation * {
+    box-sizing: border-box;
+}
+
+.divOfCreateNewVariation .titleAndButton,
+.divOfCreateNewVariation .value,
+.divOfCreateNewVariation .buttons {
+    display: flex;
+    flex-direction: row;
+}
+
+.divOfCreateNewVariation .titleAndButton {
+    justify-content: space-between;
+}
+
+.divOfCreateNewVariation h2 {
+    margin: 0 0 10px;
+}
+
+.divOfCreateNewVariation .values {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+
+    margin-bottom: 20px;
+}
+
+.divOfCreateNewVariation .values input {
+    margin: 0 5px 0 0;
+}
+
+.divOfCreateNewVariation .buttonOfRemoveDiv,
+.divOfCreateNewVariation .buttonOfRemove {
+    width: min-content;
+    height: min-content;
+    padding: 0;
+    background-color: transparent;
+}
+
+.divOfCreateNewVariation .buttonOfRemoveDiv img,
+.divOfCreateNewVariation .buttonOfRemove img {
+    width: 15px;
+    height: 15px;
+}
+
+.divOfCreateNewVariation .buttons {
+    justify-content: space-between;
+}
+
+.divOfCreateNewVariation .buttons button + button {
+    margin-left: 20px;
+}

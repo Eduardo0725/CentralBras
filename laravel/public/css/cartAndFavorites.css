@@ -60,3 +60,89 @@
     max-width: 300px;
     font-size: 1.4rem;
 }
+
+.productRow {
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+
+.productRow>div>img {
+    max-width: 150px;
+    margin-right: 20px;
+}
+
+.productRow .infoProduct {
+    justify-content: space-between;
+    width: 36vw;
+}
+
+.productRow .infoProduct div:first-child p:first-child {
+    font-size: 1.4rem;
+    color: #555;
+}
+
+.productRow .infoProduct div:first-child p:not(:first-child) {
+    font-size: 1.2rem;
+    color: #888;
+    margin-top: 10px;
+}
+
+.productRow .infoProduct div:last-child a {
+    color: var(--color-blue);
+    font-size: 1.2rem;
+}
+
+.productRow .infoProduct div:last-child a:not(:last-child) {
+    margin-right: 25px;
+}
+
+.productRow .amount {
+    margin: 0 20px;
+}
+
+.productRow .amount>p{
+    text-align: center;
+    color: #888;
+    margin-top: 5px;
+}
+
+.productRow>p {
+    font-weight: bold;
+    font-size: 1.8rem;
+    color: #333;
+}
+
+
+.boxOfNumbers>div {
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid var(--color-blue);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.boxOfNumbers>div a {
+    top: 1px;
+}
+
+.boxOfNumbers>div input {
+    width: 30px;
+    margin: 0 5px;
+    text-align: center;
+    border: 0;
+}
+
+/* Chrome, Safari, Edge, Opera */
+.boxOfNumbers>div input::-webkit-outer-spin-button,
+.boxOfNumbers>div input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.boxOfNumbers>div input[type=number] {
+  -moz-appearance: textfield;
+}

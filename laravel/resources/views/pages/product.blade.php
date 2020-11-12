@@ -2,9 +2,6 @@
 
 @section('styles')
 <link rel="stylesheet" href="{{ asset('css/product.css') }}">
-<link rel="stylesheet" href="{{ asset('css/boxOfNumbers.css') }}">
-<link rel="stylesheet" href="{{ asset('css/carousel.css') }}">
-<link rel="stylesheet" href="{{ asset('css/card.css') }}">
 @endsection
 
 @section('content')
@@ -171,6 +168,4 @@
 
 @section('scripts')
 <script src="{{ asset('js/product.js') }}"></script>
-<script src="{{ asset('js/boxOfNumbers.js') }}"></script>
-<script src="{{ asset('js/carousel.js') }}"></script>
 @endsection

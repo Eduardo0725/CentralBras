@@ -1,0 +1,148 @@
+#content {
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#box {
+    max-width: 700px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+#box h1 {
+    margin: 20px 0;
+}
+
+#box h2 {
+    font-weight: normal;
+    margin: 5px 0 10px;
+}
+
+#box p {
+    font-size: 1.2rem;
+}
+
+#box hr {
+    margin: 10px 0;
+}
+
+.shadow {
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
+}
+
+#purchaseDetails,
+#purchaseDetails .purchaseMain .purchaseSummary .summary>div,
+#purchaseDetails .purchaseMain .purchaseSummary .total,
+#purchaseDetails .purchaseMain .purchaseMethodPayment,
+#purchaseDetails .purchaseMain .purchasePlace,
+#purchaseDetails .purchaseAside .infoProduct,
+#purchaseDetails .purchaseAside .vendorInfo {
+    display: flex;
+    flex-direction: row;
+}
+
+#purchaseDetails .purchaseMain .purchaseSummary .summary>div,
+#purchaseDetails .purchaseMain .purchaseSummary .total,
+#purchaseDetails .purchaseMain .purchaseMethodPayment>div,
+#purchaseDetails .purchaseAside .vendorInfo {
+    justify-content: space-between;
+}
+
+#purchaseDetails .purchaseMain {
+    margin-right: 20px;
+}
+
+#purchaseDetails .purchaseMain>div {
+    margin-bottom: 15px;
+}
+
+#purchaseDetails .purchaseMain .purchaseMethodPayment,
+#purchaseDetails .purchaseMain .purchasePlace {
+    align-items: center;
+}
+
+#purchaseDetails .purchaseMain .purchaseMethodPayment span,
+#purchaseDetails .purchaseMain .purchasePlace span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #C4C4C4;
+
+    width: 26px;
+    height: 26px;
+    padding: 12px;
+    margin-right: 10px;
+    border-radius: 50%;
+}
+
+#purchaseDetails .purchaseMain .purchaseMethodPayment span img,
+#purchaseDetails .purchaseMain .purchasePlace span img {
+    height: 25px;
+    width: 27px;
+}
+
+#purchaseDetails .purchaseMain .purchaseMethodPayment>div {
+    display: flex;
+    flex-direction: column;
+}
+
+#purchaseDetails .purchaseMain .purchaseMethodPayment>div p:last-child,
+#purchaseDetails .purchaseMain .purchasePlace>div p:not(:first-of-type) {
+    color: #888;
+}
+
+#purchaseDetails .purchaseAside {
+    position: sticky;
+    top: 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    max-width: 350px;
+    height: min-content;
+}
+
+#purchaseDetails .purchaseAside .infoProduct {
+    align-items: center;
+    margin: 10px;
+}
+
+#purchaseDetails .purchaseAside .infoProduct img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+#purchaseDetails .purchaseAside .infoProduct div {
+    justify-content: space-between;
+}
+
+#purchaseDetails .purchaseAside .infoProduct div * {
+    line-height: 20px;
+    font-size: 1.3rem;
+    color: #888
+}
+
+#purchaseDetails .purchaseAside .infoProduct div a {
+    color: var(--color-blue);
+}
+
+#purchaseDetails .purchaseAside .vendorInfo {
+    width: 90%;
+    padding: 15px;
+    background-color: #F0F0F0;
+    border-radius: 5px;
+}
+
+#purchaseDetails .purchaseAside .vendorInfo p {
+    font-size: 1.3rem;
+    color: #555;
+}
+
+#purchaseDetails .purchaseAside .vendorInfo p:first-of-type {
+    font-weight: bold;
+    color: #333;
+}

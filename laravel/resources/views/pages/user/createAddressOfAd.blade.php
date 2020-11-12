@@ -1,9 +1,7 @@
 @extends('layout.base')
 
 @section('styles')
-    <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
     <link rel="stylesheet" href="{{ asset('css/user/createAddressOfAd.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/createOrChangeAddress.css') }}">
 @endsection
 
 @section('content')
@@ -46,5 +44,5 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ asset('js/createOrChangeAddress.js') }}"></script>
+    <script src="{{ asset('js/createAddressOfAd.js') }}"></script>
 @endsection

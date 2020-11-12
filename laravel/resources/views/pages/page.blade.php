@@ -7,14 +7,10 @@
 @extends('layout.base')
 
 @section('styles')
-    <link rel="stylesheet" href="{{ asset('css/card.css') }}">
     <link rel="stylesheet" href="{{ asset('css/page.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/carousel.css') }}">
 @endsection
 
 @section('content')
-
-
     <div class="features">
         <p>Pesquisa: {{$search}}</p>
         <div class="filterAndOrderBy">
@@ -142,9 +138,8 @@
         'title' => 'Mais vendidos',
         'contents' => $contents
     ])
+@endsection
 
-    @section('scripts')
-        <script src="{{ asset('js/carousel.js') }}"></script>
-    @endsection
-
+@section('scripts')
+    <script src="{{ asset('js/page.js') }}"></script>
 @endsection

@@ -9,8 +9,6 @@
 
 @section('styles')
 <link rel="stylesheet" href="{{ asset('css/cartAndFavorites.css') }}">
-<link rel="stylesheet" href="{{ asset('css/productRow.css') }}">
-<link rel="stylesheet" href="{{ asset('css/boxOfNumbers.css') }}">
 @endsection
 
 @section('content')
@@ -51,5 +49,5 @@
 @endsection
 
 @section('scripts')
-<script src="{{ asset('js/boxOfNumbers.js') }}"></script>
+<script src="{{ asset('js/cartAndFavorites.js') }}"></script>
 @endsection

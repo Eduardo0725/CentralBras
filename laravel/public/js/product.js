@@ -1,17 +1,175 @@
-document.querySelector('#carouselImgs label').click();
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "/";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ })
+/************************************************************************/
+/******/ ({
 
-document.querySelectorAll('#box>input').forEach(input => input.addEventListener('change', e => {
-    let img = document.querySelector('#carouselImgs label:nth-child(' + (parseInt(e.target.value) + 1) + ') img').src;
-    document.querySelector('#imgFirst').src = img;
-}));
+/***/ "./resources/js/boxOfNumbers.js":
+/*!**************************************!*\
+  !*** ./resources/js/boxOfNumbers.js ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
 
-document.querySelector('#mainImg>div>div>div>label:last-of-type').addEventListener('click', e => {
-    let classHeart = e.target.getAttribute('class');
-    e.target.removeAttribute('class');
-
-    if (classHeart == 'heartEnabled')
-        e.target.setAttribute('class', 'heartDisabled');
-
-    if (classHeart == 'heartDisabled')
-        e.target.setAttribute('class', 'heartEnabled');
+document.querySelectorAll('.boxOfNumbers').forEach(function (boxOfNumbers) {
+  var childrens = boxOfNumbers.children[1].children;
+  childrens[0].addEventListener('click', function () {
+    var input = childrens[1].value;
+    if (input > 1) childrens[1].value = parseInt(input) - 1;
+  });
+  childrens[2].addEventListener('click', function () {
+    var input = childrens[1].value;
+    childrens[1].value = parseInt(input) + 1;
+  });
 });
+
+/***/ }),
+
+/***/ "./resources/js/carousel.js":
+/*!**********************************!*\
+  !*** ./resources/js/carousel.js ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var _loop = function _loop(index) {
+  var side = index == 0 ? 'left' : 'right';
+  document.querySelectorAll('label.' + side).forEach(function (label) {
+    return label.addEventListener('click', function (e) {
+      var doc = document.querySelector('div.carousel#' + e.path[2].id + ' span.contents');
+      var num = parseInt(doc.getAttribute('number')) + (side == 'left' ? 240 : -240);
+      doc.style = 'left:' + num + 'px;';
+      doc.removeAttribute('number');
+      doc.setAttribute('number', num);
+      document.querySelector('label.left.' + e.path[2].id).style = num == 0 ? '' : 'display: block;';
+      document.querySelector('label.right.' + e.path[2].id).style = num > -2880 ? '' : 'display: none;';
+    });
+  });
+};
+
+for (var index = 0; index <= 1; index++) {
+  _loop(index);
+}
+
+/***/ }),
+
+/***/ "./resources/js/product.js":
+/*!*********************************!*\
+  !*** ./resources/js/product.js ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+document.querySelector('#carouselImgs label').click();
+document.querySelectorAll('#box>input').forEach(function (input) {
+  return input.addEventListener('change', function (e) {
+    var img = document.querySelector('#carouselImgs label:nth-child(' + (parseInt(e.target.value) + 1) + ') img').src;
+    document.querySelector('#imgFirst').src = img;
+  });
+});
+document.querySelector('#mainImg>div>div>div>label:last-of-type').addEventListener('click', function (e) {
+  var classHeart = e.target.getAttribute('class');
+  e.target.removeAttribute('class');
+  if (classHeart == 'heartEnabled') e.target.setAttribute('class', 'heartDisabled');
+  if (classHeart == 'heartDisabled') e.target.setAttribute('class', 'heartEnabled');
+});
+
+/***/ }),
+
+/***/ 3:
+/*!*************************************************************************************************!*\
+  !*** multi ./resources/js/product.js ./resources/js/boxOfNumbers.js ./resources/js/carousel.js ***!
+  \*************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(/*! C:\Users\Eduardo\www\centralbras\laravel\resources\js\product.js */"./resources/js/product.js");
+__webpack_require__(/*! C:\Users\Eduardo\www\centralbras\laravel\resources\js\boxOfNumbers.js */"./resources/js/boxOfNumbers.js");
+module.exports = __webpack_require__(/*! C:\Users\Eduardo\www\centralbras\laravel\resources\js\carousel.js */"./resources/js/carousel.js");
+
+
+/***/ })
+
+/******/ });

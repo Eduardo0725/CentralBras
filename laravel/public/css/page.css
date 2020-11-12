@@ -1,3 +1,69 @@
+.card {
+    background: #fff;
+    width: 190px;
+    height: 300px;
+    padding: 15px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card:hover {
+    transform: translate(-2px,-2px);
+    cursor: pointer;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.card:active {
+    transform: translate(0,0);
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+}
+
+.card>img {
+    width: 200px;
+}
+
+.card>p {
+    font-size: 1.2rem;
+    color: #888888;
+    display: -webkit-box;
+    overflow: hidden;
+    margin: 10px 0 5px;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    word-break: break-word;
+}
+
+.card > div {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 5px 0;
+}
+
+.card div p {
+    font-size: 1.2rem;
+    color: #888888;
+}
+
+.card div p.discount {
+    color: var(--color-green);
+}
+
+.card div p.cost {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #333333;
+}
+
+
+.card div span.stars img {
+    filter: var(--svg-color-yellow);
+    width: 15px;
+    height: 15px;
+}
+
 div#content {
     margin-bottom: 20px;
 }
@@ -222,3 +288,71 @@ div.pages a:hover,
 div.pages a:active {
     background-color: #fff;
 }
+
+div.carousel {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+}
+
+div.carousel h2 {
+    margin-left: 20px;
+    font-size: 1.6rem;
+}
+
+div.carousel-div {
+    width: 90%;
+    overflow: hidden;
+}
+
+div.controls {
+    width: 95%;
+    position: absolute;
+    z-index: 2;
+}
+
+div.controls label {
+    position: absolute;
+    display: block;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: #fff center center/20px no-repeat;
+    cursor: pointer;
+    box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
+    margin: 155px 0 0;/* margin: 110px 0; */
+}
+
+div.controls label.left {
+    left: 0;
+    background-image: url('https://image.flaticon.com/icons/svg/130/130882.svg') !important;
+    display: none;
+}
+
+div.controls label.right {
+    right: 0;
+    background-image: url('https://image.flaticon.com/icons/svg/130/130884.svg') !important;
+}
+
+div.carousel-div .cards {
+    display: flex;
+    flex-direction: row;
+}
+
+div.carousel-div .cards .contents {
+    display: flex;
+    flex-direction: row;
+    float: left;
+    position: relative;
+    transition: 1s;
+}
+
+div.carousel-div .card:first-child {
+    margin-left: 10px;
+}
+
+div.carousel-div .card:not(:last-child) {
+    margin-right: 20px;
+}
+

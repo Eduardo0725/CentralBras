@@ -176,3 +176,95 @@
     max-width: 100px;
     margin-top: 10px;
 }
+
+#sidebar {
+    width: 0;
+}
+
+#sidebar>div {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+
+    width: 30px;
+    height: 100%;
+    padding: 0 20px;
+
+    background-color: #fff;
+
+    z-index: 5;
+
+    transition: 0.3s;
+}
+
+#sidebar>div:hover {
+    width: 140px;
+    box-shadow: 2px 0 2px rgba(0, 0, 0, 0.3);
+}
+
+#sidebar>div>div {
+    position: sticky;
+    top: 0;
+}
+
+#sidebar>div>div>div {
+    overflow: hidden;
+}
+
+#sidebar a {
+    position: relative;
+    width: 140px;
+    margin-bottom: 30px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    font-size: 1.4rem;
+    color: var(--color-blue);
+
+    transition: 0.3s;
+}
+
+#sidebar a:first-of-type {
+    padding-top: 15px;
+}
+
+#sidebar a p {
+    margin-left: 20px;
+}
+
+#sidebar a:hover p,
+#sidebar a.active p {
+    color: var(--color-red);
+}
+
+#sidebar a.shopping::before {
+    content: url('../../images/icons/shopping.svg');
+}
+
+#sidebar a.shopping:hover::before,
+#sidebar a.shopping.active::before {
+    content: url('../../images/icons/shopping-red.svg');
+}
+
+
+#sidebar a.sales::before {
+    content: url('../../images/icons/sales.svg');
+}
+
+#sidebar a.sales:hover::before,
+#sidebar a.sales.active::before {
+    content: url('../../images/icons/sales-red.svg');
+}
+
+
+#sidebar a.configurations::before {
+    content: url('../../images/icons/configurations.svg');
+}
+
+#sidebar a.configurations:hover::before,
+#sidebar a.configurations.active::before {
+    content: url('../../images/icons/configurations-red.svg');
+}

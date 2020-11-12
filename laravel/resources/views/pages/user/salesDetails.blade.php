@@ -2,7 +2,6 @@
 
 @section('styles')
     <link rel="stylesheet" href="{{ asset('css/user/salesDetails.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
 @endsection
 
 @section('content')
