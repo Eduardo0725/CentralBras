@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('surname');
             $table->integer('cpf')->unique();
             $table->integer('phone');
-            $table->boolean('state')->default(true);
+            $table->boolean('status')->default(true);
             $table->string('google')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
