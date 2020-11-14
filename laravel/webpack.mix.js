@@ -16,7 +16,7 @@ mix
     // .sass('resources/sass/app.scss', 'public/css')
 
     .styles('resources/css/layout.css', 'public/css/layout.css')
-    .js('resources/js/global.js', 'public/js/global.js')
+    .scripts('resources/js/global.js', 'public/js/global.js')
 
     //
 
@@ -25,7 +25,7 @@ mix
         'resources/css/carousel.css',
         'resources/css/main.css',
     ], 'public/css/main.css')
-    .js('resources/js/carousel.js', 'public/js/main.js')
+    .scripts('resources/js/carousel.js', 'public/js/main.js')
 
     //
 
@@ -34,7 +34,7 @@ mix
         'resources/css/productRow.css',
         'resources/css/boxOfNumbers.css',
     ], 'public/css/cartAndFavorites.css')
-    .js('resources/js/boxOfNumbers.js', 'public/js/cartAndFavorites.js')
+    .scripts('resources/js/boxOfNumbers.js', 'public/js/cartAndFavorites.js')
 
     //
 
@@ -44,7 +44,7 @@ mix
         'resources/css/carousel.css',
         'resources/css/card.css',
     ], 'public/css/product.css')
-    .js([
+    .scripts([
         'resources/js/product.js',
         'resources/js/boxOfNumbers.js',
         'resources/js/carousel.js',
@@ -57,7 +57,7 @@ mix
     //
 
     .styles('resources/css/emailVerification.css', 'public/css/emailVerification.css')
-    .js('resources/js/emailVerification.js', 'public/js/emailVerification.js')
+    .scripts('resources/js/emailVerification.js', 'public/js/emailVerification.js')
 
     //
 
@@ -74,7 +74,7 @@ mix
         'resources/css/page.css',
         'resources/css/carousel.css',
     ], 'public/css/page.css')
-    .js('resources/js/carousel.js', 'public/js/page.js')
+    .scripts('resources/js/carousel.js', 'public/js/page.js')
 
     //
 
@@ -90,12 +90,12 @@ mix
     //
 
     .styles('resources/css/paymethod.css', 'public/css/paymethod.css')
-    .js('resources/js/paymethod.js', 'public/js/paymethod.js')
+    .scripts('resources/js/paymethod.js', 'public/js/paymethod.js')
 
     //
 
     .styles('resources/css/register.css', 'public/css/register.css')
-    .js([
+    .scripts([
         'node_modules/vanilla-masker/build/vanilla-masker.min.js',
         'resources/js/mask.js',
         'resources/js/register.js',
@@ -114,7 +114,7 @@ mix
         'resources/css/user/config.css',
         'resources/css/sidebar.css',
     ], 'public/css/user/config.css')
-    .js('resources/js/config.js', 'public/js/config.js')
+    .scripts('resources/js/config.js', 'public/js/config.js')
 
     //
 
@@ -123,7 +123,7 @@ mix
         'resources/css/sidebar.css',
         'resources/css/createOrChangeAddress.css',
     ], 'public/css/user/createAddressOfAd.css')
-    .js('resources/js/createOrChangeAddress.js', 'public/js/createAddressOfAd.js')
+    .scripts('resources/js/createOrChangeAddress.js', 'public/js/createAddressOfAd.js')
 
     //
 
@@ -131,7 +131,7 @@ mix
         'resources/css/user/createProductOfAd.css',
         'resources/css/sidebar.css',
     ], 'public/css/user/createProductOfAd.css')
-    .js('resources/js/createProductOfAd.js', 'public/js/createProductOfAd.js')
+    .scripts('resources/js/createProductOfAd.js', 'public/js/createProductOfAd.js')
 
     //
 
@@ -160,7 +160,7 @@ mix
         'resources/css/user/selectWayToGetPaidOfAd.css',
         'resources/css/sidebar.css',
     ], 'public/css/user/selectWayToGetPaidOfAd.css')
-    .js('resources/js/selectWayToGetPaidOfAd.js', 'public/js/selectWayToGetPaidOfAd.js')
+    .scripts('resources/js/selectWayToGetPaidOfAd.js', 'public/js/selectWayToGetPaidOfAd.js')
 
     //
 

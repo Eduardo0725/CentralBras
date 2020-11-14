@@ -7,7 +7,7 @@ function addDivAlterProperties(title = '', nameInput = '', placeholder = '', val
                     <div class="flexRow headerTitleAndClose">
                         <h2>${title}</h2>
                         <a onclick="removeDiv('.alterProps')">
-                            <img class="imgClose" src="{{ asset('images/icons/close.svg') }}" alt="close">
+                            <img class="imgClose" src="/images/icons/close.svg" alt="close">
                         </a>
                     </div>
                     <div class="flexRow">
@@ -37,7 +37,7 @@ function addDivAddOrAlterAddress(title = '', route = '') {
                 <div class="flexRow headerTitleAndClose">
                     <h2>${title}</h2>
                     <a onclick="removeDiv('.addOrAlterAddress')">
-                        <img class="imgClose" src="{{ asset('images/icons/close.svg') }}" alt="close">
+                        <img class="imgClose" src="/images/icons/close.svg" alt="close">
                     </a>
                 </div>
 
