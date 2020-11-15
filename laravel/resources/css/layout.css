@@ -194,10 +194,12 @@ header {
     background: #fff;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     height: var(--header);
 }
 
-header .headerBtn {
+header .headerBtn,
+header .headerBtnSearch {
     background: transparent;
     border-color: transparent;
 }
@@ -206,7 +208,6 @@ header .headerMenu {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    /* width: 80px; */
     margin: 0 0 0 20px;
     font-size: 1.6rem;
     padding: 5px 10px 10px 5px;
@@ -231,13 +232,8 @@ header .headerMenu:hover img {
     filter: var(--svg-color-white);
 }
 
-header .headerMenu:hover ~ menu {
-    display: flex;
-}
-
 header .headerLogo {
     display: flex;
-    flex: 1;
     margin: 0 30px;
 }
 
@@ -252,8 +248,9 @@ header img {
     height: 25px;
 }
 
-header .headerSearch {
-    max-width: 600px;
+header .headerSearch,
+header .headerSearch div {
+    max-width: 700px;
     width: 100%;
     display: flex;
     align-items: center;
@@ -268,7 +265,12 @@ header .headerSearch input {
     padding-right: 40px;
 }
 
-header .headerSearch .headerBtn {
+header .headerSearch div {
+    width: 0;
+    height: 0;
+}
+
+header .headerSearch div .headerBtnSearch {
     margin: 0;
     padding: 0;
     position: relative;
@@ -278,38 +280,33 @@ header .headerSearch .headerBtn {
     width: 4%;
 }
 
-header .headerSearch .headerBtn img {
+header .headerSearch div .headerBtnSearch img {
     width: 20px;
 }
 
-header .headerButtons {
-    display: flex;
-    flex: 1;
-    justify-content: space-between;
-    position: relative;
-}
-
-header .headerButtons img {
+header .headerBtn img,
+header .userHeaderButton img {
     margin: 0 20px;
 }
 
-header .headerButtons .user {
-    margin-right: 10%;
-    display: flex;
-    align-items: center;
+header .headerBtn:hover,
+header .userHeaderButton:hover {
+    filter: var(--svg-color-red);
 }
 
-header .headerButtons .user p {
+header .userHeaderButton {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+header .userHeaderButton p {
     width: 110px;
     margin-right: 10px;
     font-size: 1.2rem;
 }
 
-header .headerButtons .headerBtn:hover {
-    filter: var(--svg-color-red);
-}
-
-menu {
+#optionsMenuInHeader {
     display: none;
     flex-direction: column;
     position: absolute;
@@ -326,17 +323,58 @@ menu {
     z-index: 10;
 }
 
-menu:hover {
+header .headerMenu:hover ~ #optionsMenuInHeader,
+#optionsMenuInHeader:hover {
     display: flex;
 }
 
-menu a {
+#optionsMenuInHeader a {
     font-size: 1.4rem;
     color: #333333;
     padding: 10px;
 }
 
-menu a:hover {
+#optionsMenuInHeader a:hover {
+    color: #fff;
+    background: var(--color-red);
+}
+
+#userMenuInHeader {
+    display: none;
+    flex-direction: column;
+
+    position: absolute;
+    top: 45px;
+    right: 0;
+
+    background: #fff;
+
+    width: 200px;
+    margin: 0 0 0 20px;
+    padding: 0;
+
+    border-radius: 5px 0 5px 5px;
+
+    -webkit-box-shadow: var(--shadow);
+	-moz-box-shadow: var(--shadow);
+    box-shadow: var(--shadow);
+
+    overflow: hidden;
+    z-index: 10;
+}
+
+header .userHeaderButton:hover ~ #userMenuInHeader,
+#userMenuInHeader:hover {
+    display: flex;
+}
+
+#userMenuInHeader a {
+    font-size: 1.4rem;
+    color: #333333;
+    padding: 10px;
+}
+
+#userMenuInHeader a:hover {
     color: #fff;
     background: var(--color-red);
 }

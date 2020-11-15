@@ -252,11 +252,11 @@ Route::prefix('myaccount')->middleware('auth')->group(function () {
 
     Route::prefix('purchases')->group(function () {
         Route::get('/', function () {
-            return view('pages.user.purchases');
+            return view('pages.user.shopping');
         })->name('myaccount.purchases');
 
         Route::get('id/{id?}', function () {
-            return view('pages.user.purchases');
+            return view('pages.user.shopping');
         })->name('myaccount.purchases.purchase');
     });
 

@@ -22,11 +22,13 @@
             </a>
             <form action="{{ route('page') }}" class="headerSearch">
                 <input type="text" name="search">
-                <button type="submit" class="headerBtn" href="#">
-                    <img src="{{ asset('images/icons/search.svg') }}" alt="Search">
-                </button>
+                <div>
+                    <button type="submit" class="headerBtnSearch" href="#">
+                        <img src="{{ asset('images/icons/search.svg') }}" alt="Search">
+                    </button>
+                </div>
             </form>
-            <div class="headerButtons">
+            {{-- <div class="headerButtons"> --}}
                 @if (Auth::check())
                     <a class="headerBtn heart" href="{{ route('cartAndFavorites', ['cartOrFavorite' => true]) }}">
                         <img src="{{ asset('images/icons/heart-outline.svg') }}" alt="Heart Outline">
@@ -35,14 +37,14 @@
                 <a class="headerBtn cart" href="{{ route('cartAndFavorites', ['cartOrFavorite' => false]) }}">
                     <img src="{{ asset('images/icons/cart.svg') }}" alt="Cart">
                 </a>
-                <a class="headerBtn user" href="{{ (Auth::check()) ? route('account.logout') : route('account.index') }}">
-                    <img src="{{ asset('images/icons/user.svg') }}" alt="User">
-                    @if (!Auth::check())
-                        <p>Entre ou cadastre-se</p>
-                    @endif
-                </a>
-            </div>
-            <menu>
+            {{-- </div> --}}
+            <a class="headerBtn userHeaderButton" {{ (Auth::check()) ? '' : "href=" . route('account.index') }}>
+                <img src="{{ asset('images/icons/user.svg') }}" alt="User">
+                @if (!Auth::check())
+                    <p>Entre ou cadastre-se</p>
+                @endif
+            </a>
+            <div id="optionsMenuInHeader">
                 <a href="{{ route('page', ['search' => 'Celulares e Telefones']) }}">Celulares e Telefones</a>
                 <a href="{{ route('page', ['search' => 'Informática']) }}">Informática</a>
                 <a href="{{ route('page', ['search' => 'TV e Eletrônicos']) }}">TV e Eletrônicos</a>
@@ -52,7 +54,15 @@
                 <a href="{{ route('page', ['search' => 'Esporte e Lazer']) }}">Esporte e Lazer</a>
                 <a href="{{ route('page', ['search' => 'Games']) }}">Games</a>
                 <a href="{{ route('page', ['search' => 'Outros']) }}">Outros</a>
-            </menu>
+            </div>
+            @if (Auth::check())
+                <div id="userMenuInHeader">
+                    <a href="{{ route('myaccount.purchases') }}">Compras</a>
+                    <a href="{{ route('myaccount.sales') }}">Vendas</a>
+                    <a href="{{ route('myaccount.config') }}">Configurações</a>
+                    <a href="{{ route('account.logout') }}">Sair</a>
+                </div>
+            @endif
         </header>
 
         <nav>
