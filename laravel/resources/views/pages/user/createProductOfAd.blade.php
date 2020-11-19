@@ -11,7 +11,7 @@
         <form
             id="form"
             class="boxDefault shadow"
-            action="{{ route('myaccount.ads.create.address') }}"
+            action="{{ route('myaccount.ads.store') }}"
             method="POST"
             enctype="multipart/form-data"
         >
@@ -24,7 +24,7 @@
 
                 <div>
                     {{-- When new images are selected, old images are removed, so a new entry has been created to store all images --}}
-                    <input class="none" type="file" id="addImage" multiple>
+                    <input class="none" type="file" name="addImage" id="addImage" multiple>
                     <input type="hidden" name="images" id="images">
 
                     <label for="addImage">

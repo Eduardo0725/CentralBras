@@ -7,8 +7,8 @@
 @section('content')
     @include('components.sidebar', ['sales' => true])
 
-    <div id="box">
-        <form class="boxDefault shadow" action="{{ route('myaccount.ads.create.warranty') }}" method="post">
+    <div id="box" data-dusk="wayToGetPaidOfAd">
+        <form class="boxDefault shadow" action="{{ route('myaccount.ads.store') }}" method="post">
             @csrf
 
             <h1>Formas de receber pagamento</h1>

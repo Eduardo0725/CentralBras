@@ -213,7 +213,7 @@ Route::prefix('purchases')->group(function () {
     })->name('purchases.confirmed');
 });
 
-Route::middleware('auth')->group(function() {
+Route::middleware('auth')->group(function () {
     Route::prefix('account')->group(function () {
         Route::get('/', 'AccountController@index')->name('account.index');
 
@@ -221,7 +221,7 @@ Route::middleware('auth')->group(function() {
     });
 });
 
-Route::middleware('guest')->group(function() {
+Route::middleware('guest')->group(function () {
     Route::prefix('account')->group(function () {
         Route::get('/', 'AccountController@index')->name('account.index');
 
@@ -276,25 +276,8 @@ Route::prefix('myaccount')->middleware('auth')->group(function () {
         })->name('myaccount.ads');
 
         Route::prefix('create')->group(function () {
-            Route::get('/', function () {
-                return view('pages.user.createProductOfAd');
-            })->name('myaccount.ads.create');
-
-            Route::post('address', function () {
-                return view('pages.user.createAddressOfAd');
-            })->name('myaccount.ads.create.address');
-
-            Route::post('waysToGetPaid', function () {
-                return view('pages.user.createAddressOfAd');
-            })->name('myaccount.ads.create.waysToGetPaid');
-
-            Route::post('warranty', function () {
-                return view('pages.user.createAddressOfAd');
-            })->name('myaccount.ads.create.warranty');
-
-            Route::post('finished', function () {
-                return view('pages.user.createAddressOfAd');
-            })->name('myaccount.ads.create.finished');
+            Route::match(['GET', 'POST'], '/{page?}', 'AdsController@create')->name('myaccount.ads.create');
+            Route::post('/{page?}', 'AdsController@store')->name('myaccount.ads.store');
         });
     });
 });

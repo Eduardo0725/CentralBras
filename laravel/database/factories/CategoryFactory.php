@@ -21,6 +21,6 @@ $factory->define(Category::class, function (Faker $faker) {
     ];
 
     return [
-        'name' => $category[random_int(0, count($category) - 1)]
+        'name' => $category[App\Models\Category::all(['id'])->count()]
     ];
 });

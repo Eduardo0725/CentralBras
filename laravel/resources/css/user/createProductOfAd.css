@@ -318,6 +318,7 @@
 
 .description textarea {
     width: 100%;
+    resize: vertical;
 }
 
 .midia input {

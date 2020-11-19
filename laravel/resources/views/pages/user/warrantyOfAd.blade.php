@@ -7,8 +7,8 @@
 @section('content')
     @include('components.sidebar', ['sales' => true])
 
-    <div id="box">
-        <form action="{{ route('myaccount.ads.create.finished') }}" method="post" class="boxDefault shadow" id="warrantyOfAd">
+    <div id="box" data-dusk="warranty">
+        <form action="{{ route('myaccount.ads.store') }}" method="post" class="boxDefault shadow" id="warrantyOfAd">
             @csrf
 
             <h1>Garantia</h1>
@@ -47,7 +47,7 @@
             </div>
 
             <div class="buttonSubmit">
-                <button class="buttonDefault buttonGreen">Próximo</button>
+                <button type="submit" class="buttonDefault buttonGreen">Próximo</button>
             </div>
         </form>
     </div>

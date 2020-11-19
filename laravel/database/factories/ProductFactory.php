@@ -14,7 +14,7 @@ $factory->define(Product::class, function (Faker $faker) {
         'description' => $faker->sentence(),
         'datasheet' => '{}',
         'variations' => '{}',
-        'linkMedia' => '',
+        'linkMedia' => '{}',
         'productSituation' => $faker->boolean,
         'universalCode' => $faker->numerify('#############'),
         'brand' => '',
