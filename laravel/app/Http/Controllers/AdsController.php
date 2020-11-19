@@ -26,7 +26,7 @@ class AdsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create()
     {
         $step = (Session::has('nextCreationStep') ? Session::get('nextCreationStep')['step'] : 'product');
 
@@ -78,12 +78,6 @@ class AdsController extends Controller
                     'model' => $request->productModel,
                     'cost' => (float) str_replace(',', '.', $request->productPrice),
                 ];
-
-                // $midia = '';
-
-                // if ($request->midia != '') {
-                //     $midia = $request->midia;
-                // }
 
                 Session::put('nextCreationStep', [
                     'step' => 'address',
@@ -143,8 +137,7 @@ class AdsController extends Controller
                     'year' => $year
                 ]);
 
-                /////////////////////////////////////////////////////////////////////////////////
-
+                // Saving images
                 $midiaPath = [
                     'midia' => $data['midia'],
                     'images' => []
@@ -171,8 +164,7 @@ class AdsController extends Controller
 
                 $data['product']['linkMedia'] = json_encode($midiaPath);
 
-                /////////////////////////////////////////////////////////////////////////////////
-
+                // Creating product
                 $product = Product::create($data['product']);
 
                 Session::put('nextCreationStep', [
