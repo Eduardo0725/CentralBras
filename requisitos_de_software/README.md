@@ -2,8 +2,8 @@
 
 ## Requisitos Funcionais
 
-- [ ] RF01: Cadastro de usuários;
-- [ ] RF02: Login com email e senha;
+- [x] RF01: Cadastro de usuários;
+- [x] RF02: Login com email e senha;
 - [ ] RF03: Opção de vinculo/desvinculo com conta Google;
 - [ ] RF04: Login com a conta Google;
 - [ ] RF05: Cadastro de produtos;
@@ -36,9 +36,9 @@
 
 ## Regras de Negócio:
 
-- [ ] RN01: Não pode existir duas contas com o mesmo email e/ou CPF;
+- [x] RN01: Não pode existir duas contas com o mesmo email e/ou CPF;
 - [ ] RN02: Após o cadastramento de algum usuário, deverá ser enviado um email de confirmação;
-- [ ] RN03: Cada produto deverá ter um codigo de identificação;
+- [x] RN03: Cada produto deverá ter um codigo de identificação;
 - [ ] RN04: O carrinho de compras poderá receber produtos com ou sem login do usuário;
 - [ ] RN05: As compras deverão ser finalizadas somente com o usuário logado;
 - [ ] RN06: A adição do produto ao favorito deverá ser feito somente com o usuário logado;
