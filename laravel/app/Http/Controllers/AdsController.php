@@ -2,8 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Datasheet;
+use App\Models\Midia;
 use App\Models\Product;
-use App\Models\User;
+use App\Models\ShoppingAndSale;
+use App\Models\Variation;
+use App\Models\VariationValue;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -18,7 +24,37 @@ class AdsController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+        // dd($user->product()->get()->all());
+        $products = $user->product()->get()->all();
+
+        // dd($products);
+
+        $data = [];
+
+        foreach ($products as $product) {
+            array_push($data, [
+                'id' => $product->id,
+                'category' => $product->category()->get()->first()->name ?? null,
+                'name' => $product->name,
+                'amount' => $product->amount,
+                'description' => $product->description,
+                'image' => $product->midia()->where('type', 'image')->get()->first()->path ?? null,
+                'productSituation' => $product->productSituation,
+                'universalCode' => $product->universalCode,
+                'brand' => $product->brand,
+                'model' => $product->model,
+                'cost' => $product->cost,
+                'warranty' => $product->warranty,
+                'day' => $product->warrantyDay,
+                'month' => $product->warrantyMonth,
+                'year' => $product->warrantyYear,
+                // 'sales' => '',
+            ]);
+        }
+
+        // dd($data);
+        return view('pages.user.ads', ['sidebar' => 'sales', 'data' => $data]);
     }
 
     /**
@@ -28,7 +64,7 @@ class AdsController extends Controller
      */
     public function create()
     {
-        $step = (Session::has('nextCreationStep') ? Session::get('nextCreationStep')['step'] : 'product');
+        $step = Session::get('nextCreationStep.step', 'product');
 
         $pages = [
             "product" => "createProductOfAd",
@@ -38,13 +74,17 @@ class AdsController extends Controller
             "finished" => "creationOfFinishedAd",
         ];
 
-        if(isset(Session::get('nextCreationStep')['step']) && Session::get('nextCreationStep')['step'] === 'finished'){
-            $data = ['idProduct' => Session::get('nextCreationStep')['idProduct']];
+        if (Session::get('nextCreationStep.step') === 'address') {
+            $data = ['addresses' => Auth::user()->addresses()->get()->all(), 'sidebar' => 'sales'];
+        }
+
+        if (Session::get('nextCreationStep.step') === 'finished') {
+            $data = ['idProduct' => Session::get('nextCreationStep.idProduct'), 'sidebar' => 'sales'];
             Session::forget('nextCreationStep');
         }
 
         if (isset($pages[$step])) {
-            return view("pages.user.{$pages[$step]}", $data ?? []);
+            return view("pages.user.{$pages[$step]}", $data ?? ['sidebar' => 'sales']);
         }
 
         return redirect()->route("main");
@@ -58,20 +98,16 @@ class AdsController extends Controller
      */
     public function store(Request $request)
     {
-        $step = (Session::has('nextCreationStep') ? Session::get('nextCreationStep')['step'] : 'product');
+        $step = Session::get('nextCreationStep.step', 'product');
 
         switch ($step) {
             case 'product':
-                $userId = \App\Models\User::find(Auth::user()->id)->id;
-
                 $product = [
-                    'idUser' => $userId,
-                    'idCategory' => 17,
+                    'idUser' => Auth::user()->id,
+                    'idCategory' => 8,
                     'name' => $request->productTitle,
                     'amount' => $request->productAmount,
                     'description' => $request->productDescription,
-                    'datasheet' => $request->datasheet,
-                    'variations' => $request->variations,
                     'productSituation' => $request->productSituation === 'old',
                     'universalCode' => $request->productCod,
                     'brand' => $request->productBrand,
@@ -83,95 +119,114 @@ class AdsController extends Controller
                     'step' => 'address',
                     'data' => [
                         'product' => $product,
+                        'datasheet' => json_decode($request->datasheet, true),
+                        'variations' => json_decode($request->variations, true),
                         'images' => $request->images,
-                        'midia' => $request->midia || ''
+                        'video' => $request->video ?? null
                     ],
                 ]);
 
                 break;
 
             case 'address':
-                $data = Session::get('nextCreationStep')['data'];
-                $data['product']['addresses'] = json_encode(['id' => $request->address]);
+                $address = ['id' => $request->address];
 
-                Session::put('nextCreationStep', [
-                    'step' => 'waysToGetPaid',
-                    'data' => $data
-                ]);
-            break;
+                $waysToReceivePayments = Auth::user()->waysToReceivePayments()->where('selected', true)->get()->first();
+
+                $step = !$waysToReceivePayments ? 'waysToGetPaid' : 'warranty';
+
+                Session::put('nextCreationStep.step', $step);
+                Session::push('nextCreationStep.data', $address);
+                break;
 
             case 'waysToGetPaid':
-                $data = Session::get('nextCreationStep')['data'];
-                $data['product']['idWaysToReceivePayments'] = 1;
+                $waysToGetPaid = Auth::user()->waysToReceivePayments()->where('type', $request->waysToGetPaid)->get()->first();
+                $waysToGetPaid->selected = true;
+                $waysToGetPaid->save();
 
-                Session::put('nextCreationStep', [
-                    'step' => 'warranty',
-                    'data' => $data
-                ]);
-            break;
+                Session::put('nextCreationStep.step', 'warranty');
+                break;
 
             case 'warranty':
-                $data = Session::get('nextCreationStep')['data'];
+                $data = Session::get('nextCreationStep.data');
 
-                $type = $request->warranty;
-                $day = '';
-                $month = '';
-                $year = '';
+                $data['product']['warranty'] = $request->warranty;
 
-                if($type === 'vendor') {
-                    $day = $request->vendorDay;
-                    $month = $request->vendorMonth;
-                    $year = $request->vendorYear;
+                if ($data['product']['warranty'] === 'vendor') {
+                    $data['product']['warrantyDay'] = $request->vendorDay;
+                    $data['product']['warrantyMonth'] = $request->vendorMonth;
+                    $data['product']['warrantyYear'] = $request->vendorYear;
                 }
 
-                if($type === 'manufacturer') {
-                    $day = $request->manufacturerDay;
-                    $month = $request->manufacturerMonth;
-                    $year = $request->manufacturerYear;
+                if ($data['product']['warranty'] === 'manufacturer') {
+                    $data['product']['warrantyDay'] = $request->manufacturerDay;
+                    $data['product']['warrantyMonth'] = $request->manufacturerMonth;
+                    $data['product']['warrantyYear'] = $request->manufacturerYear;
                 }
 
-                $data['product']['warranty'] = json_encode([
-                    'type' => $type,
-                    'day' => $day,
-                    'month' => $month,
-                    'year' => $year
-                ]);
+                // Saving midia
+                $midias = [[
+                    'type' => 'video',
+                    'path' => $data['video'],
+                ]];
 
-                // Saving images
-                $midiaPath = [
-                    'midia' => $data['midia'],
-                    'images' => []
-                ];
+                $images = json_decode($data['images'], true);
 
-                $imagesJson = json_decode($data['images'], true);
+                foreach ($images as $key => $value) {
+                    $imageBase64 = explode(',', $value);
+                    $image = base64_decode($imageBase64[1]);
 
-                foreach ($imagesJson as $key => $value) {
-                    $newValue = explode(',', $value);
-                    $newValue[0] = str_replace(';base64', '', $newValue[0]);
-                    $newValue[0] = str_replace('data:', '', $newValue[0]);
-
-                    $image = base64_decode($newValue[1]);
-                    $path = 'products/' . $data['product']['idUser'] . '/' . rand() . rand() . $key;
+                    $path = 'products/' . Auth::user()->id . '/' . (new DateTime('America/Sao_Paulo'))->format('dmYHis') . $key;
 
                     Storage::disk()->put($path, $image);
 
-                    array_push($midiaPath['images'], [
-                        'title' => $key,
-                        'path' => $path,
-                        'type' => $newValue[0]
+                    array_push($midias, [
+                        'type' => 'image',
+                        'path' => $path
                     ]);
                 }
 
-                $data['product']['linkMedia'] = json_encode($midiaPath);
-
                 // Creating product
                 $product = Product::create($data['product']);
+
+                // Creating midia
+                foreach ($midias as $midia) {
+                    Midia::create([
+                        'idProduct' => $product->id,
+                        'type' => $midia['type'],
+                        'path' => $midia['path']
+                    ]);
+                }
+
+                // Creating variations
+                foreach ($data['variations'] as $variations) {
+                    $result = Variation::create([
+                        'idProduct' => $product->id,
+                        'name' => $variations['name']
+                    ]);
+
+                    foreach ($variations['values'] as $value) {
+                        VariationValue::create([
+                            'idVariation' => $result->id,
+                            'value' => $value
+                        ]);
+                    }
+                }
+
+                // Creating datasheet
+                foreach ($data['datasheet'] as $datasheet) {
+                    Datasheet::create([
+                        'idProduct' => $product->id,
+                        'name' => $datasheet['name'],
+                        'description' => $datasheet['description']
+                    ]);
+                }
 
                 Session::put('nextCreationStep', [
                     'step' => 'finished',
                     'idProduct' => $product->id
                 ]);
-            break;
+                break;
         }
 
         return redirect()->route('myaccount.ads.create');

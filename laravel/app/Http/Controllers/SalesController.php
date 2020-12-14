@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ShoppingAndSale;
 use Illuminate\Http\Request;
 
-class ShoppingAndSaleController extends Controller
+class SalesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +13,7 @@ class ShoppingAndSaleController extends Controller
      */
     public function index()
     {
-        //
+        return view('pages.user.sales', ['sidebar' => 'sales']);
     }
 
     /**
@@ -41,21 +40,21 @@ class ShoppingAndSaleController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\ShoppingAndSale  $shoppingAndSale
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(ShoppingAndSale $shoppingAndSale)
+    public function show($sale)
     {
-        //
+        return view('pages.user.salesDetails', ['sidebar' => 'sales']);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\ShoppingAndSale  $shoppingAndSale
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(ShoppingAndSale $shoppingAndSale)
+    public function edit($id)
     {
         //
     }
@@ -64,10 +63,10 @@ class ShoppingAndSaleController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\ShoppingAndSale  $shoppingAndSale
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ShoppingAndSale $shoppingAndSale)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -75,10 +74,10 @@ class ShoppingAndSaleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\ShoppingAndSale  $shoppingAndSale
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ShoppingAndSale $shoppingAndSale)
+    public function destroy($id)
     {
         //
     }

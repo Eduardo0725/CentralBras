@@ -2,22 +2,35 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Address;
-use Exception;
+use App\Models\Midia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 
-class AddressController extends Controller
+class ShoppingCartAndFavorite extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Address $id)
+    public function index(bool $cartOrFavorite = false)
     {
-        return response('', 200);
+        $shoppingCartController = new ShoppingCartController;
+        $shoppingCart = $shoppingCartController->index();
+
+        $favorites = Auth::check() ? Auth::user()->favorites()->get()->all() : null;
+
+        $total = 0;
+        foreach ($shoppingCart as $value) {
+            $total += $value->cost;
+        }
+
+        return view('pages.cartAndFavorites', [
+            'contentsCart' => $shoppingCart,
+            'total' => $total,
+            'contentsFavorites' => $favorites,
+            'cartOrFavorite' => $cartOrFavorite
+        ]);
     }
 
     /**
@@ -38,30 +51,16 @@ class AddressController extends Controller
      */
     public function store(Request $request)
     {
-        try {
-            Address::create([
-                'idUser' => Auth::user()->id,
-                'cep' => $request->cep,
-                'state' => $request->state,
-                'city' => $request->city,
-                'street' => $request->street,
-                'houseNumber' => $request->houseNumber,
-                'phone' => $request->phone
-            ]);
-
-            return response('', 201);
-        } catch (\Throwable $th) {}
-
-        return response('', 400);
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Address  $address
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Address $address)
+    public function show($id)
     {
         //
     }
@@ -69,10 +68,10 @@ class AddressController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Address  $address
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Address $address)
+    public function edit($id)
     {
         //
     }
@@ -81,10 +80,10 @@ class AddressController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Address  $address
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Address $address)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -92,10 +91,10 @@ class AddressController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Address  $address
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Address $address)
+    public function destroy($id)
     {
         //
     }

@@ -1,7 +1,10 @@
 <?php
 
+use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,39 +43,12 @@ Route::get('/', function () {
     return view('main', ['contents' => $contents]);
 })->name('main');
 
-Route::get('page/{page?}', function (int $page = 1, Request $request) {
+Route::get('page', 'ProductController@index')->name('page');
 
-    $search = $request->input('search');
+Route::prefix('product/{product}')->group(function () {
+    Route::get('/', 'ProductController@show')->name('product');
 
-    if (!$search || $search == 1) {
-        return redirect()->route('main');
-    }
-
-    $pagesMax = 40;
-
-    $card = [
-        'id' => '1234567890',
-        'imgMainSrc' => 'https://images-americanas.b2w.io/produtos/01/00/img/462139/7/462139728_1SZ.jpg',
-        'description' => 'Smartphone Motorola Moto G8 Plus 64GB Dual Chip Android 6.3" Qualcomm Snapdragon 665 (SM6125) 4G Câmera 48MP + 5MP + 16MP',
-        'interest' => '12x R$ 124,99 sem juros',
-        'discount' => '20% OFF',
-        'cost' => 'R$ 1.499,90',
-        'stars' => 3.5
-    ];
-
-    $contents = [];
-
-    for ($i = 1; $i <= 16; $i++) {
-        array_push($contents, $card);
-    }
-
-    if ($page > $pagesMax || $pagesMax === 0) return view('pages.error404');
-
-    return view('pages.page', ['search' => $search, 'contents' => $contents, 'page' => $page, 'pagesMax' => $pagesMax]);
-})->name('page');
-
-Route::prefix('product/{id}')->group(function () {
-    Route::get('/', function (string $id) {
+    Route::get('comment', function (Product $product) {
         $card = [
             'id' => '1234567890',
             'imgMainSrc' => 'https://images-americanas.b2w.io/produtos/01/00/img/462139/7/462139728_1SZ.jpg',
@@ -90,76 +66,25 @@ Route::prefix('product/{id}')->group(function () {
             'stars' => 3.5
         ];
 
-        $contents = [];
+        $product->midia = $product->midia()->where('type', 'image')->get()->first();
 
-        for ($i = 1; $i <= 16; $i++) {
-            array_push($contents, $card);
-        }
-
-        return view('pages.product', ['contents' => $contents, 'product' => $card]);
-    })->name('product');
-
-    Route::get('comment', function (string $id) {
-        $card = [
-            'id' => '1234567890',
-            'imgMainSrc' => 'https://images-americanas.b2w.io/produtos/01/00/img/462139/7/462139728_1SZ.jpg',
-            'imgs' => [
-                'https://images-americanas.b2w.io/produtos/01/00/img/462139/7/462139728_1SZ.jpg',
-                'https://images-americanas.b2w.io/produtos/01/00/img/462139/7/462139728_2SZ.jpg',
-                'https://images-americanas.b2w.io/produtos/01/00/img/462139/7/462139728_4SZ.jpg',
-                'https://images-americanas.b2w.io/produtos/01/00/img/462139/7/462139728_5SZ.jpg',
-                'https://images-americanas.b2w.io/produtos/01/00/img/462139/7/462139728_6SZ.jpg'
-            ],
-            'description' => 'Smartphone Motorola Moto G8 Plus 64GB Dual Chip Android 6.3" Qualcomm Snapdragon 665 (SM6125) 4G Câmera 48MP + 5MP + 16MP',
-            'interest' => '12x R$ 124,99 sem juros',
-            'discount' => '20% OFF',
-            'cost' => 'R$ 1.499,90',
-            'stars' => 3.5
-        ];
-
-        return view('pages.comment', ['product' => $card]);
+        return view('pages.comment', ['product' => $product]);
     })->name('product.comment');
 
-    Route::post('comment', function (Request $request) {
-        $id = $request->input('id');
+    Route::post('comment', function ($product) {
+        $id = $product;
 
-        return redirect()->route('product', ['id' => $id]);
+        return redirect()->route('product', ['product' => ['id' => $id]]);
     })->name('product.comment');
 });
 
-Route::get('cartAndFavorites/{cartOrFavorite?}', function (bool $cartOrFavorite = false) {
-    $card = [
-        'id' => '1234567890',
-        'imgMainSrc' => 'https://images-americanas.b2w.io/produtos/01/00/img/462139/7/462139728_1SZ.jpg',
-        'imgs' => [
-            'https://images-americanas.b2w.io/produtos/01/00/img/462139/7/462139728_1SZ.jpg',
-            'https://images-americanas.b2w.io/produtos/01/00/img/462139/7/462139728_2SZ.jpg',
-            'https://images-americanas.b2w.io/produtos/01/00/img/462139/7/462139728_4SZ.jpg',
-            'https://images-americanas.b2w.io/produtos/01/00/img/462139/7/462139728_5SZ.jpg',
-            'https://images-americanas.b2w.io/produtos/01/00/img/462139/7/462139728_6SZ.jpg'
-        ],
-        'description' => 'Smartphone Motorola Moto G8 Plus 64GB Dual Chip Android 6.3" Qualcomm Snapdragon 665 (SM6125) 4G Câmera 48MP + 5MP + 16MP',
-        'categories' => [
-            'Cor' => 'Azul'
-        ],
-        'amountAvailable' => '100',
-        'amountSelected' => '1',
-        'interest' => '12x R$ 124,99 sem juros',
-        'discount' => '20% OFF',
-        'cart' => true,
-        'favorite' => true,
-        'cost' => 1499.9,
-        'stars' => 3.5
-    ];
+Route::post('shoppingCart/{idProduct}', 'ShoppingCartController@store')->name('shoppingCart.store');
+Route::delete('shoppingCart/{idProduct}/{idShoppingCart}', 'ShoppingCartController@destroy')->name('shoppingCart.delete');
 
-    $contents = [];
+Route::post('favorite/{idProduct}', 'FavoriteController@store')->name('favorite.store');
+Route::delete('favorite/{idProduct}', 'FavoriteController@destroy')->name('favorite.delete');
 
-    for ($i = 1; $i <= 4; $i++) {
-        array_push($contents, $card);
-    }
-
-    return view('pages.cartAndFavorites', ['contentsCart' => $contents, 'contentsFavorites' => [$card], 'cartOrFavorite' => $cartOrFavorite]);
-})->name('cartAndFavorites');
+Route::get('cartAndFavorites/{cartOrFavorite?}', 'ShoppingCartAndFavorite@index')->name('cartAndFavorites');
 
 Route::prefix('purchases')->group(function () {
     Route::get('/', function () {
@@ -247,37 +172,34 @@ Route::prefix('myaccount')->middleware('auth')->group(function () {
     })->name('myaccount');
 
     Route::get('config', function () {
-        return view('pages.user.config');
+        return view('pages.user.config', ['sidebar' => 'configurations']);
     })->name('myaccount.config');
 
     Route::prefix('purchases')->group(function () {
         Route::get('/', function () {
-            return view('pages.user.shopping');
+            return view('pages.user.shopping', ['sidebar' => 'shopping']);
         })->name('myaccount.purchases');
 
         Route::get('id/{id?}', function () {
-            return view('pages.user.shopping');
+            return view('pages.user.shoppingDetail', ['sidebar' => 'shopping']);
         })->name('myaccount.purchases.purchase');
     });
 
-    Route::prefix('sales')->group(function () {
-        Route::get('/', function () {
-            return view('pages.user.sales');
-        })->name('myaccount.sales');
-
-        Route::get('id/{id?}', function () {
-            return view('pages.user.salesDetails');
-        })->name('myaccount.sales.sale');
-    });
+    Route::resource('sales', 'SalesController')->names('myaccount.sales');
 
     Route::prefix('ads')->group(function () {
-        Route::get('/', function () {
-            return view('pages.user.ads');
-        })->name('myaccount.ads');
+        Route::get('/', 'AdsController@index')->name('myaccount.ads.index');
 
         Route::prefix('create')->group(function () {
             Route::match(['GET', 'POST'], '/{page?}', 'AdsController@create')->name('myaccount.ads.create');
+
             Route::post('/{page?}', 'AdsController@store')->name('myaccount.ads.store');
         });
     });
 });
+
+Route::get('waysToGetPaid/check/{type}', 'WaysToReceivePaymentController@check');
+Route::post('waysToGetPaid', 'WaysToReceivePaymentController@store');
+
+Route::get('address', 'AddressController@index');
+Route::post('address', 'AddressController@store');

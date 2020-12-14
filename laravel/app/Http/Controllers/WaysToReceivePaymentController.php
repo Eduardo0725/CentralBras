@@ -2,11 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pagseguro;
 use App\Models\WaysToReceivePayment;
+use Error;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class WaysToReceivePaymentController extends Controller
 {
+    public function check($type)
+    {
+        $waysToReceivePayment = Auth::user()->waysToReceivePayments()->where('type', $type)->get()->first();
+
+        if ($waysToReceivePayment)
+            return response()->json([$type => true], 200);
+        return response()->json([$type => false], 200);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -35,7 +48,40 @@ class WaysToReceivePaymentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $types = [
+            'pagseguro' => true
+        ];
+
+
+        $waysToReceivePayment = Auth::user()->waysToReceivePayments()->where('type', $types[$request->type])->get()->first();
+
+        if($waysToReceivePayment)
+            return response('Já existe', 200);
+
+        $waysToReceivePayment = new WaysToReceivePayment();
+
+        try {
+            if(!$types[$request->type])
+                throw new Error();
+
+            $waysToReceivePayment->idUser = Auth::user()->id;
+            $waysToReceivePayment->type = $request->type;
+            $waysToReceivePayment->save();
+
+            if ($request->type === 'pagseguro') {
+                $pagseguro = new Pagseguro;
+                $pagseguro->idHowToGetPaid = $waysToReceivePayment->id;
+                $pagseguro->email = $request->email;
+                $pagseguro->token = $request->token;
+                $pagseguro->save();
+            }
+
+            return response('', 201);
+        } catch (\Throwable $th) {
+            $waysToReceivePayment->delete();
+
+            return response('', 400);
+        }
     }
 
     /**
