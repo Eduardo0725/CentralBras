@@ -1,17 +1,20 @@
-document.querySelector('#carouselImgs label').click();
+var favorite = document.querySelector('.heartDisabled');
 
-document.querySelectorAll('#box>input').forEach(input => input.addEventListener('change', e => {
-    let img = document.querySelector('#carouselImgs label:nth-child(' + (parseInt(e.target.value) + 1) + ') img').src;
-    document.querySelector('#imgFirst').src = img;
-}));
+if (!favorite)
+    favorite = document.querySelector('.heartEnabled');
 
-document.querySelector('#mainImg>div>div>div>label:last-of-type').addEventListener('click', e => {
-    let classHeart = e.target.getAttribute('class');
-    e.target.removeAttribute('class');
+document.querySelector('#mainImg .favoriteAndShare').addEventListener('click', function (event) {
+    let classHeart = event.target.getAttribute('class');
 
-    if (classHeart == 'heartEnabled')
-        e.target.setAttribute('class', 'heartDisabled');
+    let idProduct = document.querySelector('#idProduct').value;
 
-    if (classHeart == 'heartDisabled')
-        e.target.setAttribute('class', 'heartEnabled');
+    if (classHeart == 'productIcon heartDisabled')
+        axios.post('/favorite/' + idProduct)
+            .then(({ status }) => status === 201 && favorite.setAttribute('class', 'productIcon heartEnabled'))
+            .catch(console.error);
+
+    if (classHeart == 'productIcon heartEnabled')
+        axios.delete('/favorite/' + idProduct)
+            .then(({ status }) => status === 200 && favorite.setAttribute('class', 'productIcon heartDisabled'))
+            .catch(console.error);
 });

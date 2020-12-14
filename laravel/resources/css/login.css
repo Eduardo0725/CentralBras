@@ -3,45 +3,52 @@
     justify-content: center;
 }
 
-.box {
+#box {
+    display: flex;
+    flex-direction: column;
     align-items: center;
 }
 
-.box>* {
+#box > * {
     margin: 0 0 15px;
 }
 
-.box input:last-of-type {
+#box input:last-of-type {
     width: 100%;
     max-width: 97%;
     margin: 0 0 20px;
 }
 
-.box button {
+#box button {
     width: 100%;
     padding: 10px 0;
 }
 
-.box button,
-.box .google {
+#box button,
+#box .google {
     font-size: 1.4rem;
 }
 
-.box div {
+#box div {
     width: 100%;
     align-items: center;
     justify-content: center;
 }
 
-.box div hr {
+#box div hr {
     margin: 0;
 }
 
-.box div p {
+#box div p {
     margin: 0 20px;
 }
 
-.box .google {
+#box .or {
+    display: flex;
+    flex-direction: row;
+}
+
+#box .google {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -52,23 +59,23 @@
     background-color: #f0f0f0;
 }
 
-.box .google::before {
-    content: '';
+#box .google::before {
+    content: "";
     width: 20px;
     margin-left: 10px;
 }
 
-.box .google::after {
-    content: url('/images/icons/google.svg');
+#box .google::after {
+    content: url("/images/icons/google.svg");
     margin-right: 10px;
 }
 
-.box a:last-of-type {
+#box a:last-of-type {
     margin: 10px 0 0;
     color: var(--color-blue);
 }
 
-.box a:last-of-type:hover {
+#box a:last-of-type:hover {
     color: var(--color-red);
     transition: 200ms;
 }

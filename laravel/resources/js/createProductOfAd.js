@@ -13,16 +13,6 @@ const buttonOfconcluded = document.querySelector('#buttonOfconcluded');
 const inputDatasheet = document.querySelector('input#datasheet');
 const datasheetTable = document.querySelector('.datasheet table tbody');
 
-
-function createElement(tag, attributesObject) {
-    const element = document.createElement(tag);
-
-    for (attribute in attributesObject)
-        element.setAttribute(attribute, attributesObject[attribute]);
-
-    return element;
-}
-
 //// IMAGES
 // Add image
 inputAddImage.addEventListener('change', (event) => {

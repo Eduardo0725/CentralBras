@@ -2,6 +2,7 @@
 
 namespace Tests\Browser;
 
+use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
@@ -17,7 +18,7 @@ class AuthenticationTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/account')
-                ->type('email', 'dejah84@example.org')
+                ->type('email', User::all()->random()->email)
                 ->type('password', 'password')
                 ->click('.box [type=submit]')
                 ->assertAuthenticated()

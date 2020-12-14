@@ -5,21 +5,10 @@
 @endsection
 
 @section('content')
+    <x-carousel title="Mais vendidos" />
+    <x-carousel title="Mais vendidos" />
+@endsection
 
-    @include('components.carousel', [
-        'valueVariable' => rand(),
-        'title' => 'Mais vendidos',
-        'contents' => $contents
-    ])
-
-    @include('components.carousel', [
-        'valueVariable' => rand(),
-        'title' => 'Celulares',
-        'contents' => $contents
-    ])
-
-    @section('scripts')
-        <script src="{{ asset('js/main.js') }}"></script>
-    @endsection
-
+@section('scripts')
+    <script src="{{ asset('js/main.js') }}"></script>
 @endsection

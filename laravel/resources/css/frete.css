@@ -2,31 +2,33 @@
     max-width: 900px;
 }
 
-form {
+#frete {
     margin: 40px 0;
 }
 
-form h1 {
+#frete h1 {
     margin: 0 0 15px;
 }
 
-form .frete {
+#frete .frete {
+    display: flex;
+    flex-direction: row;
     align-items: center;
 }
 
-form .frete>p,
-form .address>p,
-form .freteCost {
+#frete .frete > p,
+#frete .addresses > p,
+#frete .freteCost {
     font-size: 1.4rem;
     font-weight: bold;
     margin: 15px 0 5px;
 }
 
-form .frete p {
+#frete .frete p {
     margin: 0 5px 0 0;
 }
 
-form .frete label {
+#frete .frete label {
     font-size: 1.2rem;
     padding: 7px 15px;
     border: 1px solid #888;
@@ -36,15 +38,15 @@ form .frete label {
     color: #333;
 }
 
-form .frete label:first-of-type {
+#frete .frete label:first-of-type {
     border-radius: 5px 0 0 5px;
 }
 
-form .frete label:last-of-type {
+#frete .frete label:last-of-type {
     border-radius: 0 5px 5px 0;
 }
 
-form .frete label:hover {
+#frete .frete label:hover {
     background-color: var(--color-blue);
     color: #fff;
     border: 0;
@@ -52,9 +54,9 @@ form .frete label:hover {
     transition: background-color 200ms;
 }
 
-form .frete input:nth-of-type(1):checked ~ label:nth-of-type(1),
-form .frete input:nth-of-type(2):checked ~ label:nth-of-type(2),
-form .frete input:nth-of-type(3):checked ~ label:nth-of-type(3) {
+#frete .frete input:nth-of-type(1):checked ~ label:nth-of-type(1),
+#frete .frete input:nth-of-type(2):checked ~ label:nth-of-type(2),
+#frete .frete input:nth-of-type(3):checked ~ label:nth-of-type(3) {
     background-color: var(--color-blue);
     color: #fff;
     border: 0;
@@ -62,49 +64,58 @@ form .frete input:nth-of-type(3):checked ~ label:nth-of-type(3) {
     cursor: default;
 }
 
-form .address>div {
+#frete .addresses {
+    display: flex;
+    flex-direction: column;
+}
+
+#frete .addresses > div {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
 }
 
-form .address>div>div {
+#frete .addresses div .address {
     max-width: 250px;
 }
 
-form .address>div>div>p {
-    margin: 10px 0 5px;
+#frete .addresses div .address > p {
+    margin: 10px 3px 5px;
     font-size: 1.4rem;
 }
 
-form .address>div>div>label {
+#frete .addresses div .address label {
+    display: flex;
+    flex-direction: column;
+
     border: 1px solid #ccc;
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
 }
 
-form .address>div>div>label>div {
+#frete .addresses div .address label div {
+    display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
 }
 
-form .address>div>div>label>div>p {
+#frete .addresses div .address label div p {
     font-size: 1.4rem;
 }
 
-
-form .address div input:checked ~ label div img {
+#frete .addresses div .address input:checked ~ label div img {
     height: 16px;
     width: 16px;
-    content: url('/images/icons/ok.svg');
+    content: url("/images/icons/ok.svg");
 }
 
-form .address>div>div>label>p {
+#frete .addresses div .address label > p {
     font-size: 1.2rem;
     color: #888;
 }
 
-form .freteCost {
+#frete .freteCost {
     margin-bottom: 0;
 }
 
@@ -112,7 +123,7 @@ hr {
     margin: 20px 0;
 }
 
-form span {
+#frete span {
     width: 100%;
     display: flex;
     flex-direction: row;

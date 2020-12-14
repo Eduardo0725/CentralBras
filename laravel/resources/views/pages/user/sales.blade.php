@@ -5,12 +5,10 @@
 @endsection
 
 @section('content')
-    @include('components.sidebar', ['sales' => true])
-
     <div id="box">
         <div class="titleAndButton">
             <h1>Vendas</h1>
-            <a class="ads buttonDefault buttonBlue" href="{{ route('myaccount.ads') }}">Anúncios</a>
+            <a class="ads buttonDefault buttonBlue" href="{{ route('myaccount.ads.index') }}">Anúncios</a>
         </div>
 
         <div class="barOfStateWithFilterAndOrder shadow boxDefault">
@@ -47,7 +45,7 @@
 
                             <div class="optionsBox">
                                 <div>
-                                    <a href="{{ route('myaccount.sales.sale') }}">Detalhes</a>
+                                    <a href="{{ route('myaccount.sales.show', ['sale' => 1]) }}">Detalhes</a>
                                     <a>Editar</a>
                                     <a>Cancelar</a>
                                 </div>

@@ -1,56 +1,69 @@
 #content {
-    max-width: 400px;
     justify-content: center;
+    max-width: 400px;
 }
 
-.box {
+#box {
+    display: flex;
+    flex-direction: column;
     align-items: center;
 }
 
-.box input {
+#box h1 {
+    margin-top: 0;
+}
+
+#box input {
     width: 100%;
     max-width: 97%;
     margin: 5px 0;
 }
 
-.box div input:nth-child(2n -1) {
+#box div input:nth-child(2n -1) {
     margin-right: 15px;
 }
 
-.box button {
-    font-size: 1.4rem;
+#box button {
     width: 100%;
     padding: 10px 0;
     margin-top: 20px;
     margin-bottom: 15px;
+
+    font-size: 1.4rem;
 }
 
-.box div {
-    width: 100%;
+#box > div {
+    display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
+
+    width: 100%;
     margin: 0;
 }
 
-.box .google {
-    font-size: 1.4rem;
-    width: 100%;
+#box .google {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     text-align: center;
+
+    width: 100%;
     padding: 7px 0;
+
+    font-size: 1.4rem;
+
     background-color: #f0f0f0;
 }
 
-.box .google::before {
+#box .google::before {
     content: '';
     width: 20px;
     margin-left: 10px;
 }
 
-.box .google::after {
+#box .google::after {
     content: url('/images/icons/google.svg');
     margin-right: 10px;
 }

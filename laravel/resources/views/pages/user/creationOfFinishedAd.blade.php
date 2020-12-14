@@ -5,15 +5,13 @@
 @endsection
 
 @section('content')
-    @include('components.sidebar', ['sales' => true])
-
     <div id="box" data-dusk="finished">
         <div class="finished boxDefault shadow">
             <h1>Pronto!</h1>
 
             <div class="buttons">
-                <a href="{{ route('product', ['id' => $idProduct]) }}" class="buttonDefault buttonBlue">Visualizar anúncio</a>
-                <a href="{{ route('myaccount.ads') }}" class="buttonDefault buttonBlue">Voltar para anúncios</a>
+                <a href="{{ route('product', ['product' => $idProduct]) }}" class="buttonDefault buttonBlue">Visualizar anúncio</a>
+                <a href="{{ route('myaccount.ads.index') }}" class="buttonDefault buttonBlue">Voltar para anúncios</a>
                 <a href="{{ route('myaccount.ads.create') }}" class="buttonDefault buttonBlue">Anunciar outro</a>
             </div>
         </div>

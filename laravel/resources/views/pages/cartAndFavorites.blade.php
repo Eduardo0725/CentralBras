@@ -1,53 +1,66 @@
-@php
-    $total = 0;
-    foreach ($contentsCart as $value) {
-        $total += $value['cost'];
-    }
-@endphp
-
 @extends('layout.base')
 
 @section('styles')
-<link rel="stylesheet" href="{{ asset('css/cartAndFavorites.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/cartAndFavorites.css') }}">
 @endsection
 
 @section('content')
-    <div id="box" class="boxDefault">
-        <input class="none" type="radio" name="cartAndFavorites" id="radioCart" {{ (!$cartOrFavorite) ? 'checked' : ''}}>
-        <input class="none" type="radio" name="cartAndFavorites" id="radioFavorites" {{ ($cartOrFavorite) ? 'checked' : ''}}>
+    @if ($errors->has('error'))
+        <div class="productError">
+            <p class="erro">{{ $errors->get('error')[0] }}</p>
+        </div>
+    @endif
 
-        <div id="options" class="flexRow">
-            <label for="radioCart" class="labelSelected">Carrinho ({{ count($contentsCart) }})</label>
-            <label for="radioFavorites">Favoritos ({{ count($contentsFavorites) }})</label>
+    <div id="box" class="boxDefault">
+        <input class="none" type="radio" name="cartAndFavorites" id="radioCart" {{ !$cartOrFavorite ? 'checked' : '' }}>
+
+        @auth
+            <input class="none" type="radio" name="cartAndFavorites" id="radioFavorites" {{ $cartOrFavorite ? 'checked' : '' }}>
+        @endauth
+
+        <div class="options">
+            <label for="radioCart">Carrinho ({{ count($contentsCart) }})</label>
+
+            @auth
+                <label for="radioFavorites">Favoritos ({{ count($contentsFavorites) }})</label>
+            @endauth
         </div>
 
         <hr>
 
-        <div id="cart" class="flexColumn">
-            <div class="flexColumn">
-                @foreach ($contentsCart as $cart)
-                    @include('components.productRow', ['product' => $cart, 'qtd' => true])
-                @endforeach
-            </div>
+        <div id="cart">
+            @if ($contentsCart)
+                <div class="cartProducts">
+                    @foreach ($contentsCart as $cart)
+                        <x-product-row :product="$cart" type="shoppingCart" qtd="true" />
+                    @endforeach
+                </div>
 
-            <div class="flexRow">
-                <p>Produtos ({{ count($contentsCart) }})</p>
-                <p>R$ {{ number_format($total, 2, ',', '.') }}</p>
-            </div>
+                <div class="cartTotal">
+                    <p>Produtos ({{ count($contentsCart) }})</p>
+                    <p>R$ {{ number_format($total, 2, ',', '.') }}</p>
+                </div>
 
-            <a href="{{ route('purchases.frete') }}" class="cartButton buttonDefault buttonGreen">Continuar compra</a>
+                <a href="{{ route('purchases.frete') }}" class="cartButton buttonDefault buttonGreen">Continuar compra</a>
+            @else
+                <div class="cartEmpty">
+                    <h1>Você não possui produtos no carrinho.</h1>
+                </div>
+            @endif
         </div>
 
-        <div id="favorites">
-            <div class="flexColumn">
-                @foreach ($contentsFavorites as $cart)
-                    @include('components.productRow', ['product' => $cart, 'addCart' => true])
-                @endforeach
+        @auth
+            <div id="favorites">
+                <div>
+                    @foreach ($contentsFavorites as $favorite)
+                        <x-product-row :product="$favorite" type="favorite" addCart="true" />
+                    @endforeach
+                </div>
             </div>
-        </div>
+        @endauth
     </div>
 @endsection
 
 @section('scripts')
-<script src="{{ asset('js/cartAndFavorites.js') }}"></script>
+    <script src="{{ asset('js/cartAndFavorites.js') }}"></script>
 @endsection

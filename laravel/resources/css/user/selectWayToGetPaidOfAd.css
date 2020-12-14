@@ -97,7 +97,7 @@
     box-sizing: border-box;
 }
 
-#pagseguroData > div {
+#pagseguroData > #createPagseguro {
     display: flex;
     flex-direction: column;
 

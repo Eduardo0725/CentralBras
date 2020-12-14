@@ -1,15 +1,14 @@
 /* global */
 
-div#box .star {
-    filter: var(--svg-color-yellow);
-    width: 20px;
-    height: 20px;
+#content {
+    align-items: center;
 }
 
-div#box {
+#box {
     display: flex;
     flex-direction: column;
-    margin: 20px 100px;
+    margin: 20px;
+    max-width: 800px;
 }
 
 /* initial main */
@@ -26,306 +25,323 @@ div#box {
     margin-right: 20px;
 }
 
-#mainImg>div {
+#mainImg > div {
     display: flex;
     flex-direction: row;
 }
 
-#mainImg>div:first-of-type {
+#mainImg > div:first-of-type {
     margin-bottom: 10px;
 }
 
-
-#mainImg>div:first-of-type img {
-    min-width: 180px;
-    max-width: 20vw;
+#mainImg > div:first-of-type img {
+    display: none;
+    width: 250px;
 }
 
-#mainImg>div>div {
+#mainImg > div:first-of-type input:checked + img,
+#mainImg > div:first-of-type img.notImg {
+    display: inline;
+}
+
+#mainImg > div > div {
     width: 0;
     height: 0;
 }
 
-#mainImg>div>div>div {
-    position: relative;
+#mainImg div div .favoriteAndShare {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-end;
+
+    position: relative;
+    left: -60px;
+
     width: 50px;
     height: 25px;
     margin-top: 5px;
-    left: -60px;
 }
 
-#mainImg>div>div>div label {
+#mainImg div div .favoriteAndShare a + a {
+    margin-left: 10px;
+}
+
+#mainImg div div .favoriteAndShare .productIcon {
     width: 20px;
     height: 20px;
     background: transparent center center/20px 20px no-repeat;
     cursor: pointer;
 }
 
-#mainImg>div>div>div .shareImg {
-    background-image: url('../images/icons/share.svg');
+#mainImg div div .favoriteAndShare .shareImg {
+    background-image: url("../images/icons/share.svg");
 }
 
-#mainImg>div>div>div .heartEnabled {
-    background-image: url('../images/icons/heart.svg');
+#mainImg div div .favoriteAndShare .heartEnabled {
+    background-image: url("../images/icons/heart.svg");
 }
 
-#mainImg>div>div>div .heartDisabled {
-    background-image: url('../images/icons/heart-outline.svg');
+#mainImg div div .favoriteAndShare .heartDisabled {
+    background-image: url("../images/icons/heart-outline.svg");
     filter: var(--svg-color-red);
 }
 
-#mainImg>div:last-child {
-    width: 100%;
+#mainImg > div:last-child {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    width: 100%;
 }
 
-#mainImg>div:last-child label {
-    cursor: pointer;
+#mainImg > div:last-child label {
     display: inline;
     margin: auto 2px;
+    cursor: pointer;
 }
 
-#mainImg>div:last-child label img {
+#mainImg > div:last-child label img {
     border: 1px solid #ccc;
 }
 
-#main>div:last-child {
+#main .infoProduct {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    width: 100%;
 }
 
-#main>div:last-child>.infoProduct p.description {
+#main .infoProduct > div p.name {
     font-size: 1.8rem;
     color: #555;
 }
 
-#main>div:last-child>.infoProduct .codeStarsAndRantings {
-    margin-top: 5px;
+#main .infoProduct > div .codeStarsAndRantings {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
-    max-width: 250px;
+
+    margin-top: 5px;
+    margin-bottom: 30px;
 }
 
-#main>div:last-child>.infoProduct .codeStarsAndRantings p {
+#main .infoProduct > div .codeStarsAndRantings p {
     color: #888;
 }
 
-#main>div:last-child>.infoProduct .codeStarsAndRantings>div {
+#main .infoProduct > div .codeStarsAndRantings > div {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+
+    margin-left: 10px;
 }
 
-#main>div:last-child>.infoProduct .codeStarsAndRantings>div>div {
+.stars {
     margin-right: 5px;
+    width: 90px;
 }
 
-#main>div:last-child>.infoProduct .codeStarsAndRantings>div>div img {
-    width: 15px;
-    height: 15px;
-}
-
-
-#main>div:last-child>.costAndCategories {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 700px;
-    margin-left: 6%;
-}
-
-#main>div:last-child>.costAndCategories p {
+#main .infoProduct p {
     font-size: 1.2rem;
     color: #888;
 }
 
-#main>div:last-child>.costAndCategories .cost {
+#main .infoProduct .price div {
     display: flex;
     flex-direction: column;
-    max-width: 190px;
+    width: min-content;
 }
 
-#main>div:last-child>.costAndCategories .cost div {
+#main .infoProduct .price div div {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    width: 100%;
 }
 
-#main>div:last-child>.costAndCategories .cost div p.costOld {
+#main .infoProduct .price div div p.priceOld {
     text-decoration-line: line-through;
 }
 
-#main>div:last-child>.costAndCategories .cost div p.discount {
+#main .infoProduct .price div div p.discount {
     color: var(--color-green);
 }
 
-#main>div:last-child>.costAndCategories .cost>p:first-of-type {
-    font-size: 2.0rem;
+#main .infoProduct .price > div > p:first-of-type {
+    width: max-content;
     color: #333;
+    font-size: 2rem;
 }
 
-#main>div:last-child>.costAndCategories .cost>p:first-of-type b {
+#main .infoProduct .price b.priceMain {
     font-size: 2.8rem;
 }
 
-#main>div:last-child>.costAndCategories .category select {
+#main .infoProduct .categories {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+
+    margin: 10px 0;
+}
+
+#main .infoProduct .category select {
+    width: 100%;
     height: 30px;
+
     border-radius: 5px;
     border: 1px solid var(--color-blue);
 }
 
-#main>div:last-child>.costAndCategories .category select,
-#main>div:last-child>.costAndCategories .category option {
-    color: #333;
-    cursor: pointer;
-}
-
-#main>div:last-child>.buttons {
+#main .infoProduct > .buttons {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+
     max-width: 750px;
+
     margin-bottom: 40px;
 }
 
-#main>div:last-child>.buttons button {
+#main .infoProduct > .buttons .buttonProduct {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     flex: 1;
-    height: 60px;
-    max-width: 280px;
-    font-size: 1.6rem;
+    height: 20px;
+    margin-right: 5px;
+
+    font-size: 1.5rem;
+
+    box-sizing: content-box;
     text-transform: uppercase;
-    margin: 0 1%;
 }
 
-#main>div:last-child>.buttons button + button {
-    color: var(--color-red);
+#main .infoProduct > .buttons .buttonProduct + .buttonProduct {
+    height: 19px;
+    margin-right: 0;
+
     border: 1px solid var(--color-red);
+
+    color: var(--color-red);
     background-color: #fff;
 }
 
-#main>div:last-child>.buttons button + button:hover {
+#main .infoProduct > .buttons .buttonProduct + .buttonProduct:hover {
     background-color: var(--color-red-dark);
-    border: 0;
     color: #fff;
 }
 
-#main>div:last-child>.buttons button + button:active {
+#main .infoProduct > .buttons .buttonProduct + .buttonProduct:active {
     color: var(--color-red);
-    border: 1px solid var(--color-red);
     background-color: #fff;
 }
 
 /* final main */
 
-#box>.description>p:nth-of-type(1),
-#box>.characteristics>p:nth-of-type(1),
-#box>.evaluation>p:nth-of-type(1) {
+#box > .description > p:nth-of-type(1),
+#box > .characteristics > p:nth-of-type(1),
+#box > .evaluation > p:nth-of-type(1) {
     font-size: 1.6rem;
     font-weight: bold;
     margin-bottom: 5px;
 }
 
-#box>.description {
+#box > .description {
     margin: 10px 0 20px;
 }
 
-#box>.description p + p {
+#box > .description p + p {
     font-size: 1.4rem;
     color: #888;
 }
 
-#box>.characteristics {
+#box > .characteristics {
     margin-bottom: 20px;
 }
 
-#box>.characteristics table {
+#box > .characteristics table {
     display: flex;
     flex-direction: column;
 }
 
-#box>.characteristics table tr {
+#box > .characteristics table tr {
     display: flex;
     flex-direction: row;
     background-color: #f0f0f0;
 }
 
-#box>.characteristics table tr td {
+#box > .characteristics table tr td {
     flex: 1;
     padding: 5px;
+    font-size: 1.2rem;
 }
 
-#box>.characteristics table tr:nth-of-type(2n -1) {
+#box > .characteristics table tr:nth-of-type(2n -1) {
     background-color: #ccc;
 }
 
-#box>.evaluation>div:first-of-type {
+#box > .evaluation > div:first-of-type {
     margin-bottom: 20px;
 }
 
-#box>.evaluation>div:first-of-type,
-#box>.evaluation>div:first-of-type>div {
+#box > .evaluation > div:first-of-type,
+#box > .evaluation > div:first-of-type > div {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
 }
 
-#box>.evaluation>div:first-of-type>div p {
+#box > .evaluation > div:first-of-type > div p {
     font-size: 1.6rem;
     color: #888;
 }
 
-#box>.evaluation>div:first-of-type>div>div {
+#box > .evaluation > div:first-of-type > div > div {
     margin: 0 15px;
 }
 
-#box>.evaluation>div:first-of-type>div p:last-of-type {
+#box > .evaluation > div:first-of-type > div p:last-of-type {
     font-size: 1.2rem;
 }
 
-#box>.evaluation>div:first-of-type>p {
+#box > .evaluation > div:first-of-type > p {
     font-size: 1.4rem;
     color: #888;
 }
 
-#box>.evaluation>div:first-of-type>a {
+#box > .evaluation > div:first-of-type > a {
     width: 100%;
     max-width: 90px;
     padding: 6px 0;
     font-size: 1.3rem;
+    text-align: center;
 }
 
-#box>.evaluation .customerRating {
+#box > .evaluation .customerRating {
     margin: 15px 0;
 }
 
-#box>.evaluation .customerRating p {
+#box > .evaluation .customerRating p {
     font-size: 1.4rem;
     color: #555;
     margin: 5px 0;
 }
 
-#box>.evaluation .customerRating p:first-of-type {
+#box > .evaluation .customerRating p:first-of-type {
     font-size: 1.6rem;
     color: #333;
 }
 
-#box>.evaluation .customerRating p:last-of-type {
+#box > .evaluation .customerRating p:last-of-type {
     font-size: 1.2rem;
 }
 
-#box>.evaluation>a {
+#box > .evaluation > a {
     font-size: 1.4rem;
     color: var(--color-blue);
 }

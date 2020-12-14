@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <form class="box boxDefault flexColumn" action="{{ route('account.login') }}" method="POST">
+    <form id="box" class="boxDefault" action="{{ route('account.login') }}" method="POST">
         @csrf
 
         <h2>Entrar na conta</h2>
@@ -22,7 +22,7 @@
 
         <button class="buttonDefault buttonGreen" type="submit">Entrar</button>
 
-        <div class="flexRow">
+        <div class="or">
             <hr>
             <p>Ou</p>
             <hr>

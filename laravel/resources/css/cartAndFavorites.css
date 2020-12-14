@@ -1,15 +1,43 @@
+.productError {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    max-width: 900px;
+    height: 40px;
+    margin: 20px auto 0;
+
+    border-radius: 5px;
+
+    background: var(--color-error);
+}
+
+.productError p {
+    font-size: 1.4rem;
+    color: white;
+}
+
 #box {
     width: 100%;
     max-width: 900px;
     margin: 20px auto;
     padding: 40px;
+
+    box-sizing: border-box;
 }
 
-#cart, #favorites {
+#cart,
+#favorites {
     display: none;
 }
 
-#options label {
+#box .options {
+    display: flex;
+    flex-direction: row;
+}
+
+#box .options label {
     font-size: 1.6rem;
     margin: 0 auto;
     padding-bottom: 10px;
@@ -19,8 +47,8 @@
     color: var(--color-blue);
 }
 
-#radioCart:checked ~ div label:first-of-type,
-#radioFavorites:checked ~ div label:last-of-type {
+#radioCart:checked ~ .options label[for="radioCart"],
+#radioFavorites:checked ~ .options label[for="radioFavorites"] {
     position: relative;
     border-bottom: 2px solid #555;
     color: #333;
@@ -32,31 +60,59 @@
 }
 
 #cart {
+    display: none;
+    flex-direction: column;
     justify-content: right;
     align-items: flex-end;
 }
 
-#cart>div,
-#favorites>div {
+#cart > div,
+#favorites > div {
     width: 100%;
 }
 
-#cart>div:last-of-type {
+#cart .cartProducts {
+    display: flex;
+    flex-direction: column;
+}
+
+#cart .cartTotal {
+    display: flex;
+    flex-direction: row;
     justify-content: space-between;
+
     width: 230px;
 }
 
-#cart>div:last-of-type p {
+#cart .cartTotal p {
     font-size: 1.6rem;
 }
 
-#cart>div:last-of-type p:last-of-type {
+#cart .cartTotal p:last-of-type {
     font-weight: bold;
     font-size: 1.8rem;
 }
 
-#cart>.cartButton {
+#cart > .cartButton {
     margin-top: 40px;
     max-width: 300px;
     font-size: 1.4rem;
+}
+
+#cart .cartEmpty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 50vh;
+}
+
+#favorites {
+    display: none;
+}
+
+#favorites > div {
+    display: flex;
+    flex-direction: column;
 }

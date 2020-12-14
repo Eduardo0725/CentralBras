@@ -5,8 +5,6 @@
 @endsection
 
 @section('content')
-    @include('components.sidebar', ['sales' => true])
-
     <div id="box">
         <form
             id="form"
@@ -130,7 +128,7 @@
             </div>
 
             <div class="midia">
-                <input class="inputText" type="url" name="midia" placeholder="Vídeo">
+                <input class="inputText" type="url" name="video" placeholder="Vídeo">
             </div>
 
             <div class="buttonDiv">

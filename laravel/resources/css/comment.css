@@ -2,61 +2,79 @@
     max-width: 1000px;
 }
 
-.box {
+#box {
+    display: flex;
+    flex-direction: column;
     margin: 20px 0;
 }
 
-.box h1 {
+#box h1 {
     font-size: 1.8rem;
     margin: 0 0 20px;
 }
 
-.box p {
+#box p {
     font-size: 1.4rem;
+    margin-bottom: 5px;
 }
 
-.box>div:first-of-type>img {
+#box .commentInfo {
+    display: flex;
+    flex-direction: row;
+}
+
+#box .commentInfo img {
     max-width: 250px;
     max-height: 250px;
     margin-right: 20px;
 }
 
-.box>div:first-of-type>div>div {
-    margin: 10px 0;
-}
-
-.box>div:first-of-type>div:first-of-type>div:first-of-type {
-    margin: 0 0 10px;
-}
-
-.box>div:first-of-type>div,
-.box input,
-.box textarea {
+#box .commentInfo .info,
+#box input,
+#box textarea {
     width: 100%;
 }
 
-.box .divStars div {
+#box textarea {
+    resize: vertical;
+}
+
+#box .commentInfo .info {
+    display: flex;
+    flex-direction: column;
+}
+
+#box .commentInfo .info > div {
+    margin-bottom: 10px;
+}
+
+#box .commentInfo .info .divStars .commentStars {
+    display: flex;
     flex-direction: row-reverse;
     align-items: center;
     justify-content: flex-end;
 }
 
-.box .divStars label {
-    content: url('/images/icons/star-outline.svg');
+#box .commentInfo .info .divStars label {
+    content: url("/images/icons/star-outline.svg");
     filter: var(--svg-color-yellow);
     cursor: pointer;
 }
 
-.box .divStars label:hover,
-.box .divStars label:hover ~ label,
-.box .divStars input:checked ~ label {
-    content: url('/images/icons/star.svg');
+#box .commentInfo .info .divStars label:hover,
+#box .commentInfo .info .divStars label:hover ~ label,
+#box .commentInfo .info .divStars input:checked ~ label {
+    content: url("/images/icons/star.svg");
 }
 
-.box input {
-    max-width: 500px;
+#box input {
+    box-sizing: border-box;
+    max-width: none;
+    margin: 0 0 15px 0;
 }
 
-.box div:last-of-type {
+#box .commentButtons {
+    display: flex;
+    flex-direction: row;
     justify-content: flex-end;
 }

@@ -5,8 +5,6 @@
 @endsection
 
 @section('content')
-    @include('components.sidebar', ['sales' => true])
-
     <div id="box" data-dusk="warranty">
         <form action="{{ route('myaccount.ads.store') }}" method="post" class="boxDefault shadow" id="warrantyOfAd">
             @csrf

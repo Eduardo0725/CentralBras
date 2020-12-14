@@ -5,8 +5,6 @@
 @endsection
 
 @section('content')
-    @include('components.sidebar', ['shopping' => true])
-
     <div id="box">
         <h1>Compras</h1>
 

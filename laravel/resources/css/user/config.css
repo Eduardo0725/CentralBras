@@ -4,8 +4,11 @@
 }
 
 #box {
-    max-width: 700px;
+    display: flex;
+    flex-direction: column;
+
     width: 100%;
+    max-width: 700px;
     margin: 0 auto;
     padding: 0 20px;
 }
@@ -14,122 +17,129 @@ h1 {
     margin: 20px 0;
 }
 
-#box>div {
+#box > div {
     margin-bottom: 20px;
 }
 
-#box>div>h2 {
+#box > div > h2 {
     margin-left: 5px;
 }
 
-.buttonsConfig,
-.cards>div,
-.address>div {
+#box .buttonsConfig,
+#box .cards > div,
+#box .addresses > div {
     position: relative;
     top: -2px;
+
     border-radius: 5px;
+
     box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
+
     overflow: hidden;
 }
 
-.buttonsConfig>a,
-.buttonsConfig>label,
-.cards>div>div,
-.address>div>a,
-.address>div>div {
+#box .buttonsConfig > a,
+#box .buttonsConfig > label,
+#box .cards .configCard,
+#box .addresses > div > label,
+#box .addresses > div > div {
+    display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
+
     font-size: 1.4rem;
     background-color: #fff;
     padding: 20px;
 }
 
-.buttonsConfig>:not(:last-child),
-.cards>div>div:first-of-type,
-.address>div>div:first-of-type {
+#box .buttonsConfig > :not(:last-child),
+#box .cards .configCard {
     border-bottom: 1px solid #ccc;
 }
 
-.buttonsConfig>a p,
-.buttonsConfig>label p {
+#box .buttonsConfig > a p,
+#box .buttonsConfig > label p {
     flex: 1;
     text-align: left;
 }
 
-.buttonsConfig>a img,
-.buttonsConfig>label img,
-.address>div>a img {
+#box .buttonsConfig > a img,
+#box .buttonsConfig > label img,
+#box .addresses > div > label img {
     width: 20px;
     height: 20px;
     margin-left: 30px;
 }
 
-.cards img {
+#box .cards img {
     width: 80px;
     height: 80px;
     border-radius: 50%;
     border: 1px solid #888;
 }
 
-.cards>div>div>div {
-    align-items: center;
-}
-
-.infoCard {
-    margin-left: 20px;
-}
-
-.infoCard p {
-    line-height: 25px;
-}
-
-.infoCard p:nth-child(n + 2) {
-    color: #888;
-}
-
-.cards a {
-    color: var(--color-red);
-}
-
-.address>div>div {
-    align-items: flex-start;
-}
-
-.address>div>div>div p {
-    color: #888;
-}
-
-.address>div>div>div p:first-of-type {
-    font-size: 1.6rem;
-    color: #333;
-}
-
-.address>div>div img {
-    width: 15px;
-    height: 15px;
-}
-
-.address>div>a p {
-    color: var(--color-blue);
-}
-
-.connections>div>a {
-    border: 0 !important;
-    border-radius: 5px !important;
-}
-
-.connections>div>a div {
+#box .cards .configCard > div {
     display: flex;
     flex-direction: row;
     align-items: center;
 }
 
-.connections>div>a div img {
+#box .infoCard {
+    margin-left: 20px;
+}
+
+#box .infoCard p {
+    line-height: 25px;
+}
+
+#box .infoCard p:nth-child(n + 2) {
+    color: #888;
+}
+
+#box .cards a {
+    color: var(--color-red);
+}
+
+#box .addresses .address {
+    align-items: flex-start;
+
+    border-bottom: 1px solid #ccc;
+}
+
+#box .addresses .address > div p {
+    color: #888;
+}
+
+#box .addresses .address div p:first-of-type {
+    font-size: 1.6rem;
+    color: #333;
+}
+
+#box .addresses .address img {
+    width: 15px;
+    height: 15px;
+}
+
+#box .addresses > div > label p {
+    color: var(--color-blue);
+}
+
+#box .connections > div > a {
+    border: 0 !important;
+    border-radius: 5px !important;
+}
+
+#box .connections > div > a div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#box .connections > div > a div img {
     margin: 0;
     margin-right: 10px;
 }
-
-
 
 .boxOptions {
     width: 0;
@@ -137,6 +147,11 @@ h1 {
 }
 
 .boxOptions div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+
     position: relative;
     right: 0;
     bottom: 30px;
@@ -144,14 +159,8 @@ h1 {
     width: 0;
     height: 0;
 
-    box-shadow: none;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start;
-
     background-color: #fff;
+    box-shadow: none;
 
     overflow: hidden;
 
@@ -173,7 +182,8 @@ h1 {
     transition-delay: 0.1s;
 }
 
-.boxOptions a {
+.boxOptions a,
+.boxOptions label {
     width: 100%;
     height: 100%;
 
@@ -182,24 +192,20 @@ h1 {
     justify-content: center;
 }
 
-.boxOptions a:hover {
+.boxOptions a:hover,
+.boxOptions label:hover {
     background-color: #ccc;
 }
 
-.address .addOptionsBox {
+#box .addresses .addOptionsBox {
     cursor: pointer;
 }
-
-
 
 .imgClose {
     height: 15px;
 }
 
-
-
 .alterProps,
-.addOrAlterAddress,
 .alterEmailAndPassword {
     position: fixed;
     top: 0;
@@ -216,11 +222,17 @@ h1 {
     z-index: 100;
 }
 
-.alterProps>form,
-.addOrAlterAddress>form,
-.alterEmailAndPassword>form {
+.alterProps > form {
+    display: flex;
+    flex-direction: column;
+
     width: 100%;
     max-width: 500px;
+}
+
+.alterProps form > div {
+    display: flex;
+    flex-direction: row;
 }
 
 .alterProps div,
@@ -237,61 +249,8 @@ h1 {
     margin: 0;
 }
 
-.alterProps input,
-.addOrAlterAddress input {
+.alterProps input {
     width: 100%;
-}
-
-.addOrAlterAddress div {
-    width: 100%;
-}
-
-.addOrAlterAddress .additionalData {
-    align-items: flex-start;
-    justify-content: space-between;
-}
-
-.addOrAlterAddress .homeOrWork {
-    margin-left: 5px;
-    width: 100%;
-    max-width: 210px;
-}
-
-.addOrAlterAddress .homeOrWork div {
-    margin-top: 10px;
-    align-items: center;
-    max-width: 180px;
-    width: 100%;
-    font-size: 1.1rem;
-}
-.addOrAlterAddress .homeOrWork div input {
-    margin: 0 10px 0 0;
-}
-
-.addOrAlterAddress .homeOrWork div input:last-of-type {
-    margin-left: 70px;
-}
-
-.addOrAlterAddress .additionalData>div>input,
-.addOrAlterAddress .additionalData>div>p {
-    margin: 0 0 5px 0;
-    width: 90%;
-}
-
-.addOrAlterAddress .additionalData p {
-    font-size: 1.2rem;
-}
-
-.addOrAlterAddress .buttonConcluded {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    margin-top: 10px;
-}
-
-.addOrAlterAddress .buttonConcluded button {
-    max-width: 150px;
 }
 
 .divInputs {
@@ -301,16 +260,29 @@ h1 {
     flex: 1;
 }
 
-.alterEmailAndPassword>form>div:last-of-type {
+.alterEmailAndPassword > form {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    max-width: 500px;
+}
+
+.alterEmailAndPassword > form > div {
+    display: flex;
+    flex-direction: row;
+}
+
+.alterEmailAndPassword > form > div:last-of-type {
     align-items: flex-end;
     height: 200px;
 }
 
-.alterEmailAndPassword>form>div:last-of-type>div {
+.alterEmailAndPassword > form > div:last-of-type > div {
     height: 100%;
 }
 
-.alterEmailAndPassword>form>div:last-of-type>div:last-of-type {
+.alterEmailAndPassword > form > div:last-of-type > div:last-of-type {
     display: flex;
     align-items: flex-end;
 }

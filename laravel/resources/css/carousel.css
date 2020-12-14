@@ -1,67 +1,77 @@
 div.carousel {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     width: 100%;
 }
 
 div.carousel h2 {
-    margin-left: 20px;
+    margin: 10px 0 0 10px;
     font-size: 1.6rem;
+}
+
+div.controls {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    position: absolute;
+}
+
+div.controls label {
+    display: block;
+
+    position: relative;
+
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+
+    background: #fff center center/20px no-repeat;
+    box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
+
+    cursor: pointer;
+    opacity: 0.7;
+    z-index: 2;
+}
+
+div.controls label.left {
+    left: 10px;
+    background-image: url("https://image.flaticon.com/icons/svg/130/130882.svg") !important;
+}
+
+div.controls label.right {
+    right: 10px;
+    background-image: url("https://image.flaticon.com/icons/svg/130/130884.svg") !important;
 }
 
 div.carousel-div {
     width: 90%;
-    overflow: hidden;
-}
-
-div.controls {
-    width: 95%;
-    position: absolute;
-    z-index: 2;
-}
-
-div.controls label {
-    position: absolute;
-    display: block;
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background: #fff center center/20px no-repeat;
-    cursor: pointer;
-    box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
-    margin: 155px 0 0;/* margin: 110px 0; */
-}
-
-div.controls label.left {
-    left: 0;
-    background-image: url('https://image.flaticon.com/icons/svg/130/130882.svg') !important;
-    display: none;
-}
-
-div.controls label.right {
-    right: 0;
-    background-image: url('https://image.flaticon.com/icons/svg/130/130884.svg') !important;
 }
 
 div.carousel-div .cards {
-    display: flex;
-    flex-direction: row;
-}
+    display: grid;
+    grid-template-columns: repeat(17, 1fr);
+    grid-gap: 20px;
 
-div.carousel-div .cards .contents {
-    display: flex;
-    flex-direction: row;
-    float: left;
-    position: relative;
+    overflow: auto;
+    resize: horizontal;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    padding: 10px;
+
+    width: 98%;
+
     transition: 1s;
 }
 
-div.carousel-div .card:first-child {
-    margin-left: 10px;
+div.carousel-div .cards::-webkit-scrollbar {
+    display: none;
 }
 
-div.carousel-div .card:not(:last-child) {
-    margin-right: 20px;
+div.carousel-div .cards .card {
+    scroll-snap-align: start;
+    -ms-scroll-rails: railed;
 }
-

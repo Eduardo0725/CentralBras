@@ -5,10 +5,10 @@
 @endsection
 
 @section('content')
-    <form class="boxDefault" action="{{ route('purchases.paymethod') }}">
+    <form id="frete" class="boxDefault" action="{{ route('purchases.paymethod') }}">
         <h1>Envio</h1>
 
-        <div class="flexRow frete">
+        <div class="frete">
             <p>Frete:</p>
 
             <input class="none" type="radio" name="frete" id="frete1" value="0" checked>
@@ -20,18 +20,18 @@
             <label for="frete3">Combinar com o vendedor</label>
         </div>
 
-        <div class="flexColumn address">
+        <div class="addresses">
             <p>Selecione o endereço da entrega</p>
 
             <div> {{-- Dinâmico --}}
                 @for ($i = 1; $i <= 5; $i++)
-                <div class="flexColumn">
+                <div class="address">
                     <input class="none" type="radio" name="address" id="address{{ $i }}" value="{{ $i - 1 }}" {{ $i === 1 ? 'checked' : '' }}>
 
                     <p>Endereço {{ $i }}</p>
 
-                    <label class="flexColumn" for="address{{ $i }}">
-                        <div class="flexRow">
+                    <label for="address{{ $i }}">
+                        <div>
                             <p>Nome da rua, Número</p>
                             <img>
                         </div>

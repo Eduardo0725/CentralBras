@@ -50,6 +50,10 @@
     flex-direction: row;
 }
 
+.ads .ad .info .imgProduct a {
+    color: var(--color-blue);
+}
+
 .ads .ad {
     margin-bottom: 10px;
 }
@@ -75,6 +79,7 @@
 
 .ads .ad .info .imgProduct p {
     color: var(--color-blue);
+    width: 18vw;
 }
 
 .ads .ad .info .priceAndAmount p,
@@ -141,4 +146,82 @@
 
 .ads .ad .optionsOfDetails .optionsBox div a:hover {
     background-color: #f0f0f0;
+}
+
+.boxDetails {
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100vw;
+    height: 100vh;
+
+    background: rgba(0, 0, 0, 0.2);
+
+    z-index: 5;
+}
+
+input#inputBoxDetails:checked ~ .boxDetails {
+    display: flex;
+}
+
+/* .boxDetails .details {
+    width: 70vw;
+} */
+
+.boxDetails .details .titleAndClose {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.boxDetails .details .titleAndClose h1 {
+    margin: 0;
+}
+
+.boxDetails .details .titleAndClose label {
+    width: 15px;
+    height: 15px;
+
+    background: transparent url(/images/icons/close.svg) center/15px no-repeat;
+}
+
+.boxDetails .details .detail {
+    min-width: 300px;
+    width: 100%;
+
+    margin: 10px 0;
+
+    font-size: 1.3rem;
+}
+
+.boxDetails .details .detail .variations .variationName {
+    margin-bottom: 5px;
+}
+
+.boxDetails .details .detail .variations .values {
+    display: flex;
+    flex-direction: row;
+}
+
+.boxDetails .details .detail .variations .values p {
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-right: 10px;
+    padding: 5px;
+}
+
+.boxDetails .details .detail .variations .values p:nth-last-child(-n + 1) {
+    margin-right: 0;
+}
+
+.boxDetails .details .buttonConcluded {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
 }

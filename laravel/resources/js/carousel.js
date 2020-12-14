@@ -1,17 +1,29 @@
-for (let index = 0; index <= 1; index++) {
-    let side = (index == 0) ? 'left' : 'right';
-    document.querySelectorAll('label.' + side).forEach(label => 
-        label.addEventListener('click', e => {
-            let doc = document.querySelector('div.carousel#' + e.path[2].id + ' span.contents');
-            let num = (parseInt(doc.getAttribute('number')) + ((side == 'left') ? 240 : -240));
+document.querySelectorAll('.carousel').forEach(function (carousel) {
+    carousel.addEventListener('click', function (event) {
+        let carouselCards = this.children[1].children[1];
+        let offsetWidth = carouselCards.offsetWidth - 100;
+        let carouselControllers = this.children[0];
+        let side = event.target.dataset.carousel_side;
 
-            doc.style = 'left:' + num + 'px;';
+        let sides = {
+            left: - offsetWidth,
+            right: offsetWidth
+        }
 
-            doc.removeAttribute('number');
-            doc.setAttribute('number', num);
+        if (!side || !sides[side]) return;
 
-            document.querySelector('label.left.' + e.path[2].id).style = (num == 0) ? '' : 'display: block;';
-            document.querySelector('label.right.' + e.path[2].id).style = (num > -2880) ? '' : 'display: none;';
-        })
-    );
-}
+        let result = carouselCards.scrollLeft += sides[side];
+
+        if (result < 0)
+            carouselCards.scrollLeft = 0;
+
+        if (result < 240) {
+            carouselControllers.children[0].style = 'visibility:hidden;';
+        } else if (result > carouselCards.scrollWidth - offsetWidth) {
+            carouselControllers.children[1].style = 'visibility:hidden;';
+        } else {
+            carouselControllers.children[0].style = null;
+            carouselControllers.children[1].style = null;
+        }
+    })
+});

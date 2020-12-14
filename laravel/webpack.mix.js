@@ -16,7 +16,10 @@ mix
     // .sass('resources/sass/app.scss', 'public/css')
 
     .styles('resources/css/layout.css', 'public/css/layout.css')
-    .scripts('resources/js/global.js', 'public/js/global.js')
+    .scripts([
+        'resources/js/global.js',
+        'node_modules/axios/dist/axios.min.js'
+    ], 'public/js/global.js')
 
     //
 
@@ -113,6 +116,7 @@ mix
     .styles([
         'resources/css/user/config.css',
         'resources/css/sidebar.css',
+        'resources/css/saveAddress.css',
     ], 'public/css/user/config.css')
     .scripts('resources/js/config.js', 'public/js/config.js')
 
@@ -121,7 +125,7 @@ mix
     .styles([
         'resources/css/user/createAddressOfAd.css',
         'resources/css/sidebar.css',
-        'resources/css/createOrChangeAddress.css',
+        'resources/css/saveAddress.css',
     ], 'public/css/user/createAddressOfAd.css')
     .scripts('resources/js/createOrChangeAddress.js', 'public/js/createAddressOfAd.js')
 

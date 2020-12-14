@@ -4,7 +4,7 @@ const passwordMessage = document.querySelector('p.passwordMessage');
 const phone = document.querySelector("input[name='phone']");
 const cpf = document.querySelector("input[name='cpf']");
 
-document.querySelectorAll('.box input').forEach(input => {
+document.querySelectorAll('#box input').forEach(input => {
     input.addEventListener('change', event => event.target.classList.forEach(inputClass => {
         if (inputClass === 'inputError') {
             input.classList.remove(inputClass);
@@ -12,7 +12,7 @@ document.querySelectorAll('.box input').forEach(input => {
     }));
 })
 
-document.getElementById('formRegister').onsubmit = function (event) {
+document.getElementById('box').onsubmit = function (event) {
     event.preventDefault();
 
     if (password.value !== repeatPassword.value || password.value === '') {

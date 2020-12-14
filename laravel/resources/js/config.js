@@ -1,137 +1,63 @@
 const content = document.querySelector("#content");
 
-function addDivAlterProperties(title = '', nameInput = '', placeholder = '', valueInitial = '', idInput = '', route = '') {
-    let html = `
-            <div class="alterProps">
-                <form class="boxDefault flexColumn" action="${route}">
-                    <div class="flexRow headerTitleAndClose">
-                        <h2>${title}</h2>
-                        <a onclick="removeDiv('.alterProps')">
-                            <img class="imgClose" src="/images/icons/close.svg" alt="close">
-                        </a>
-                    </div>
-                    <div class="flexRow">
-                        <input
-                        class="inputText"
-                        type="text"
-                        name="${nameInput}"
-                        id="${idInput}"
-                        placeholder="${placeholder}"
-                        value="${valueInitial}"
-                        >
-                        <button class="buttonDefault buttonGreen" type="submit">
-                            Concluído
-                        </button>
-                    </div>
-                </form>
-            </div>
-            `;
+function addDivAlterProperties(route = '', method = 'POST', title = '', name = '', placeholder = '', valueInitial = '', id = '') {
+    let alterProps = createElement('div', { class: 'alterProps' });
 
-    content.innerHTML += html;
-}
+    let formMethod = method === 'GET' ? 'GET' : 'POST';
 
-function addDivAddOrAlterAddress(title = '', route = '') {
-    let html = `
-        <div class="addOrAlterAddress">
-            <form class="boxDefault flexColumn" action="${route}">
-                <div class="flexRow headerTitleAndClose">
-                    <h2>${title}</h2>
-                    <a onclick="removeDiv('.addOrAlterAddress')">
-                        <img class="imgClose" src="/images/icons/close.svg" alt="close">
-                    </a>
-                </div>
+    let form = createElement('form', {
+        class: 'boxDefault',
+        action: route,
+        method: formMethod
+    });
 
-                <input
-                class="inputText"
-                type="text"
-                name="cep"
-                placeholder="CEP"
-                >
+    let methodInput = createElement('input', {
+        type: 'hidden',
+        name: '_method',
+        value: method
+    });
 
-                <div class="flexRow">
-                    <input
-                    class="inputText"
-                    type="text"
-                    name="state"
-                    placeholder="Estado"
-                    >
-                    <input
-                    class="inputText"
-                    type="text"
-                    name="city"
-                    placeholder="Cidade"
-                    >
-                </div>
+    let headerTitleAndClose = createElement('div', { class: 'headerTitleAndClose' });
+    let h2 = createElement('h2', {}, title);
+    let a = createElement('a', { onclick: "removeDiv('.alterProps')" });
 
-                <div class="flexRow">
-                    <input
-                    class="inputText"
-                    type="text"
-                    name="street"
-                    placeholder="Rua"
-                    >
-                    <input
-                    class="inputText"
-                    type="text"
-                    name="numberHome"
-                    placeholder="Número"
-                    >
-                </div>
+    let img = createElement('img', {
+        class: 'imgClose',
+        src: '/images/icons/close.svg',
+        alt: 'close'
+    });
 
-                <div class="additionalData flexRow">
-                    <div class="flexColumn">
-                        <input
-                        class="inputText"
-                        type="text"
-                        name="additionalData"
-                        placeholder="Dados adicionais (opcional)"
-                        >
-                        <div class="homeOrWork flexColumn">
-                            <p>Este é o seu trabalho ou sua casa?</p>
-                            <div class="flexRow">
-                                <input
-                                type="radio"
-                                id="work"
-                                name="workOrHome"
-                                >
-                                <label for="work">
-                                    Trabalho
-                                </label>
+    let div = createElement('div');
 
-                                <input
-                                type="radio"
-                                id="home"
-                                name="workOrHome"
-                                >
-                                <label for="home">
-                                    Casa
-                                </label>
-                            </div>
-                        </div>
-                    </div>
+    let input = createElement('input', {
+        class: 'inputText',
+        type: 'text',
+        name,
+        id,
+        placeholder,
+        value: valueInitial
+    });
 
-                    <div class="flexColumn">
-                        <input
-                        class="inputText"
-                        type="text"
-                        name="phone"
-                        placeholder="Telefone de contato"
-                        >
-                        <p>
-                            A transportadora ligará para este número, caso tenha algum problema com o envio.
-                        </p>
-                    </div>
-                </div>
-                <div class="buttonConcluded">
-                    <button class="buttonDefault buttonGreen" type="submit">
-                        Concluído
-                    </button>
-                </div>
-            </form>
-        </div>
-    `;
+    let button = createElement('button', {
+        class: 'buttonDefault buttonGreen',
+        type: 'submit'
+    }, 'Concluído');
 
-    content.innerHTML += html;
+    a.appendChild(img);
+
+    headerTitleAndClose.appendChild(h2);
+    headerTitleAndClose.appendChild(a);
+
+    div.appendChild(input);
+    div.appendChild(button);
+
+    form.appendChild(methodInput);
+    form.appendChild(headerTitleAndClose);
+    form.appendChild(div);
+
+    alterProps.appendChild(form);
+
+    content.appendChild(alterProps);
 }
 
 function removeDiv(query) {

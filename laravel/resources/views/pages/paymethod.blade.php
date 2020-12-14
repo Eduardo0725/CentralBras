@@ -5,23 +5,22 @@
 @endsection
 
 @section('content')
-    <form class="boxDefault" action="{{ route('purchases.review') }}">
-
+    <form id="box" class="boxDefault" action="{{ route('purchases.review') }}">
         <input class="none" type="radio" name="paymethod" id="paymethod1" value="0" checked>
         <input class="none" type="radio" name="paymethod" id="paymethod2" value="1">
         <input class="none" type="radio" name="paymethod" id="paymethod3" value="2">
 
-        <div class="labels flexColunm">
+        <div class="labels">
             <h2>Tipo de pagamento</h2>
 
-            <div class="flexRow">
+            <div>
                 <label for="paymethod1">Cartão de Crédito</label>
                 <label for="paymethod2">Débito Online</label>
                 <label for="paymethod3">Boleto</label>
             </div>
         </div>
 
-        <div class="flexColumn paymethod1">
+        <div class="paymethod1">
             <div>
                 <h2>Dados do Cartão de Crédito</h2>
 
@@ -53,7 +52,7 @@
 
         </div>
 
-        <div class="paymethod2 flexColumn">
+        <div class="paymethod2">
             <h2>Selecione o Banco</h2>
 
             <select class="inputText" type="text" name="numberOfInstallments">
@@ -67,7 +66,7 @@
 
         <div class="paymethod3"></div>
 
-        <div class="flexRow">
+        <div class="divButtons">
             <button class="buttonDefault buttonGreen" type="submit">Continuar compra</button>
         </div>
     </form>

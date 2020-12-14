@@ -7,7 +7,7 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 
-class ExampleTest extends DuskTestCase
+class CreateProductTest extends DuskTestCase
 {
     /**
      * A basic browser test example.
@@ -17,7 +17,7 @@ class ExampleTest extends DuskTestCase
     public function testCreateProduct()
     {
         $this->browse(function (Browser $browser) {
-            $browser->loginAs(User::find(59))
+            $browser->loginAs(User::all()->random())
                 ->visit('/myaccount/ads/create')
 
                 // add images
