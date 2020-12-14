@@ -1,21 +1,18 @@
-<div class="carousel" id="{{ 'id' . $valueVariable }}">
-
+<div class="carousel">
     <div class="controls">
-        <label class="left {{ 'id' . $valueVariable }}"></label>
-        <label class="right {{ 'id' . $valueVariable }}"></label>
+        <label class="left" data-carousel_side="left" style="visibility:hidden;"></label>
+        <label class="right" data-carousel_side="right"></label>
     </div>
 
     <div class="carousel-div">
-        <h2>{{$title}}</h2>
+        <h2>{{ $title }}</h2>
 
         <div class="cards">
-            <span class="contents" number="0" style="left: 1px;">
-
             @foreach ($contents as $content)
-                @include('components.card', ['content' => $content])
+                <x-card :product="$content" />
             @endforeach
 
-            </span>
+            <a style="width: 1px; cursor:none;"></a>
         </div>
     </div>
 </div>

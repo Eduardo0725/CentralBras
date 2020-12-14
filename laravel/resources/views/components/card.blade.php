@@ -1,16 +1,13 @@
-<a class="card" href="{{ route('product', ['id' => $content['id']]) }}">
-    <img src="{{ $content['imgMainSrc'] }}" alt="{{ $content['description'] }}" width="200px">
-    <p>{{ $content['description'] }}</p>
+<a class="card" href="{{ route('product', ['product' => $id]) }}">
+    <img src="{{ $midia }}" alt="image" width="200px">
+    <p>{{ $name }}</p>
     <div>
-        <p class="interest">{{ $content['interest'] }}</p>
-        <p class="discount">{{ $content['discount'] }}</p>
+        <p class="interest">{{ $interest }}</p>
+        <p class="discount">{{ $discount }}</p>
     </div>
     <div>
-        <p class="cost">{{ $content['cost'] }}</p>
-        <span class="stars">
-            @for ($star = 1; $star <= 5; $star++)
-                <img src="{{ asset(App\Utils\Utils::calcStars($content['stars'], $star - 0.5)) }}" alt="star{{ $star }}">
-            @endfor
-        </span>
+        <p class="cost">R$ {{ $price }}</p>
+
+        <x-stars numberOfStars="3.5" />
     </div>
 </a>

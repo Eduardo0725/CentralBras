@@ -2,15 +2,15 @@
     <div>
         <div>
             <div>
-                <a class="shopping {{ isset($shopping) ? 'active' : '' }}" href="{{ route('myaccount.purchases') }}">
+                <a class="shopping {{ $types['shopping'] }}" href="{{ route('myaccount.purchases') }}">
                     <p>Compras</p>
                 </a>
 
-                <a class="sales {{ isset($sales) ? 'active' : '' }}" href="{{ route('myaccount.sales') }}">
+                <a class="sales {{ $types['sales'] }}" href="{{ route('myaccount.sales.index') }}">
                     <p>Vendas</p>
                 </a>
 
-                <a class="configurations {{ isset($configurations) ? 'active' : '' }}" href="{{ route('myaccount.config') }}">
+                <a class="configurations {{ $types['configurations'] }}" href="{{ route('myaccount.config') }}">
                     <p>Configurações</p>
                 </a>
             </div>
