@@ -4,9 +4,10 @@
 
 use App\Models\Category;
 use Faker\Generator as Faker;
+use Illuminate\Support\Facades\Session;
 
 $factory->define(Category::class, function (Faker $faker) {
-    $category = [
+    $categories = [
         'Veículo',
         'Tecnologia',
         'Casa e Eletrodomésticos',
@@ -20,7 +21,11 @@ $factory->define(Category::class, function (Faker $faker) {
         'Supermercado'
     ];
 
+    $count = (Session::get('databaseFactory.categories') ?? Category::all())->count();
+
+    $category = $categories[$count];
+
     return [
-        'name' => $category[App\Models\Category::all(['id'])->count()]
+        'name' => $category
     ];
 });

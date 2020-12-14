@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Session;
 
 class DatabaseSeeder extends Seeder
 {
@@ -11,17 +12,34 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UserSeeder::class);
-        $this->call(UsersSeeder::class);
-        $this->call(AddressSeeder::class);
-        $this->call(WaysToReceivePaymentSeeder::class);
-        $this->call(CategorySeeder::class);
-        $this->call(ProductSeeder::class);
-        $this->call(CommentSeeder::class);
-        $this->call(CardSeeder::class);
-        $this->call(CardAddressSeeder::class);
-        $this->call(FavoriteSeeder::class);
-        $this->call(ShoppingCartSeeder::class);
-        $this->call(ShoppingAndSaleSeeder::class);
+        Session::put('databaseFactory', []);
+
+        $this->call([
+            UsersSeeder::class,
+            AddressSeeder::class,
+            WaysToReceivePaymentSeeder::class,
+            CategorySeeder::class,
+            ProductSeeder::class,
+            CommentSeeder::class,
+            CardSeeder::class,
+            CardAddressSeeder::class,
+            FavoriteSeeder::class,
+            ShoppingCartSeeder::class,
+            PagseguroSeeder::class,
+            VariationSeeder::class,
+            VariationValueSeeder::class,
+            DatasheetSeeder::class,
+            MidiaSeeder::class,
+            ProductAddressSeeder::class,
+            ShoppingCartPaymentSeeder::class,
+            StreamsSeeder::class,
+            PaymentSeeder::class,
+            BilletSeeder::class,
+            DebitPaymentSeeder::class,
+            CreditPaymentSeeder::class,
+            ReceivedPaymentSeeder::class,
+        ]);
+
+        Session::forget('databaseFactory');
     }
 }

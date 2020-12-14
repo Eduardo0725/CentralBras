@@ -18,8 +18,8 @@ class CreateUsersTable extends Migration
             $table->string('userName');
             $table->string('name');
             $table->string('surname');
-            $table->integer('cpf')->unique();
-            $table->integer('phone');
+            $table->bigInteger('cpf')->unique();
+            $table->biginteger('phone');
             $table->boolean('status')->default(true);
             $table->string('google')->nullable();
             $table->string('email')->unique();

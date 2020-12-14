@@ -6,13 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Favorite extends Model
 {
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'idUser', 'id');
-    }
+    public $fillable = [
+        'idUser',
+        'idProduct'
+    ];
 
-    public function product()
-    {
-        return $this->belongsTo(Product::class, 'idProduct', 'id');
-    }
+    // public function user()
+    // {
+    //     return $this->belongsTo(User::class, 'idUser', 'id');
+    // }
+
+    // public function product()
+    // {
+    //     return $this->belongsTo(Product::class, 'idProduct', 'id');
+    // }
 }

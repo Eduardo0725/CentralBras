@@ -1,7 +1,9 @@
 <?php
 
 use App\Models\Comment;
+use App\Models\Product;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Session;
 
 class CommentSeeder extends Seeder
 {
@@ -12,6 +14,8 @@ class CommentSeeder extends Seeder
      */
     public function run()
     {
-        factory(Comment::class, 100)->create();
+        factory(Comment::class, (Session::get('databaseFactory.products') ?? Product::all())->count())->create();
+        if (Session::exists('databaseFactory'))
+            Session::put('databaseFactory.comments', Comment::all());
     }
 }

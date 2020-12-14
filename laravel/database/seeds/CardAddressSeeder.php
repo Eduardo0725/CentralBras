@@ -1,7 +1,9 @@
 <?php
 
+use App\Models\Card;
 use App\Models\CardAddress;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Session;
 
 class CardAddressSeeder extends Seeder
 {
@@ -12,6 +14,8 @@ class CardAddressSeeder extends Seeder
      */
     public function run()
     {
-        factory(CardAddress::class, 100)->create();
+        factory(CardAddress::class, (Session::get('databaseFactory.cards') ?? Card::all())->count())->create();
+        if (Session::exists('databaseFactory'))
+            Session::put('databaseFactory.cardAddresses', CardAddress::all());
     }
 }

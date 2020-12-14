@@ -2,6 +2,7 @@
 
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Session;
 
 class UsersSeeder extends Seeder
 {
@@ -13,5 +14,7 @@ class UsersSeeder extends Seeder
     public function run()
     {
         factory(User::class, 100)->create();
+        if (Session::exists('databaseFactory'))
+            Session::put('databaseFactory.users', User::all());
     }
 }

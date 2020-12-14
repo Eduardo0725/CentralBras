@@ -16,8 +16,13 @@ class Card extends Model
         return $this->hasOne(CardAddress::class, 'idCard', 'id');
     }
 
-    public function shoppingCart()
+    public function paymentDebit()
     {
-        return $this->hasMany(ShoppingCart::class, 'idCard', 'id');
+        return $this->belongsToMany(Card::class, 'debit_payments', 'idCard', 'idPayment');
+    }
+
+    public function paymentCredit()
+    {
+        return $this->belongsToMany(Card::class, 'credit_payments', 'idCard', 'idPayment');
     }
 }

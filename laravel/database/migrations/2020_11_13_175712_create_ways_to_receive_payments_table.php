@@ -15,8 +15,9 @@ class CreateWaysToReceivePaymentsTable extends Migration
     {
         Schema::create('ways_to_receive_payments', function (Blueprint $table) {
             $table->id();
-            $table->integer('idUser');
-            $table->json('howToReceivePayments');
+            $table->foreignId('idUser');
+            $table->string('type');
+            $table->boolean('selected')->default(false);
             $table->timestamps();
 
             $table->foreign('idUser')->references('id')->on('users')->onDelete('CASCADE');

@@ -15,13 +15,12 @@ class CreateFavoritesTable extends Migration
     {
         Schema::create('favorites', function (Blueprint $table) {
             $table->id();
-            $table->integer('idUser');
-            $table->integer('idProduct');
-            // $table->json('products')->nullable();
+            $table->foreignId('idUser');
+            $table->foreignId('idProduct');
             $table->timestamps();
 
             $table->foreign('idUser')->references('id')->on('users')->onDelete('CASCADE');
-            $table->foreign('idProduct')->references('id')->on('products')->onDelete('CASCADE');
+            $table->foreign('idProduct')->references('id')->on('products');
         });
     }
 

@@ -15,7 +15,7 @@ class CreateCardAddressesTable extends Migration
     {
         Schema::create('card_addresses', function (Blueprint $table) {
             $table->id();
-            $table->integer('idCard');
+            $table->foreignId('idCard');
             $table->string('cep', 8);
             $table->string('state', 45);
             $table->string('city');

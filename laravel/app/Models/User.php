@@ -37,15 +37,20 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function address()
+    public function addresses()
     {
         return $this->hasMany(Address::class, 'idUser', 'id');
     }
 
-    public function favorite()
+    public function favorites()
     {
-        return $this->hasOne(Favorite::class, 'idUser', 'id');
+        return $this->belongsToMany(Product::class, 'favorites', 'idUser', 'idProduct');
     }
+
+    // public function favorites()
+    // {
+    //     return $this->hasOne(Favorite::class, 'idUser', 'id');
+    // }
 
     public function shoppingCart()
     {
@@ -67,18 +72,18 @@ class User extends Authenticatable
         return $this->hasMany(Comment::class, 'idUser', 'id');
     }
 
-    public function waysToReceivePayment()
+    public function waysToReceivePayments()
     {
         return $this->hasMany(WaysToReceivePayment::class, 'idUser', 'id');
     }
 
-    public function buyer()
+    public function purchases()
     {
-        return $this->hasMany(ShoppingAndSale::class, 'idBuyer', 'id');
+        return $this->hasMany(ShoppingCartPayment::class, 'idBuyer', 'id');
     }
 
-    public function salesman()
+    public function sales()
     {
-        return $this->hasMany(ShoppingAndSale::class, 'idSalesman', 'id');
+        return $this->hasMany(ShoppingCartPayment::class, 'idSalesman', 'id');
     }
 }

@@ -2,6 +2,7 @@
 
 use App\Models\Category;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Session;
 
 class CategorySeeder extends Seeder
 {
@@ -12,6 +13,14 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        factory(Category::class, 11)->create();
+        $countOfCategories = 11;
+
+        $countDatabase = Category::all()->count();
+
+        if($countDatabase < $countOfCategories)
+            factory(Category::class, $countOfCategories - $countDatabase)->create();
+
+        if (Session::exists('databaseFactory'))
+            Session::put('databaseFactory.categories', Category::all());
     }
 }

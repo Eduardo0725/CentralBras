@@ -15,15 +15,13 @@ class CreateShoppingCartsTable extends Migration
     {
         Schema::create('shopping_carts', function (Blueprint $table) {
             $table->id();
-            $table->integer('idUser');
-            $table->integer('idProduct');
-            $table->integer('amount')->default(1);
+            $table->foreignId('idUser');
+            $table->foreignId('idProduct');
             $table->json('info')->nullable();
-            // $table->json('products')->nullable();
             $table->timestamps();
 
             $table->foreign('idUser')->references('id')->on('users')->onDelete('CASCADE');
-            $table->foreign('idProduct')->references('id')->on('products')->onDelete('CASCADE');
+            $table->foreign('idProduct')->references('id')->on('products');
         });
     }
 

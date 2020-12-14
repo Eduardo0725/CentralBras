@@ -2,6 +2,7 @@
 
 use App\Models\Product;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Session;
 
 class ProductSeeder extends Seeder
 {
@@ -12,6 +13,8 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
-        factory(Product::class, 100)->create();
+        factory(Product::class, 1000)->create();
+        if (Session::exists('databaseFactory'))
+            Session::put('databaseFactory.products', Product::all());
     }
 }

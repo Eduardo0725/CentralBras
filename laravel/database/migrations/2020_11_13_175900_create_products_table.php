@@ -15,22 +15,23 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->integer('idUser');
-            $table->integer('idCategory');
+            $table->foreignId('idUser');
+            $table->foreignId('idCategory');
             $table->string('name');
             $table->integer('amount')->nullable();
             $table->text('description')->nullable();
-            $table->json('datasheet')->nullable();
-            $table->json('variations')->nullable();
-            $table->json('linkMedia')->nullable();
             $table->boolean('productSituation');
             $table->text('universalCode')->nullable();
             $table->string('brand')->nullable();
             $table->string('model')->nullable();
+            $table->string('discount')->nullable();
+            $table->string('installments')->nullable();
+            $table->string('installmentsInterestFree')->nullable();
             $table->float('cost');
-            $table->integer('idWaysToReceivePayments');
-            $table->json('addresses');
-            $table->json('warranty');
+            $table->string('warranty');
+            $table->string('warrantyDay')->nullable();
+            $table->string('warrantyMonth')->nullable();
+            $table->string('warrantyYear')->nullable();
             $table->timestamps();
 
             $table->foreign('idUser')->references('id')->on('users')->onDelete('CASCADE');
