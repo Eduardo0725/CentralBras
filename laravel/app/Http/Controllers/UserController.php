@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Throwable;
 
 class UserController extends Controller
 {
@@ -69,7 +72,37 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        try {
+            if ($request->hasFile('photo'))
+                $user->photo = $request->file('photo')->storeAs('users', $user->id);
+
+            if ($request->email)
+                $user->email = $request->email;
+
+            if ($request->password)
+                $user->password = Hash::make($request->password);
+
+            if ($request->username)
+                $user->userName = $request->username;
+
+            if ($request->name)
+                $user->name = $request->name;
+
+            if ($request->surname)
+                $user->surname = $request->surname;
+
+            if ($request->cpf)
+                $user->cpf = $request->cpf;
+
+            if ($request->phone)
+                $user->phone = $request->phone;
+
+            $user->save();
+        } catch (Throwable $th) {
+            return redirect()->back()->withErrors(['error' => 'Erro ao atualizar, tente novamente.']);
+        }
+
+        return redirect()->back(201);
     }
 
     /**

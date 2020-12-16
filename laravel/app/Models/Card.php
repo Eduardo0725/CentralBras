@@ -11,7 +11,7 @@ class Card extends Model
         return $this->belongsTo(User::class, 'idUser', 'id');
     }
 
-    public function cardAddress()
+    public function cardAddresses()
     {
         return $this->hasOne(CardAddress::class, 'idCard', 'id');
     }

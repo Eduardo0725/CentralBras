@@ -8,20 +8,32 @@
     <div id="box">
         <h1>Configurações</h1>
 
+        <form id="formPhoto" class="none" action="{{ route('users.update', $user->id) }}" method="POST" enctype="multipart/form-data">
+            @csrf
+
+            @method('PATCH')
+
+            <input class="none" type="file" name="photo" id="inputPhoto">
+        </form>
+
         <div class="accountData">
-            <h2>Dados da conta</h2>
+            <div class="photo">
+                <img src="{{ $user->photo ? env('APP_STORAGE') . $user->photo : asset('images/icons/user.svg') }}" alt="photo">
+
+                <label for="inputPhoto">Mudar Foto</label>
+            </div>
 
             <div class="buttonsConfig">
-                <a class="userName" onclick="addDivAlterProperties('', 'GET' ,'Alterar apelido do usuário', 'userName', 'Novo apelido');">
+                <a class="userName" onclick="addDivAlterProperties('{{ route('users.update', ['user' => $user->id]) }}', 'PATCH', '{{ csrf_token() }}', 'Alterar apelido do usuário', 'username', 'Apelido', '{{ $user->userName }}')">
                     <p>Usuário</p>
-                    <p>Eduardo Andrade</p>
+                    <p>{{ $user->userName }}</p>
 
                     <img src="{{ asset('images/icons/arrow-right.svg') }}" alt="arrow-right">
                 </a>
 
                 <label class="emailAndPasswordUser" for="alterEmailAndPassword">
                     <p>E-mail e senha</p>
-                    <p>example@email.com</p>
+                    <p>{{ $user->email }}</p>
 
                     <img src="{{ asset('images/icons/arrow-right.svg') }}" alt="arrow-right">
                 </label>
@@ -32,23 +44,30 @@
             <h2>Dados da conta</h2>
 
             <div class="buttonsConfig">
-                <a class="nameCompleteUser" onclick="addDivAlterProperties('', 'GET' ,'Alterar nome completo', 'nameCompleteUser', 'Nome completo');">
-                    <p>Nome completo</p>
-                    <p>Eduardo Andrade Carvalho</p>
+                <a class="nameCompleteUser" onclick="addDivAlterProperties('{{ route('users.update', ['user' => $user->id]) }}', 'PATCH', '{{ csrf_token() }}', 'Alterar nome', 'name', 'Nome', '{{ $user->name }}')">
+                    <p>Primeiro Nome</p>
+                    <p>{{ $user->name }}</p>
 
                     <img src="{{ asset('images/icons/arrow-right.svg') }}" alt="arrow-right">
                 </a>
 
-                <a class="CPFOrCNPJUser" onclick="addDivAlterProperties('', 'GET' ,'Alterar CPF/CNPJ', 'CPFOrCNPJUser', 'CPF/CNPJ');">
+                <a class="nameCompleteUser" onclick="addDivAlterProperties('{{ route('users.update', ['user' => $user->id]) }}', 'PATCH', '{{ csrf_token() }}', 'Alterar sobrenome', 'surname', 'Sobrenome', '{{ $user->surname }}')">
+                    <p>Sobrenome</p>
+                    <p>{{ $user->surname }}</p>
+
+                    <img src="{{ asset('images/icons/arrow-right.svg') }}" alt="arrow-right">
+                </a>
+
+                <a class="CPFOrCNPJUser" onclick="addDivAlterProperties('{{ route('users.update', ['user' => $user->id]) }}', 'PATCH', '{{ csrf_token() }}', 'Alterar CPF/CNPJ', 'cpf', 'CPF/CNPJ', '{{ $user->cpf }}')">
                     <p>CPF/CNPJ</p>
-                    <p>xxx.xxx.xxx-xx</p>
+                    <p>{{ $user->cpf }}</p>
 
                     <img src="{{ asset('images/icons/arrow-right.svg') }}" alt="arrow-right">
                 </a>
 
-                <a class="phoneUser" onclick="addDivAlterProperties('', 'GET' ,'Alterar número de telefone', 'phoneUser', 'Número de telefone');">
+                <a class="phoneUser" onclick="addDivAlterProperties('{{ route('users.update', ['user' => $user->id]) }}', 'PATCH', '{{ csrf_token() }}', 'Alterar número de telefone', 'phone', 'Número de telefone', '{{ $user->phone }}')">
                     <p>Telefone</p>
-                    <p>(xx) x xxxx-xxxx</p>
+                    <p>{{ $user->phone }}</p>
 
                     <img src="{{ asset('images/icons/arrow-right.svg') }}" alt="arrow-right">
                 </a>
@@ -59,47 +78,35 @@
             <h2>Cartões</h2>
 
             <div>
-                <div class="configCard">
-                    <div>
-                        <img src="https://www.comerciodigital.pt/media/2263/mastercard_novo.png?anchor=center&mode=crop&quality=85&rnd=132346257210000000" alt="arrow-right">
+                @if ($user->cards)
+                    @foreach ($user->cards as $card)
+                        <div class="configCard">
+                            <div>
+                                <img src="https://www.comerciodigital.pt/media/2263/mastercard_novo.png?anchor=center&mode=crop&quality=85&rnd=132346257210000000" alt="arrow-right">
 
-                        <div class="infoCard">
-                            <p>Terminado em xxxx</p>
-                            <p>Nome do banco</p>
-                            <p>Vencimento: xx/xxxx</p>
+                                <div class="infoCard">
+                                    <p>Terminado em {{ substr($card->cardNumber, -4) }}</p>
+                                    <p>Nome do banco</p>
+                                    <p>Vencimento: {{ $card->monthOfValidity }}/20{{ $card->yearOfValidity }}</p>
+                                </div>
+                            </div>
+
+                            <form class="formAsLink" action="{{ route('cards.destroy', $card->id) }}" method="post">
+                                @csrf
+
+                                @method('DELETE')
+
+                                <button type="submit">Excluir</button>
+                            </form>
                         </div>
-                    </div>
+                    @endforeach
+                @endif
 
-                    <a>Excluir</a>
-                </div>
+                <label class="configLabel" for="createCard">
+                    <p>Adicionar novo cartão</p>
 
-                <div class="configCard">
-                    <div>
-                        <img src="https://www.comerciodigital.pt/media/2263/mastercard_novo.png?anchor=center&mode=crop&quality=85&rnd=132346257210000000" alt="arrow-right">
-
-                        <div class="infoCard">
-                            <p>Terminado em xxxx</p>
-                            <p>Nome do banco</p>
-                            <p>Vencimento: xx/xxxx</p>
-                        </div>
-                    </div>
-
-                    <a>Excluir</a>
-                </div>
-
-                <div class="configCard">
-                    <div>
-                        <img src="https://www.comerciodigital.pt/media/2263/mastercard_novo.png?anchor=center&mode=crop&quality=85&rnd=132346257210000000" alt="arrow-right">
-
-                        <div class="infoCard">
-                            <p>Terminado em xxxx</p>
-                            <p>Nome do banco</p>
-                            <p>Vencimento: xx/xxxx</p>
-                        </div>
-                    </div>
-
-                    <a>Excluir</a>
-                </div>
+                    <img src="{{ asset('images/icons/arrow-right.svg') }}" alt="arrow-right">
+                </label>
             </div>
         </div>
 
@@ -107,13 +114,13 @@
             <h2>Endereços</h2>
 
             <div>
-                @for ($i = 0; $i < 3; $i++)
+                @foreach ($user->addresses as $address)
                     <div class="address">
                         <div class="infoAddress">
-                            <p>Nome da rua, numero</p>
-                            <p>Complemento</p>
-                            <p>cidade (CEP), estado</p>
-                            <p>nome do usuário - numero de contato</p>
+                            <p>{{ $address->street }}, {{ $address->houseNumber }}</p>
+                            <p>{{ $address->complement }}</p>
+                            <p>{{ $address->city }} ({{ $address->cep }}), {{ $address->state }}</p>
+                            <p>{{ $address->phone }}</p>
                         </div>
 
                         <div>
@@ -125,14 +132,20 @@
 
                             <div class="boxOptions">
                                 <div>
-                                    <label for="modifyAddress{{ $i }}">Editar</label>
+                                    <label class="configLink" for="modifyAddress{{ $address->id }}">Editar</label>
 
-                                    <a>Excluir</a>
+                                    <form class="formAsLink configLink" action="{{ route('addresses.destroy', ['address' => $address->id]) }}" method="POST">
+                                        @csrf
+
+                                        @method('DELETE')
+
+                                        <button class="configLink" type="submit">Excluir</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
                     </div>
-                @endfor
+                @endforeach
 
                 <label for="saveAddress">
                     <p>Adicionar novo endereço</p>
@@ -159,16 +172,13 @@
         </div>
     </div>
 
-    @for ($i = 0; $i < 3; $i++)
-        <x-save-address title="Modificar Endereço" id="modifyAddress{{ $i }}" />
-    @endfor
-
-    <x-save-address title="Adicionar Endereço" />
-
     <input type="checkbox" class="none" name="options" id="alterEmailAndPassword">
 
     <div class="alterEmailAndPassword">
-        <form class="boxDefault">
+        <form id="emailAndPasswordForm" class="boxDefault" action="{{ route('users.update', ['user' => $user->id]) }}" method="POST">
+            @csrf
+            @method('PATCH')
+
             <div class="headerTitleAndClose">
                 <h2>Editar email e senha</h2>
 
@@ -179,21 +189,46 @@
 
             <div>
                 <div class="divInputs">
-                    <input class="inputText" type="email" name="email" placeholder="Novo email (Deixe vazio para não alterar)">
-                    <input class="inputText" type="password" name="password" placeholder="Senha (Deixe vazio para não alterar)">
-                    <input class="inputText" type="password" placeholder="Repetir senha">
+                    <input class="inputText configEmail" type="email" name="email" placeholder="Novo email (Deixe vazio para não alterar)" value="{{ $user->email }}">
+                    <input class="inputText configPassword" type="password" name="password" placeholder="Senha (Deixe vazio para não alterar)">
+                    <input class="inputText configPasswordRepeat" type="password" placeholder="Repetir senha">
                 </div>
 
                 <div>
-                    <button class="buttonDefault buttonGreen" id="buttonSubmitEmailAndPassword" onclick="submitEmailAndPassword()" type="button">
+                    <button class="buttonDefault buttonGreen" type="submit">
                         Concluído
                     </button>
                 </div>
             </div>
         </form>
     </div>
+
+    <input type="checkbox" class="none" name="options" id="createCard">
+
+    <div id="createCardDiv">
+        <x-create-card buttonClose="true" />
+    </div>
+
+    @foreach ($user->addresses as $address)
+        <x-save-address
+            title="Modificar Endereço"
+            id="modifyAddress{{ $address->id }}"
+            :informations="$address"
+            method="PUT"
+        />
+    @endforeach
+
+    <x-save-address title="Adicionar Endereço" />
 @endsection
 
 @section('scripts')
     <script src="{{ asset('js/config.js') }}"></script>
+
+    @if ($errors->has('error'))
+        <script>
+            setTimeout(()=>{
+                alert(@json($errors->get('error')[0]));
+            }, 100);
+        </script>
+    @endif
 @endsection

@@ -81,9 +81,6 @@ Route::prefix('product/{product}')->group(function () {
 Route::post('shoppingCart/{idProduct}', 'ShoppingCartController@store')->name('shoppingCart.store');
 Route::delete('shoppingCart/{idProduct}/{idShoppingCart}', 'ShoppingCartController@destroy')->name('shoppingCart.delete');
 
-Route::post('favorite/{idProduct}', 'FavoriteController@store')->name('favorite.store');
-Route::delete('favorite/{idProduct}', 'FavoriteController@destroy')->name('favorite.delete');
-
 Route::get('cartAndFavorites/{cartOrFavorite?}', 'ShoppingCartAndFavorite@index')->name('cartAndFavorites');
 
 Route::prefix('purchases')->group(function () {
@@ -143,6 +140,48 @@ Route::middleware('auth')->group(function () {
         Route::get('/', 'AccountController@index')->name('account.index');
 
         Route::get('logout', 'AccountController@logout')->name('account.logout');
+
+        Route::get('waysToGetPaid/check/{type}', 'WaysToReceivePaymentController@check');
+        Route::post('waysToGetPaid', 'WaysToReceivePaymentController@store');
+
+        Route::resource('addresses', 'AddressController')->names('addresses')->only(['index', 'store', 'update', 'destroy']);
+
+        Route::resource('users', 'UserController')->names('users')->only(['update']);
+
+        Route::resource('cards', 'CardController')->names('cards')->only(['store', 'destroy']);
+
+        Route::post('favorite/{idProduct}', 'FavoriteController@store')->name('favorite.store');
+        Route::delete('favorite/{idProduct}', 'FavoriteController@destroy')->name('favorite.delete');
+    });
+
+    Route::prefix('myaccount')->group(function () {
+        Route::match(['GET', 'POST'], '/', function () {
+            return redirect()->route('myaccount.config');
+        })->name('myaccount');
+
+        Route::get('config', 'ConfigController@index')->name('myaccount.config');
+
+        Route::prefix('purchases')->group(function () {
+            Route::get('/', function () {
+                return view('pages.user.shopping', ['sidebar' => 'shopping']);
+            })->name('myaccount.purchases');
+
+            Route::get('id/{id?}', function () {
+                return view('pages.user.shoppingDetail', ['sidebar' => 'shopping']);
+            })->name('myaccount.purchases.purchase');
+        });
+
+        Route::resource('sales', 'SalesController')->names('myaccount.sales');
+
+        Route::prefix('ads')->group(function () {
+            Route::get('/', 'AdsController@index')->name('myaccount.ads.index');
+
+            Route::prefix('create')->group(function () {
+                Route::match(['GET', 'POST'], '/{page?}', 'AdsController@create')->name('myaccount.ads.create');
+
+                Route::post('/{page?}', 'AdsController@store')->name('myaccount.ads.store');
+            });
+        });
     });
 });
 
@@ -153,53 +192,14 @@ Route::middleware('guest')->group(function () {
         Route::post('login', 'AccountController@login')->name('account.login');
 
         Route::get('register', 'AccountController@formRegister')->name('account.register');
-
         Route::post('register', 'AccountController@register')->name('account.register');
     });
+
+    Route::get('google', function () {
+        return view('pages.emailVerification');
+    })->name('account.google');
+
+    Route::get('register', function () {
+        return view('pages.register');
+    })->name('register');
 });
-
-Route::get('google', function () {
-    return view('pages.emailVerification');
-})->name('account.google');
-
-Route::get('register', function () {
-    return view('pages.register');
-})->name('register');
-
-Route::prefix('myaccount')->middleware('auth')->group(function () {
-    Route::match(['GET', 'POST'], '/', function () {
-        return redirect()->route('myaccount.config');
-    })->name('myaccount');
-
-    Route::get('config', function () {
-        return view('pages.user.config', ['sidebar' => 'configurations']);
-    })->name('myaccount.config');
-
-    Route::prefix('purchases')->group(function () {
-        Route::get('/', function () {
-            return view('pages.user.shopping', ['sidebar' => 'shopping']);
-        })->name('myaccount.purchases');
-
-        Route::get('id/{id?}', function () {
-            return view('pages.user.shoppingDetail', ['sidebar' => 'shopping']);
-        })->name('myaccount.purchases.purchase');
-    });
-
-    Route::resource('sales', 'SalesController')->names('myaccount.sales');
-
-    Route::prefix('ads')->group(function () {
-        Route::get('/', 'AdsController@index')->name('myaccount.ads.index');
-
-        Route::prefix('create')->group(function () {
-            Route::match(['GET', 'POST'], '/{page?}', 'AdsController@create')->name('myaccount.ads.create');
-
-            Route::post('/{page?}', 'AdsController@store')->name('myaccount.ads.store');
-        });
-    });
-});
-
-Route::get('waysToGetPaid/check/{type}', 'WaysToReceivePaymentController@check');
-Route::post('waysToGetPaid', 'WaysToReceivePaymentController@store');
-
-Route::get('address', 'AddressController@index');
-Route::post('address', 'AddressController@store');

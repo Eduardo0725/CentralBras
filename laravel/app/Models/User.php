@@ -47,11 +47,6 @@ class User extends Authenticatable
         return $this->belongsToMany(Product::class, 'favorites', 'idUser', 'idProduct');
     }
 
-    // public function favorites()
-    // {
-    //     return $this->hasOne(Favorite::class, 'idUser', 'id');
-    // }
-
     public function shoppingCart()
     {
         return $this->hasOne(ShoppingCart::class, 'idUser', 'id');
@@ -67,9 +62,9 @@ class User extends Authenticatable
         return $this->hasMany(Comment::class, 'idUser', 'id');
     }
 
-    public function card()
+    public function cards()
     {
-        return $this->hasMany(Comment::class, 'idUser', 'id');
+        return $this->hasMany(Card::class, 'idUser', 'id');
     }
 
     public function waysToReceivePayments()

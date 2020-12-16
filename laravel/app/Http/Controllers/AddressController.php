@@ -46,13 +46,12 @@ class AddressController extends Controller
                 'city' => $request->city,
                 'street' => $request->street,
                 'houseNumber' => $request->houseNumber,
+                'complement' => $request->complement,
                 'phone' => $request->phone
             ]);
-
-            return response('', 201);
         } catch (\Throwable $th) {}
 
-        return response('', 400);
+        return redirect()->back(201);
     }
 
     /**
@@ -86,7 +85,18 @@ class AddressController extends Controller
      */
     public function update(Request $request, Address $address)
     {
-        //
+        try {
+            $address->cep = $request->cep;
+            $address->state = $request->state;
+            $address->city = $request->city;
+            $address->street = $request->street;
+            $address->houseNumber = $request->houseNumber;
+            $address->complement = $request->complement;
+            $address->phone = $request->phone;
+            $address->save();
+        } catch (\Throwable $th) {}
+
+        return redirect()->back(201);
     }
 
     /**
@@ -97,6 +107,8 @@ class AddressController extends Controller
      */
     public function destroy(Address $address)
     {
-        //
+        $address->delete();
+
+        return redirect()->back(201);
     }
 }
