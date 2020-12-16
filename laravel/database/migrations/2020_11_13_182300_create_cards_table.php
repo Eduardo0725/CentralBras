@@ -18,7 +18,7 @@ class CreateCardsTable extends Migration
             $table->foreignId('idUser');
             $table->string('cardNumber', 16);
             $table->string('cardHouder');
-            $table->string('dayOfValidity', 2);
+            $table->string('monthOfValidity', 2);
             $table->string('yearOfValidity', 2);
             $table->string('cvv', 3);
             $table->string('cardHolderCPF', 11);
