@@ -1,0 +1,79 @@
+.createCard {
+    max-width: 770px;
+    padding: 20px;
+    margin: 20px;
+
+    border-radius: 5px;
+
+    background: #fff;
+}
+
+.createCard * {
+    box-sizing: border-box;
+}
+
+.createCard .createCardClose {
+    display: flex;
+    justify-content: flex-end;
+
+    height: 0;
+}
+
+.createCard .createCardClose img {
+    width: 20px;
+    height: 20px;
+}
+
+.createCard input,
+.createCard select {
+    margin: 0;
+    max-width: none;
+}
+
+.createCard .createCardData {
+    margin-bottom: 20px;
+}
+
+.createCard > div > div {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+}
+
+.createCard > div > div > div {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+}
+
+.createCard div input[name="dateOfBirth"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+}
+
+.createCard div input[name="dateOfBirth"] {
+    cursor: text;
+}
+
+/* .createCard div input[name="dateOfBirth"]:before {
+    position: relative;
+
+    width: 100%;
+
+    background: #fff;
+    color: #888;
+
+    content: "Data de nascimento";
+} */
+
+.createCard div input[name="dateOfBirth"]:focus::before {
+    content: none;
+}
+
+.createCard .divButtons {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+
+    width: 100%;
+    margin-top: 20px;
+}
