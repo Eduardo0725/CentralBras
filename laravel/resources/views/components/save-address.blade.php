@@ -1,8 +1,12 @@
 <input class="saveAddressInput none" type="checkbox" id="{{ $id }}">
 
 <div class="saveAddress">
-    <form class="saveAddressForm boxDefault">
+    <form class="saveAddressForm boxDefault" action="{{ $route }}" method="POST">
         @csrf
+
+        @if($method != 'POST')
+            @method($method)
+        @endif
 
         <div class="headerTitleAndClose">
             <h2>{{ $title }}</h2>

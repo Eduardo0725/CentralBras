@@ -8,6 +8,8 @@ class SaveAddress extends Component
 {
     public $title;
     public $id;
+    public $method;
+    public $route = null;
     public $cep = null;
     public $state = null;
     public $city = null;
@@ -21,17 +23,19 @@ class SaveAddress extends Component
      *
      * @return void
      */
-    public function __construct($title = 'Adicionar', $informations = null, $id = 'saveAddress')
+    public function __construct($title = 'Adicionar', $informations = null, $id = 'saveAddress', $method = 'POST')
     {
         $this->title = $title;
         $this->id = $id;
+        $this->method = $method;
+        $this->route = $method == 'POST' ? route('addresses.store') : route('addresses.update', ['address' => $informations['id']]);
 
         if ($informations) {
             $this->cep = $informations['cep'];
             $this->state = $informations['state'];
             $this->city = $informations['city'];
             $this->street = $informations['street'];
-            $this->number = $informations['number'];
+            $this->number = $informations['houseNumber'];
             $this->complement = $informations['complement'];
             $this->phone = $informations['phone'];
         }

@@ -51,7 +51,3 @@
 
     <x-save-address />
 @endsection
-
-@section('scripts')
-    <script src="{{ asset('js/createAddressOfAd.js') }}"></script>
-@endsection

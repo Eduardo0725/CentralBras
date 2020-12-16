@@ -15,7 +15,10 @@ mix
     // .js('resources/js/app.js', 'public/js')
     // .sass('resources/sass/app.scss', 'public/css')
 
-    .styles('resources/css/layout.css', 'public/css/layout.css')
+    .styles([
+        'resources/css/layout.css',
+        'resources/css/create-card.css',
+    ], 'public/css/layout.css')
     .scripts([
         'resources/js/global.js',
         'node_modules/axios/dist/axios.min.js'
@@ -127,7 +130,6 @@ mix
         'resources/css/sidebar.css',
         'resources/css/saveAddress.css',
     ], 'public/css/user/createAddressOfAd.css')
-    .scripts('resources/js/createOrChangeAddress.js', 'public/js/createAddressOfAd.js')
 
     //
 
