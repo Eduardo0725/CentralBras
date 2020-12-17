@@ -43,8 +43,11 @@
             <img src="{{ asset('images/icons/cart.svg') }}" alt="Cart">
         </a>
 
-        <a class="headerBtn userHeaderButton" {{ Auth::check() ? '' : 'href=' . route('account.index') }}>
-            <img src="{{ asset('images/icons/user.svg') }}" alt="User">
+        <a
+            class="userHeaderButton {{ Auth::check() ?? 'headerBtnNotAuth' }}"
+            {{ Auth::check() ? '' : 'href=' . route('account.index') }}
+        >
+            <img src="{{ Auth::check() && Auth::user()->photo ? env('APP_STORAGE') . Auth::user()->photo : asset('images/icons/user.svg') }}" alt="User">
 
             @guest
                 <p>Entre ou cadastre-se</p>

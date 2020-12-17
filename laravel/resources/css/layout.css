@@ -342,8 +342,12 @@ header .userHeaderButton img {
     margin: 0 20px;
 }
 
+header .userHeaderButton img {
+    border-radius: 50%;
+}
+
 header .headerBtn:hover,
-header .userHeaderButton:hover {
+header .headerBtnNotAuth:hover {
     filter: var(--svg-color-red);
 }
 
